@@ -1,0 +1,74 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html {
+    box-sizing: border-box;  
+    overflow-x : hidden;
+    scroll-behavior: smooth;
+}
+
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+input, button, fieldset, textarea{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+hr{
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color : inherit;
+    font-family: inherit;
+}
+
+.hidden-pc{
+    display : none;
+    @media screen and (max-width : 990px){
+        display : flex;
+    }
+}
+
+.hidden-mobile{
+    display : flex;
+    @media screen and (max-width : 990px){
+        display : none !important;
+    }
+}
+
+.no-scroll {
+    overflow-y: hidden;
+}
+
+.reveal{
+    width : 100%;
+    height : 100%;
+}
