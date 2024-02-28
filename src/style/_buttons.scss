@@ -4,80 +4,25 @@
     justify-content: center;
     align-items: center;
     width : fit-content;
-    min-height : 7vh;
-    padding : 0 2vw;
+    height : fit-content;
+    padding : 1vh 1.5vw;
     border-radius: 100vmax; 
-    border-width : 2px;
-    border-style: solid;
+    border : 1px solid $noir;
     background-color: transparent;
-    font-family : "Ysabeau Office";
-    font-size : 1.1vw;
-    font-weight : 600;
+    font-family : "Calibri";
+    font-size : 1vw;
     line-height : 1;
-    text-transform: uppercase;
     cursor : pointer;
     overflow: hidden;
     transition : .3s ease;
     z-index : 1;
 
-    @media screen and (max-width:990px){
-        font-size: 5vw;
-        padding : 0 8vw;    
-        min-height : 6.5vh;
-    }  
-
     &:hover{
-        color : $blanc;
-        &::after{
-            height : 100%;
-        }      
-    }
-
-    &_blanc{
-        background-color: $blanc;
-        border-color : $vert;
-        color : $vert;
-        &::after{
-            background-color: $vert;
-        }
-    }
-
-    &_vert{
-        border-color : $vert;
-        color : $vert;
-        &::after{
-            background-color: $vert;
-        }
-    }
-
-    &_noir{
-        border-color : $noir;
-        color : $noir;
-        &::after{
-            background-color: $noir;
-        }
-    }
-
-    &_invertNoir{
-        border-color : none;
-        color : $blanc;
+        color : $blanc;   
         background-color: $noir;
-        &::after{
-            background-color: $blanc;
-        }
-        &:hover{
-            color : $noir;
-        }
     }
+}
 
-    &::after{
-        position : absolute;
-        content : "";
-        bottom : 0;
-        left : 0;
-        width : 100%;
-        height : 0;
-        transition : .3s ease;
-        z-index : -1;
-    }
+.input{
+    padding : 1vh 1.5vw;
 }

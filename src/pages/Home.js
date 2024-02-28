@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote } from '../utilities/Slice';
+import "./Home.scss"
 
 function Home() {
     const dispatch = useDispatch();
@@ -19,21 +20,24 @@ function Home() {
     };
 
     return (
-        <div>
-            <h1>Notes</h1>
-            <div>
-                <input
+        <div className="notes">
+
+            <div className="notes_add">
+                <input className="input"
                     type="text"
                     value={newNoteContent}
                     onChange={(e) => setNewNoteContent(e.target.value)}
                 />
-                <button onClick={handleAddNote}>Ajouter une note</button>
+                <button className="bouton" onClick={handleAddNote}>Add</button>
             </div>
-            <ul>
+
+            <div className="notes_container">
                 {notes.map(note => (
-                    <li key={note.id}>{note.content}</li>
+                    <div key={note.id} className="notes_container-note">
+                        <p>{note.content}</p>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }

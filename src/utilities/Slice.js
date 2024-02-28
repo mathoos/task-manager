@@ -6,7 +6,6 @@ const notesSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
-        // Ne laissez que l'ajout de note
         addNote: (state, action) => {
             state.push(action.payload);
         }

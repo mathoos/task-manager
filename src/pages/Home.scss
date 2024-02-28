@@ -1,0 +1,26 @@
+.notes{
+    display : flex;
+    flex-direction: column;
+    gap : 5vh;
+    width : 100%;
+    min-height : 100vh;
+    padding : 5vw;
+    background-color: rgb(219, 192, 219);
+
+    &_add{
+        display : flex;
+        gap : 2vw;
+        border : 1px solid yellow;
+    }
+
+    &_container{
+        display : flex;
+        flex-wrap: wrap;
+        gap : 2vw;
+        border : 1px solid black;
+
+        &-note{
+            border : 1px solid red;
+        }
+    }
+}
