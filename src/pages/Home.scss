@@ -1,6 +1,6 @@
 @import "../style.scss";
 
-.notes{
+.container{
     display : flex;
     flex-direction: column;
     gap : 10vh;
@@ -8,56 +8,72 @@
     min-height : 100vh;
     padding : 5vw;
 
-    &_add{
+    &_form{
         display : flex;
         gap : 2vw;
     }
 
-    &_container{
+    &_content{
         display : grid;
         grid-template-columns: repeat(5, 1fr);
         gap : 2vw;
 
-        .note{
+        &-day{
             display : flex;
             flex-direction: column;
-            justify-content: space-between;
             gap : 5vh;
-            padding : 2vw 1vw;
-            border-radius : 15px;
+            background-color: rgb(248, 248, 248);
 
-            &.blue {
-                border: 2px solid $bleu;
-            }
-            
-            &.green {
-                border: 2px solid $vert;
-            }
-            
-            &.orange {
-                border: 2px solid $orange;
-            }
-            
-            &.pink {
-                border: 2px solid $rose;
+            &--title{
+                background-color: $noir;
+                color : $blanc;
+                padding : 1vw;
+                text-align : center;
+                border-radius : 15px;
             }
 
-            &_content{
+            .note{
                 display : flex;
                 flex-direction: column;
-                gap : 2vh;
-                
-                &-title{
-                    display : flex;
-                    justify-content: space-between;
+                justify-content: space-between;
+                gap : 5vh;
+                padding : 2vw 1vw;
+                border-radius : 15px;
+                background-color: $blanc;
+    
+                &.blue {
+                    border: 2px solid $bleu;
                 }
+                
+                &.green {
+                    border: 2px solid $vert;
+                }
+                
+                &.orange {
+                    border: 2px solid $orange;
+                }
+                
+                &.pink {
+                    border: 2px solid $rose;
+                }
+    
+                &_content{
+                    display : flex;
+                    flex-direction: column;
+                    gap : 2vh;
+                    
+                    &-title{
+                        display : flex;
+                        justify-content: space-between;
+                    }
+                }
+    
+                &_update{
+                    display : flex;
+                    gap : 1vw;
+                    align-self: flex-end;
+                } 
             }
-
-            &_update{
-                display : flex;
-                gap : 1vw;
-                align-self: flex-end;
-            } 
         }
     }
 }

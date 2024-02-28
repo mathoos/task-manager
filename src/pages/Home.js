@@ -23,26 +23,29 @@ function Home() {
     const [selectedTag, setSelectedTag] = useState('');
     const [newNoteTime, setNewNoteTime] = useState('');
     const [selectedEmote, setSelectedEmote] = useState('');
+    const [selectedDay, setSelectedDay] = useState(''); // State pour stocker le jour sélectionné par l'utilisateur
 
     const getColorClass = (tag) => {
         return tagColors[tag] || tagColors.default;
     };
 
     const handleAddNote = () => {
-        if (newNoteTitle.trim() !== '' && newNoteDescription.trim() !== '' && selectedTag !== '' && newNoteTime !== '' && selectedEmote !== '') {
+        if (newNoteTitle.trim() !== '' && newNoteDescription.trim() !== '' && selectedTag !== '' && newNoteTime !== '' && selectedEmote !== '' && selectedDay !== '') {
             dispatch(addNote({
                 id: Date.now(), // Générer un identifiant unique
                 title: newNoteTitle,
                 description: newNoteDescription,
                 tag: selectedTag,
                 time: newNoteTime,
-                emote: selectedEmote
+                emote: selectedEmote,
+                day: selectedDay // Ajouter le jour sélectionné à la note
             }));
             setNewNoteTitle('');
             setNewNoteDescription('');
             setSelectedTag('');
             setNewNoteTime('');
             setSelectedEmote('');
+            setSelectedDay('');
         }
     };
 
@@ -61,10 +64,12 @@ function Home() {
         }));
     };
 
-    return (
-        <div className="notes">
+    const daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
 
-            <div className="notes_add">
+    return (
+        <div className="container">
+
+            <div className="container_form">
                 <input className="input" type="text" value={newNoteTitle} onChange={(e) => setNewNoteTitle(e.target.value)} placeholder="Title" />
                 <textarea className="input" value={newNoteDescription} onChange={(e) => setNewNoteDescription(e.target.value)} placeholder="Description" />
                 <select className="input" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
@@ -80,27 +85,45 @@ function Home() {
                         <option key={emote} value={emote}>{emote}</option>
                     ))}
                 </select>
+                <select className="input" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
+                    <option value="">Select Day</option>
+                    {daysOfWeek.map(day => (
+                        <option key={day} value={day}>{day}</option>
+                    ))}
+                </select>
                 <button className="bouton" onClick={handleAddNote}>Add</button>
             </div>
 
-            <div className="notes_container">
-                {notes.map(note => (
-                    <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
-                        <div className="note_content">
-                            <div className="note_content-title">
-                                <h3>{note.title}</h3>
-                                <p>{note.emote}</p>
-                            </div>
-                            <p>{note.description}</p>
-                            <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
-                            <p>Time: {note.time}</p>
-                        </div>
-                        
-                        
-                        <div className="note_update">
-                            <button className="bouton" onClick={() => handleDeleteNote(note.id)}>Delete</button>
-                            <button className="bouton" onClick={() => handleEditNote(note.id, note.title, note.description, note.tag, note.time, note.emote)}>Edit</button>
-                        </div>
+            <div className="container_content">
+                {daysOfWeek.map(day => (
+                    <div key={day} className="container_content-day">
+                        <h2 className="container_content-day--title">{day}</h2>
+                        {notes
+                            .filter(note => note.day === day)
+                            .sort((a, b) => {
+                                const timeA = new Date(`1970-01-01T${a.time}`);
+                                const timeB = new Date(`1970-01-01T${b.time}`);
+                                return timeA - timeB;
+                            })
+                            .map(note => (
+                                <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
+                                    <div className="note_content">
+                                        <div className="note_content-title">
+                                            <h3>{note.title}</h3>
+                                            <p>{note.emote}</p>
+                                        </div>
+                                        <p>{note.description}</p>
+                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
+                                        <p>Time: {note.time}</p>
+                                    </div>
+                                    
+                                    
+                                    <div className="note_update">
+                                        <button className="bouton" onClick={() => handleDeleteNote(note.id)}>Delete</button>
+                                        <button className="bouton" onClick={() => handleEditNote(note.id, note.title, note.description, note.tag, note.time, note.emote)}>Edit</button>
+                                    </div>
+                                </div>
+                            ))}
                     </div>
                 ))}
             </div>
