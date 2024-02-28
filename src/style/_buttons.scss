@@ -9,7 +9,6 @@
     border-radius: 100vmax; 
     border : 1px solid $noir;
     background-color: transparent;
-    font-family : "Calibri";
     font-size : 1vw;
     line-height : 1;
     cursor : pointer;
@@ -20,6 +19,34 @@
     &:hover{
         color : $blanc;   
         background-color: $noir;
+    }
+
+    &_tag{
+        pointer-events: none;
+
+        &.blue {
+            background-color: $bleu;
+            color : $blanc;
+            border-color : transparent;
+        }
+        
+        &.green {
+            background-color: $vert;
+            color : $blanc;
+            border-color : transparent;
+        }
+        
+        &.orange {
+            background-color: $orange;
+            color : $blanc;
+            border-color : transparent;
+        }
+        
+        &.pink {
+            background-color: $rose;
+            color : $blanc;
+            border-color : transparent;
+        }
     }
 }
 

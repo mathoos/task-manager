@@ -12,7 +12,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const notesFromLocalStorage = localStorage.getItem('notes');
 if (notesFromLocalStorage) {
-    store.dispatch(addNote(notesFromLocalStorage));
+    const parsedNotes = JSON.parse(notesFromLocalStorage);
+    parsedNotes.forEach(note => {
+        store.dispatch(addNote(note));
+    });
 }
 
 

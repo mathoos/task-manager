@@ -1,26 +1,64 @@
+@import "../style.scss";
+
 .notes{
     display : flex;
     flex-direction: column;
-    gap : 5vh;
+    gap : 10vh;
     width : 100%;
     min-height : 100vh;
     padding : 5vw;
-    background-color: rgb(219, 192, 219);
 
     &_add{
         display : flex;
         gap : 2vw;
-        border : 1px solid yellow;
     }
 
     &_container{
-        display : flex;
-        flex-wrap: wrap;
+        display : grid;
+        grid-template-columns: repeat(5, 1fr);
         gap : 2vw;
-        border : 1px solid black;
 
-        &-note{
-            border : 1px solid red;
+        .note{
+            display : flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap : 5vh;
+            padding : 2vw 1vw;
+            border-radius : 15px;
+
+            &.blue {
+                border: 2px solid $bleu;
+            }
+            
+            &.green {
+                border: 2px solid $vert;
+            }
+            
+            &.orange {
+                border: 2px solid $orange;
+            }
+            
+            &.pink {
+                border: 2px solid $rose;
+            }
+
+            &_content{
+                display : flex;
+                flex-direction: column;
+                gap : 2vh;
+                
+                &-title{
+                    display : flex;
+                    justify-content: space-between;
+                }
+            }
+
+            &_update{
+                display : flex;
+                gap : 1vw;
+                align-self: flex-end;
+            } 
         }
     }
 }
+
