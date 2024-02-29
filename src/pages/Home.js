@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, deleteNote , editNote } from '../utilities/Slice';
+import { addNote, deleteNote, editNote } from '../utilities/Slice';
 import poubelle from "../img/icons/poubelle.png";
 import edit from "../img/icons/edit.png";
 import alicePhoto from "../img/people/alice.jpg";
@@ -131,6 +131,11 @@ function Home() {
         dispatch(deleteNote(id));
     };
 
+    const handleAddNoteForDay = (day) => {
+        setSelectedDay(day);
+        setFormActive(true);
+    };
+
     const daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
 
     return (
@@ -139,19 +144,19 @@ function Home() {
             <div className={`container_form ${formActive ? 'active' : ''}`}>
                 <div className="container_form-content">
                     <fieldset className="fieldset">
-                        <input 
-                            className="input" 
-                            type="text" 
-                            value={newNoteTitle} 
-                            onChange={(e) => setNewNoteTitle(e.target.value)} 
+                        <input
+                            className="input"
+                            type="text"
+                            value={newNoteTitle}
+                            onChange={(e) => setNewNoteTitle(e.target.value)}
                             placeholder="Title"
                         />
                     </fieldset>
                     <fieldset className="fieldset">
-                        <textarea 
-                            className="input input_textarea" 
-                            value={newNoteDescription} 
-                            onChange={(e) => setNewNoteDescription(e.target.value)} 
+                        <textarea
+                            className="input input_textarea"
+                            value={newNoteDescription}
+                            onChange={(e) => setNewNoteDescription(e.target.value)}
                             placeholder="Description"
                         />
                     </fieldset>
@@ -162,15 +167,9 @@ function Home() {
                                 <option key={tag} value={tag}>{tag}</option>
                             ))}
                         </select>
-                    </fieldset>              
-                    
+                    </fieldset>
+
                     <fieldset className="fieldset">
-                        <select className="input" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
-                            <option value="">Select Day</option>
-                            {daysOfWeek.map(day => (
-                                <option key={day} value={day}>{day}</option>
-                            ))}
-                        </select>
                         <input className="input" type="time" value={newNoteTime} onChange={(e) => setNewNoteTime(e.target.value)} />
                     </fieldset>
 
@@ -183,10 +182,10 @@ function Home() {
                         </select>
                     </fieldset>
 
-                    <fieldset className="fieldset fieldset_people">                   
+                    <fieldset className="fieldset fieldset_people">
                         {availablePeople.map(person => (
-                            <div 
-                                key={person} 
+                            <div
+                                key={person}
                                 className={`bouton bouton_people ${selectedPeople.includes(person) ? 'selected' : ''}`}
                                 onClick={() => {
                                     if (selectedPeople.includes(person)) {
@@ -198,13 +197,13 @@ function Home() {
                             >
                                 {person}
                             </div>
-                        ))}                   
+                        ))}
                     </fieldset>
 
                     <button className="bouton" onClick={formActive ? (editNoteState ? handleEditNote : handleAddNote) : () => setFormActive(true)}>
                         {editNoteState ? 'Modifier' : 'Valider'}
                     </button>
-                </div>   
+                </div>
             </div>
 
             <div className="container_content">
@@ -232,30 +231,28 @@ function Home() {
                                                 <img key={person} src={personPhotos[person]} alt={person} />
                                             ))}
                                         </div>
-                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>    
+                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
                                     </div>
-                                    
+
                                     <div className="note_update">
-                                        <button 
-                                            className="bouton bouton_icon" 
+                                        <button
+                                            className="bouton bouton_icon"
                                             onClick={() => handleDeleteNote(note.id)}>
-                                                <img src={poubelle} alt="Poubelle"/>
+                                            <img src={poubelle} alt="Poubelle" />
                                         </button>
-                                        <button 
-                                            className="bouton bouton_icon" 
+                                        <button
+                                            className="bouton bouton_icon"
                                             onClick={() => handleEditClick(note)}>
-                                                <img src={edit} alt="modifier"/>
+                                            <img src={edit} alt="modifier" />
                                         </button>
                                     </div>
                                 </div>
                             ))}
+                        <button className="bouton bouton_add" onClick={() => handleAddNoteForDay(day)}>Ajouter une note</button>
                     </div>
                 ))}
             </div>
 
-            <div className="container_add">
-                <button className="bouton" onClick={() => setFormActive(true)}>Ajouter une note</button>
-            </div>
         </div>
     );
 }
