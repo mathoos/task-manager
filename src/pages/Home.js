@@ -7,6 +7,7 @@ import "./Home.scss";
 
 const availableTags = ["gestion de projet", "production", "développement", "design"];
 const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
+const availablePeople = ["Alice", "Bob", "Charlie", "David", "Emma"];
 
 // Objet JavaScript pour mapper les tags aux couleurs CSS
 const tagColors = {
@@ -28,6 +29,7 @@ function Home() {
     const [newNoteTime, setNewNoteTime] = useState('');
     const [selectedEmote, setSelectedEmote] = useState('');
     const [selectedDay, setSelectedDay] = useState(''); // State pour stocker le jour sélectionné par l'utilisateur
+    const [selectedPeople, setSelectedPeople] = useState([]);
     const [formActive, setFormActive] = useState(false); // Etat local pour gérer la visibilité du formulaire
 
     const getColorClass = (tag) => {
@@ -50,7 +52,8 @@ function Home() {
                 tag: selectedTag,
                 time: newNoteTime,
                 emote: selectedEmote,
-                day: selectedDay // Ajouter le jour sélectionné à la note
+                day: selectedDay, // Ajouter le jour sélectionné à la note
+                people: selectedPeople
             }));
             setEditNoteState(null);
             setNewNoteTitle('');
@@ -59,6 +62,7 @@ function Home() {
             setNewNoteTime('');
             setSelectedEmote('');
             setSelectedDay('');
+            setSelectedPeople([]);
             setFormActive(false); // Réinitialiser la visibilité du formulaire après l'ajout d'une note
         }
     };
@@ -81,7 +85,8 @@ function Home() {
                     tag: selectedTag,
                     time: newNoteTime,
                     emote: selectedEmote,
-                    day: selectedDay
+                    day: selectedDay,
+                    people: selectedPeople
                 })
             );
             setNewNoteTitle('');
@@ -90,6 +95,7 @@ function Home() {
             setNewNoteTime('');
             setSelectedEmote('');
             setSelectedDay('');
+            setSelectedPeople([]);
             setEditNoteState(null); // Réinitialiser l'état d'édition après la modification de la note
             setFormActive(false); // Réinitialiser la visibilité du formulaire après la modification de la note
         }
@@ -103,6 +109,7 @@ function Home() {
         setNewNoteTime(note.time);
         setSelectedEmote(note.emote);
         setSelectedDay(note.day);
+        setSelectedPeople(note.people);
         setFormActive(true); // Ouvrir le formulaire pour l'édition
     };
 
@@ -142,9 +149,7 @@ function Home() {
                                 <option key={tag} value={tag}>{tag}</option>
                             ))}
                         </select>
-                    </fieldset>
-                    
-                    
+                    </fieldset>              
                     
                     <fieldset className="fieldset">
                         <select className="input" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
@@ -163,6 +168,24 @@ function Home() {
                                 <option key={emote} value={emote}>{emote}</option>
                             ))}
                         </select>
+                    </fieldset>
+
+                    <fieldset className="fieldset fieldset_people">                   
+                        {availablePeople.map(person => (
+                            <div 
+                                key={person} 
+                                className={`bouton bouton_people ${selectedPeople.includes(person) ? 'selected' : ''}`}
+                                onClick={() => {
+                                    if (selectedPeople.includes(person)) {
+                                        setSelectedPeople(selectedPeople.filter(p => p !== person));
+                                    } else {
+                                        setSelectedPeople([...selectedPeople, person]);
+                                    }
+                                }}
+                            >
+                                {person}
+                            </div>
+                        ))}                   
                     </fieldset>
 
                     <button className="bouton" onClick={formActive ? (editNoteState ? handleEditNote : handleAddNote) : () => setFormActive(true)}>
@@ -191,6 +214,7 @@ function Home() {
                                         </div>
                                         <p>{note.description}</p>
                                         <p>{note.time}</p>
+                                        <p><strong>Assigned to:</strong> {note.people.join(', ')}</p> {/* Display assigned people */}
                                         <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>    
                                     </div>
                                     

@@ -64,6 +64,14 @@
             height : 1.2vw;
         }
     }
+
+    &_people{
+        height : fit-content;
+        &.selected{
+            background-color: $noir;
+            color : $blanc
+        }
+    }
 }
 
 .input{

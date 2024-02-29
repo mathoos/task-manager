@@ -13,7 +13,7 @@ const notesSlice = createSlice({
             return state.filter(note => note.id !== action.payload);
         },
         editNote: (state, action) => {
-            const { id, title, description, tag, time, emote, day } = action.payload;
+            const { id, title, description, tag, time, emote, day, people } = action.payload; // Include people in payload
             const existingNote = state.find(note => note.id === id);
             if (existingNote) {
                 existingNote.title = title;
@@ -22,6 +22,7 @@ const notesSlice = createSlice({
                 existingNote.time = time;
                 existingNote.emote = emote;
                 existingNote.day = day;
+                existingNote.people = people; // Update people for the note
             }
         }
     }
