@@ -12,19 +12,20 @@ const notesSlice = createSlice({
         deleteNote: (state, action) => {
             return state.filter(note => note.id !== action.payload);
         },
-        updateNote: (state, action) => {
-            const { id, title, description, tag, time, emote } = action.payload;
-            const noteToUpdate = state.find(note => note.id === id);
-            if (noteToUpdate) {
-                noteToUpdate.title = title;
-                noteToUpdate.description = description;
-                noteToUpdate.tag = tag;
-                noteToUpdate.time = time;
-                noteToUpdate.emote = emote;
+        editNote: (state, action) => {
+            const { id, title, description, tag, time, emote, day } = action.payload;
+            const existingNote = state.find(note => note.id === id);
+            if (existingNote) {
+                existingNote.title = title;
+                existingNote.description = description;
+                existingNote.tag = tag;
+                existingNote.time = time;
+                existingNote.emote = emote;
+                existingNote.day = day;
             }
         }
     }
 });
 
-export const { addNote, deleteNote, updateNote } = notesSlice.actions;
+export const { addNote, deleteNote, editNote } = notesSlice.actions;
 export default notesSlice.reducer;

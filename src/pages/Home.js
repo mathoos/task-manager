@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, deleteNote, updateNote } from '../utilities/Slice';
+import { addNote, deleteNote , editNote } from '../utilities/Slice';
+import poubelle from "../img/icons/poubelle.png";
+import edit from "../img/icons/edit.png";
 import "./Home.scss";
 
 const availableTags = ["gestion de projet", "production", "développement", "design"];
@@ -18,19 +20,29 @@ function Home() {
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes);
 
+    const [editNoteState, setEditNoteState] = useState(null);
+
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
     const [newNoteTime, setNewNoteTime] = useState('');
     const [selectedEmote, setSelectedEmote] = useState('');
     const [selectedDay, setSelectedDay] = useState(''); // State pour stocker le jour sélectionné par l'utilisateur
+    const [formActive, setFormActive] = useState(false); // Etat local pour gérer la visibilité du formulaire
 
     const getColorClass = (tag) => {
         return tagColors[tag] || tagColors.default;
     };
 
     const handleAddNote = () => {
-        if (newNoteTitle.trim() !== '' && newNoteDescription.trim() !== '' && selectedTag !== '' && newNoteTime !== '' && selectedEmote !== '' && selectedDay !== '') {
+        if (
+            newNoteTitle.trim() !== '' &&
+            newNoteDescription.trim() !== '' &&
+            selectedTag !== '' &&
+            newNoteTime !== '' &&
+            selectedEmote !== '' &&
+            selectedDay !== ''
+        ) {
             dispatch(addNote({
                 id: Date.now(), // Générer un identifiant unique
                 title: newNoteTitle,
@@ -40,28 +52,63 @@ function Home() {
                 emote: selectedEmote,
                 day: selectedDay // Ajouter le jour sélectionné à la note
             }));
+            setEditNoteState(null);
             setNewNoteTitle('');
             setNewNoteDescription('');
             setSelectedTag('');
             setNewNoteTime('');
             setSelectedEmote('');
             setSelectedDay('');
+            setFormActive(false); // Réinitialiser la visibilité du formulaire après l'ajout d'une note
         }
     };
 
-    const handleDeleteNote = (id) => {
-        dispatch(deleteNote(id));
+    const handleEditNote = () => {
+        if (
+            editNoteState &&
+            newNoteTitle.trim() !== '' &&
+            newNoteDescription.trim() !== '' &&
+            selectedTag !== '' &&
+            newNoteTime !== '' &&
+            selectedEmote !== '' &&
+            selectedDay !== ''
+        ) {
+            dispatch(
+                editNote({
+                    id: editNoteState.id,
+                    title: newNoteTitle,
+                    description: newNoteDescription,
+                    tag: selectedTag,
+                    time: newNoteTime,
+                    emote: selectedEmote,
+                    day: selectedDay
+                })
+            );
+            setNewNoteTitle('');
+            setNewNoteDescription('');
+            setSelectedTag('');
+            setNewNoteTime('');
+            setSelectedEmote('');
+            setSelectedDay('');
+            setEditNoteState(null); // Réinitialiser l'état d'édition après la modification de la note
+            setFormActive(false); // Réinitialiser la visibilité du formulaire après la modification de la note
+        }
     };
 
-    const handleEditNote = (id, title, description, tag, time, emote) => {
-        dispatch(updateNote({
-            id,
-            title,
-            description,
-            tag,
-            time,
-            emote
-        }));
+    const handleEditClick = (note) => {
+        setEditNoteState(note); // Utilisez setEditNoteState pour mettre à jour l'état local
+        setNewNoteTitle(note.title);
+        setNewNoteDescription(note.description);
+        setSelectedTag(note.tag);
+        setNewNoteTime(note.time);
+        setSelectedEmote(note.emote);
+        setSelectedDay(note.day);
+        setFormActive(true); // Ouvrir le formulaire pour l'édition
+    };
+
+
+    const handleDeleteNote = (id) => {
+        dispatch(deleteNote(id));
     };
 
     const daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
@@ -69,29 +116,59 @@ function Home() {
     return (
         <div className="container">
 
-            <div className="container_form">
-                <input className="input" type="text" value={newNoteTitle} onChange={(e) => setNewNoteTitle(e.target.value)} placeholder="Title" />
-                <textarea className="input" value={newNoteDescription} onChange={(e) => setNewNoteDescription(e.target.value)} placeholder="Description" />
-                <select className="input" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
-                    <option value="">Select Tag</option>
-                    {availableTags.map(tag => (
-                        <option key={tag} value={tag}>{tag}</option>
-                    ))}
-                </select>
-                <input className="input" type="time" value={newNoteTime} onChange={(e) => setNewNoteTime(e.target.value)} />
-                <select className="input" value={selectedEmote} onChange={(e) => setSelectedEmote(e.target.value)}>
-                    <option value="">Select Emote</option>
-                    {availableEmotes.map(emote => (
-                        <option key={emote} value={emote}>{emote}</option>
-                    ))}
-                </select>
-                <select className="input" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
-                    <option value="">Select Day</option>
-                    {daysOfWeek.map(day => (
-                        <option key={day} value={day}>{day}</option>
-                    ))}
-                </select>
-                <button className="bouton" onClick={handleAddNote}>Add</button>
+            <div className={`container_form ${formActive ? 'active' : ''}`}>
+                <div className="container_form-content">
+                    <fieldset className="fieldset">
+                        <input 
+                            className="input" 
+                            type="text" 
+                            value={newNoteTitle} 
+                            onChange={(e) => setNewNoteTitle(e.target.value)} 
+                            placeholder="Title"
+                        />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <textarea 
+                            className="input input_textarea" 
+                            value={newNoteDescription} 
+                            onChange={(e) => setNewNoteDescription(e.target.value)} 
+                            placeholder="Description"
+                        />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <select className="input" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
+                            <option value="">Select Tag</option>
+                            {availableTags.map(tag => (
+                                <option key={tag} value={tag}>{tag}</option>
+                            ))}
+                        </select>
+                    </fieldset>
+                    
+                    
+                    
+                    <fieldset className="fieldset">
+                        <select className="input" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
+                            <option value="">Select Day</option>
+                            {daysOfWeek.map(day => (
+                                <option key={day} value={day}>{day}</option>
+                            ))}
+                        </select>
+                        <input className="input" type="time" value={newNoteTime} onChange={(e) => setNewNoteTime(e.target.value)} />
+                    </fieldset>
+
+                    <fieldset className="fieldset">
+                        <select className="input" value={selectedEmote} onChange={(e) => setSelectedEmote(e.target.value)}>
+                            <option value="">Select Emote</option>
+                            {availableEmotes.map(emote => (
+                                <option key={emote} value={emote}>{emote}</option>
+                            ))}
+                        </select>
+                    </fieldset>
+
+                    <button className="bouton" onClick={formActive ? (editNoteState ? handleEditNote : handleAddNote) : () => setFormActive(true)}>
+                        {editNoteState ? 'Modifier' : 'Valider'}
+                    </button>
+                </div>   
             </div>
 
             <div className="container_content">
@@ -114,18 +191,30 @@ function Home() {
                                         </div>
                                         <p>{note.description}</p>
                                         <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
-                                        <p>Time: {note.time}</p>
+                                        <p>{note.time}</p>
                                     </div>
                                     
                                     
                                     <div className="note_update">
-                                        <button className="bouton" onClick={() => handleDeleteNote(note.id)}>Delete</button>
-                                        <button className="bouton" onClick={() => handleEditNote(note.id, note.title, note.description, note.tag, note.time, note.emote)}>Edit</button>
+                                        <button 
+                                            className="bouton bouton_icon" 
+                                            onClick={() => handleDeleteNote(note.id)}>
+                                                <img src={poubelle} alt="Poubelle"/>
+                                        </button>
+                                        <button 
+                                            className="bouton bouton_icon" 
+                                            onClick={() => handleEditClick(note)}>
+                                                <img src={edit} alt="modifier"/>
+                                        </button>
                                     </div>
                                 </div>
                             ))}
                     </div>
                 ))}
+            </div>
+
+            <div className="container_add">
+                <button className="bouton" onClick={() => setFormActive(true)}>Ajouter une note</button>
             </div>
         </div>
     );
