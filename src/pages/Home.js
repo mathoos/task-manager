@@ -190,10 +190,9 @@ function Home() {
                                             <p>{note.emote}</p>
                                         </div>
                                         <p>{note.description}</p>
-                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
                                         <p>{note.time}</p>
+                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>    
                                     </div>
-                                    
                                     
                                     <div className="note_update">
                                         <button 
