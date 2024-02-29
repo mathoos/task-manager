@@ -3,11 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote , editNote } from '../utilities/Slice';
 import poubelle from "../img/icons/poubelle.png";
 import edit from "../img/icons/edit.png";
+import alicePhoto from "../img/people/alice.jpg";
+import bobPhoto from "../img/people/bob.jpg";
+import charliePhoto from "../img/people/charlie.jpg";
+import charlottePhoto from "../img/people/charlotte.jpg";
+import emmaPhoto from "../img/people/emma.jpg";
 import "./Home.scss";
 
 const availableTags = ["gestion de projet", "production", "développement", "design"];
 const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
-const availablePeople = ["Alice", "Bob", "Charlie", "David", "Emma"];
+const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
 // Objet JavaScript pour mapper les tags aux couleurs CSS
 const tagColors = {
@@ -15,6 +20,14 @@ const tagColors = {
     "production": "green",
     "développement": "orange",
     "design": "pink",
+};
+
+const personPhotos = {
+    "Alice": alicePhoto,
+    "Bob": bobPhoto,
+    "Charlie": charliePhoto,
+    "Charlotte": charlottePhoto,
+    "Emma": emmaPhoto
 };
 
 function Home() {
@@ -214,7 +227,11 @@ function Home() {
                                         </div>
                                         <p>{note.description}</p>
                                         <p>{note.time}</p>
-                                        <p><strong>Assigned to:</strong> {note.people.join(', ')}</p> {/* Display assigned people */}
+                                        <div className="note_content-people">
+                                            {note.people.map(person => (
+                                                <img key={person} src={personPhotos[person]} alt={person} />
+                                            ))}
+                                        </div>
                                         <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>    
                                     </div>
                                     

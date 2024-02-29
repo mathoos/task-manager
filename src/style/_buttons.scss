@@ -22,6 +22,8 @@
     }
 
     &_tag{
+        height : fit-content;
+        padding : .5vh .5vw;
         pointer-events: none;
 
         &.blue {
