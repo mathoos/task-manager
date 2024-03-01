@@ -36,6 +36,8 @@ function Home() {
     const notes = useSelector(state => state.notes);
 
     const [editNoteState, setEditNoteState] = useState(null);
+    const [modalActive, setModalActive] = useState(false);
+    const [modalNote, setModalNote] = useState(null);
 
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
@@ -47,6 +49,13 @@ function Home() {
     const [formActive, setFormActive] = useState(false); // Etat local pour gérer la visibilité du formulaire
 
     const [currentWeekStart, setCurrentWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 })); // Premier jour de la semaine actuelle
+
+    
+
+    const handleEditClick = (note) => {
+        setModalNote(note); // Passer les détails de la note à afficher dans la modal
+        setModalActive(true); // Activer la modal au clic sur une note
+    };
 
     const getColorClass = (tag) => {
         return tagColors[tag] || tagColors.default;
@@ -117,17 +126,21 @@ function Home() {
         }
     };
 
-    const handleEditClick = (note) => {
-        setEditNoteState(note); // Utilisez setEditNoteState pour mettre à jour l'état local
-        setNewNoteTitle(note.title);
-        setNewNoteDescription(note.description);
-        setSelectedTag(note.tag);
-        setNewNoteTime(note.time);
-        setSelectedEmote(note.emote);
-        setSelectedDay(note.day);
-        setSelectedPeople(note.people);
-        setFormActive(true); // Ouvrir le formulaire pour l'édition
+    const closeModal = () => {
+        setModalActive(false); // Désactiver la modal
     };
+
+    // const handleEditClick = (note) => {
+    //     setEditNoteState(note); // Utilisez setEditNoteState pour mettre à jour l'état local
+    //     setNewNoteTitle(note.title);
+    //     setNewNoteDescription(note.description);
+    //     setSelectedTag(note.tag);
+    //     setNewNoteTime(note.time);
+    //     setSelectedEmote(note.emote);
+    //     setSelectedDay(note.day);
+    //     setSelectedPeople(note.people);
+    //     setFormActive(true); // Ouvrir le formulaire pour l'édition
+    // };
 
 
     const handleDeleteNote = (id) => {
@@ -236,7 +249,7 @@ function Home() {
                         <h2 className="container_content-day--title">{day}</h2>
                         <div className="container_content-day--notes">
                             {notesForDay.map(note => (
-                                <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
+                                <div key={note.id} className={`note ${getColorClass(note.tag)}`} onClick={() => handleEditClick(note)}>
                                     <div className="note_content">
                                         <div className="note_content-title">
                                             <h3>{note.title}</h3>
@@ -272,6 +285,20 @@ function Home() {
                         </div> 
                     </div>
                 ))}
+            </div>
+
+            <div className={`modal ${modalActive ? 'active' : ''}`}>
+                {modalNote && ( // Vérifier si modalNote est défini avant d'afficher les détails de la note
+                    <div className="modal_content">
+                        <h2>{modalNote.title}</h2>
+                        <p>{modalNote.description}</p>
+                        <p>{modalNote.time} - {modalNote.day}</p>
+                        <p>Tag: {modalNote.tag}</p>
+                        <p>Emote: {modalNote.emote}</p>
+                        <p>People: {modalNote.people.join(', ')}</p>
+                        <button className="bouton" onClick={closeModal}>Fermer</button>
+                    </div>
+                )}
             </div>
 
             <div className="container_coucou">
