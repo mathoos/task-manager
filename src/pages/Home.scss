@@ -65,12 +65,17 @@
             flex-direction: column;
             gap : 5vh;
 
+            &.active{
+                .container_content-day--title{
+                    background-color: rgb(211, 151, 196);
+                }
+            }
+
             &--title{
                 background-color: $noir;
                 color : $blanc;
                 padding : 1vw;
                 text-align : center;
-                //border-radius : 15px;
             }
 
             .note{

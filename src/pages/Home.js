@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote, editNote } from '../utilities/Slice';
+import { format, addDays, startOfWeek, addWeeks, subWeeks } from 'date-fns'; // Importer les fonctions nécessaires depuis date-fns
 import poubelle from "../img/icons/poubelle.png";
 import edit from "../img/icons/edit.png";
 import alicePhoto from "../img/people/alice.jpg";
@@ -44,6 +45,8 @@ function Home() {
     const [selectedDay, setSelectedDay] = useState(''); // State pour stocker le jour sélectionné par l'utilisateur
     const [selectedPeople, setSelectedPeople] = useState([]);
     const [formActive, setFormActive] = useState(false); // Etat local pour gérer la visibilité du formulaire
+
+    const [currentWeekStart, setCurrentWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 })); // Premier jour de la semaine actuelle
 
     const getColorClass = (tag) => {
         return tagColors[tag] || tagColors.default;
@@ -138,8 +141,28 @@ function Home() {
 
     const daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
 
+    const handleNextWeek = () => {
+        setCurrentWeekStart(addWeeks(currentWeekStart, 1));
+    };
+
+    const handlePreviousWeek = () => {
+        setCurrentWeekStart(subWeeks(currentWeekStart, 1));
+    };
+
+    const daysWithDates = daysOfWeek.map((day, index) => {
+        const currentDate = addDays(currentWeekStart, index);
+        const dateForDay = format(currentDate, 'dd/MM/yyyy');
+        const isCurrentDay = format(currentDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd'); // Vérifiez si le jour est le jour actuel
+        return { day, dateForDay, isCurrentDay };
+    });
+
     return (
         <div className="container">
+            <div className="week-navigation">
+                <button onClick={handlePreviousWeek}>Previous Week</button>
+                <span>{format(currentWeekStart, 'dd/MM/yyyy')} - {format(addDays(currentWeekStart, 4), 'dd/MM/yyyy')}</span>
+                <button onClick={handleNextWeek}>Next Week</button>
+            </div>
 
             <div className={`container_form ${formActive ? 'active' : ''}`}>
                 <div className="container_form-content">
@@ -207,9 +230,9 @@ function Home() {
             </div>
 
             <div className="container_content">
-                {daysOfWeek.map(day => (
-                    <div key={day} className="container_content-day">
-                        <h2 className="container_content-day--title">{day}</h2>
+                {daysWithDates.map(({ day, dateForDay, isCurrentDay }) => (
+                    <div key={day} className={`container_content-day ${isCurrentDay ? 'active' : ''}`}>
+                        <h2 className="container_content-day--title">{day} - {dateForDay}</h2>
                         {notes
                             .filter(note => note.day === day)
                             .sort((a, b) => {
