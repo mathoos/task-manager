@@ -152,8 +152,9 @@ function Home() {
     const daysWithDates = daysOfWeek.map((day, index) => {
         const currentDate = addDays(currentWeekStart, index);
         const dateForDay = format(currentDate, 'dd/MM/yyyy');
-        const isCurrentDay = format(currentDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd'); // Vérifiez si le jour est le jour actuel
-        return { day, dateForDay, isCurrentDay };
+        const isCurrentDay = format(currentDate, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd');
+        const notesForDay = notes.filter(note => note.day === dateForDay);
+        return { day, dateForDay, isCurrentDay, notesForDay };
     });
 
     return (
@@ -230,52 +231,44 @@ function Home() {
             </div>
 
             <div className="container_content">
-                {daysWithDates.map(({ day, dateForDay, isCurrentDay }) => (
+                {daysWithDates.map(({ day, dateForDay, isCurrentDay, notesForDay }) => (
                     <div key={day} className={`container_content-day ${isCurrentDay ? 'active' : ''}`}>
                         <h2 className="container_content-day--title">{day} - {dateForDay}</h2>
-                        {notes
-                            .filter(note => note.day === day)
-                            .sort((a, b) => {
-                                const timeA = new Date(`1970-01-01T${a.time}`);
-                                const timeB = new Date(`1970-01-01T${b.time}`);
-                                return timeA - timeB;
-                            })
-                            .map(note => (
-                                <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
-                                    <div className="note_content">
-                                        <div className="note_content-title">
-                                            <h3>{note.title}</h3>
-                                            <p>{note.emote}</p>
-                                        </div>
-                                        <p>{note.description}</p>
-                                        <p>{note.time}</p>
-                                        <div className="note_content-people">
-                                            {note.people.map(person => (
-                                                <img key={person} src={personPhotos[person]} alt={person} />
-                                            ))}
-                                        </div>
-                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
+                        {notesForDay.map(note => (
+                            <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
+                                <div className="note_content">
+                                    <div className="note_content-title">
+                                        <h3>{note.title}</h3>
+                                        <p>{note.emote}</p>
                                     </div>
-
-                                    <div className="note_update">
-                                        <button
-                                            className="bouton bouton_icon"
-                                            onClick={() => handleDeleteNote(note.id)}>
-                                            <img src={poubelle} alt="Poubelle" />
-                                        </button>
-                                        <button
-                                            className="bouton bouton_icon"
-                                            onClick={() => handleEditClick(note)}>
-                                            <img src={edit} alt="modifier" />
-                                        </button>
+                                    <p>{note.description}</p>
+                                    <p>{note.time}</p>
+                                    <div className="note_content-people">
+                                        {note.people.map(person => (
+                                            <img key={person} src={personPhotos[person]} alt={person} />
+                                        ))}
                                     </div>
+                                    <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
                                 </div>
-                            ))}
-                        <button className="bouton bouton_add" onClick={() => handleAddNoteForDay(day)}>Ajouter une note</button>
+
+                                <div className="note_update">
+                                    <button
+                                        className="bouton bouton_icon"
+                                        onClick={() => handleDeleteNote(note.id)}>
+                                        <img src={poubelle} alt="Poubelle" />
+                                    </button>
+                                    <button
+                                        className="bouton bouton_icon"
+                                        onClick={() => handleEditClick(note)}>
+                                        <img src={edit} alt="modifier" />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                        <button className="bouton bouton_add" onClick={() => handleAddNoteForDay(dateForDay)}>Ajouter une note</button>
                     </div>
                 ))}
             </div>
-
         </div>
     );
 }
