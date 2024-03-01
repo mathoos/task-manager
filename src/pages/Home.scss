@@ -1,12 +1,18 @@
 @import "../style.scss";
 
 .container{
+    position : relative;
     display : flex;
-    flex-direction: column;
-    gap : 5vh;
+    gap : 1vw;
     width : 100%;
     height : 100vh;
-    padding : 5vh 5vw;
+    padding : 2.5vw;
+
+    &_navigation{
+        position : absolute;
+        top : 0;
+        left : 0;
+    }
 
     &_form{
         display : none;
@@ -52,18 +58,15 @@
         display : grid;
         grid-template-columns: repeat(5, 1fr);
         gap : 1vw;
+        width : 100%;
         height : 100%;
-        overflow-y : scroll;
-        background-color: rgb(244, 244, 244);
-
-        &::-webkit-scrollbar {
-            display : none;
-        }
+        //background-color: rgb(244, 244, 244);
 
         &-day{
             display : flex;
             flex-direction: column;
             gap : 5vh;
+            overflow : hidden;
 
             &.active{
                 .container_content-day--title{
@@ -73,69 +76,103 @@
 
             &--title{
                 background-color: $noir;
-                color : $blanc;
                 padding : 1vw;
                 text-align : center;
+                border-radius : 10px;
             }
 
-            .note{
+            &--notes{
                 display : flex;
                 flex-direction: column;
-                justify-content: space-between;
-                gap : 7vh;
-                padding : 2vw 1vw 1vw 1vw;
+                gap : 2.5vh;
+                height : 100%;
+                padding : 1vw;
+                overflow-y : scroll;
+                background-color: rgb(244, 244, 244);
                 border-radius : 15px;
-                background-color: $blanc;
-    
-                &.blue {
-                    border: 2px solid $bleu;
+
+                &::-webkit-scrollbar {
+                    display : none;
                 }
-                
-                &.green {
-                    border: 2px solid $vert;
-                }
-                
-                &.orange {
-                    border: 2px solid $orange;
-                }
-                
-                &.pink {
-                    border: 2px solid $rose;
-                }
-    
-                &_content{
+
+                .note{
                     display : flex;
                     flex-direction: column;
-                    gap : 2vh;
-                    
-                    &-title{
-                        display : flex;
-                        justify-content: space-between;
+                    justify-content: space-between;
+                    gap : 7vh;
+                    padding : 2vw 1vw 1vw 1vw;
+                    border-radius : 15px;
+                    background-color: $blanc;
+        
+                    &.blue {
+                        border: 2px solid $bleu;
                     }
-
-                    &-people{
+                    
+                    &.green {
+                        border: 2px solid $vert;
+                    }
+                    
+                    &.orange {
+                        border: 2px solid $orange;
+                    }
+                    
+                    &.pink {
+                        border: 2px solid $rose;
+                    }
+        
+                    &_content{
                         display : flex;
-
-                        img{
-                            width : 2.5vw;
-                            height : 2.5vw;
-                            border-radius : 100vmax;
-                            object-fit: cover;
-                            border : 1px solid $noir;
-                            &:not(:first-child){
-                                margin-left : -15px;
+                        flex-direction: column;
+                        gap : 2vh;
+                        
+                        &-title{
+                            display : flex;
+                            justify-content: space-between;
+                        }
+    
+                        &-people{
+                            display : flex;
+    
+                            img{
+                                width : 2.5vw;
+                                height : 2.5vw;
+                                border-radius : 100vmax;
+                                object-fit: cover;
+                                border : 1px solid $noir;
+                                &:not(:first-child){
+                                    margin-left : -15px;
+                                }
                             }
                         }
+                        
                     }
-                    
+        
+                    &_update{
+                        display : flex;
+                        gap : .5vw;
+                        align-self: flex-end;
+                    } 
                 }
-    
-                &_update{
-                    display : flex;
-                    gap : .5vw;
-                    align-self: flex-end;
-                } 
             }
+
+            &--button{
+                padding : 0 1vw;
+                .bouton{
+                    width : 100%;
+                }
+            } 
+        }
+    }
+
+    &_coucou{
+        width : 20vw;
+        height : 100%;
+        background-color: rgb(244, 244, 244);
+
+        &-title{
+            background-color: $noir;
+            padding : 1vw;
+            text-align : center;
         }
     }
 

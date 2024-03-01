@@ -24,13 +24,9 @@ const notesSlice = createSlice({
                 existingNote.day = day;
                 existingNote.people = people; // Update people for the note
             }
-        },
-        deleteAllNotes: (state) => {
-            // Réinitialiser les notes en les vidant
-            return [];
-        },
+        }
     }
 });
 
-export const { addNote, deleteNote, editNote , deleteAllNotes} = notesSlice.actions;
+export const { addNote, deleteNote, editNote } = notesSlice.actions;
 export default notesSlice.reducer;

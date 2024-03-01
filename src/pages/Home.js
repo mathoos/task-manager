@@ -159,10 +159,10 @@ function Home() {
 
     return (
         <div className="container">
-            <div className="week-navigation">
-                <button onClick={handlePreviousWeek}>Previous Week</button>
-                <span>{format(currentWeekStart, 'dd/MM/yyyy')} - {format(addDays(currentWeekStart, 4), 'dd/MM/yyyy')}</span>
-                <button onClick={handleNextWeek}>Next Week</button>
+
+            <div className="container_navigation">
+                <button onClick={handlePreviousWeek}> Previous </button>
+                <button onClick={handleNextWeek}>Next</button>
             </div>
 
             <div className={`container_form ${formActive ? 'active' : ''}`}>
@@ -233,41 +233,51 @@ function Home() {
             <div className="container_content">
                 {daysWithDates.map(({ day, dateForDay, isCurrentDay, notesForDay }) => (
                     <div key={day} className={`container_content-day ${isCurrentDay ? 'active' : ''}`}>
-                        <h2 className="container_content-day--title">{day} - {dateForDay}</h2>
-                        {notesForDay.map(note => (
-                            <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
-                                <div className="note_content">
-                                    <div className="note_content-title">
-                                        <h3>{note.title}</h3>
-                                        <p>{note.emote}</p>
+                        <h2 className="container_content-day--title">{day}</h2>
+                        <div className="container_content-day--notes">
+                            {notesForDay.map(note => (
+                                <div key={note.id} className={`note ${getColorClass(note.tag)}`}>
+                                    <div className="note_content">
+                                        <div className="note_content-title">
+                                            <h3>{note.title}</h3>
+                                            <p>{note.emote}</p>
+                                        </div>
+                                        <p>{note.description}</p>
+                                        <p>{note.time} - {dateForDay}</p>
+                                        <div className="note_content-people">
+                                            {note.people.map(person => (
+                                                <img key={person} src={personPhotos[person]} alt={person} />
+                                            ))}
+                                        </div>
+                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
                                     </div>
-                                    <p>{note.description}</p>
-                                    <p>{note.time}</p>
-                                    <div className="note_content-people">
-                                        {note.people.map(person => (
-                                            <img key={person} src={personPhotos[person]} alt={person} />
-                                        ))}
-                                    </div>
-                                    <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
-                                </div>
 
-                                <div className="note_update">
-                                    <button
-                                        className="bouton bouton_icon"
-                                        onClick={() => handleDeleteNote(note.id)}>
-                                        <img src={poubelle} alt="Poubelle" />
-                                    </button>
-                                    <button
-                                        className="bouton bouton_icon"
-                                        onClick={() => handleEditClick(note)}>
-                                        <img src={edit} alt="modifier" />
-                                    </button>
+                                    <div className="note_update">
+                                        <button
+                                            className="bouton bouton_icon"
+                                            onClick={() => handleDeleteNote(note.id)}>
+                                            <img src={poubelle} alt="Poubelle" />
+                                        </button>
+                                        <button
+                                            className="bouton bouton_icon"
+                                            onClick={() => handleEditClick(note)}>
+                                            <img src={edit} alt="modifier" />
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                        <button className="bouton bouton_add" onClick={() => handleAddNoteForDay(dateForDay)}>Ajouter une note</button>
+                            ))}
+                        </div>
+                        <div className="container_content-day--button">
+                            <button className="bouton bouton_add" onClick={() => handleAddNoteForDay(dateForDay)}>Ajouter une note</button>
+                        </div> 
                     </div>
                 ))}
+            </div>
+
+            <div className="container_coucou">
+                <div className="container_coucou-title">
+                    <h2>Done</h2>
+                </div>
             </div>
         </div>
     );
