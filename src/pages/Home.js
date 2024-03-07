@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote } from '../utilities/Slice';
+import { addNote, deleteNote } from '../utilities/Slice';
 import { format, addDays, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import alicePhoto from "../img/people/alice.jpg";
 import bobPhoto from "../img/people/bob.jpg";
@@ -73,6 +73,10 @@ function Home() {
         setSelectedNote(null);
     };
 
+    const handleDeleteNote = (noteId) => {
+        dispatch(deleteNote(noteId));
+    };
+
     return (
         <div className="container">
             <div className="container_navigation">
@@ -122,6 +126,7 @@ function Home() {
                     tagColors={tagColors} 
                     personPhotos={personPhotos} 
                     onClose={handleCloseNoteDetail}
+                    onDelete={handleDeleteNote}
                 />
             } 
         </div>
