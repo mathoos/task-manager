@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote } from '../utilities/Slice';
-import { format, addDays, startOfWeek, addWeeks, subWeeks } from 'date-fns'; // Importer les fonctions nécessaires depuis date-fns
-// import poubelle from "../img/icons/poubelle.png";
-// import edit from "../img/icons/edit.png";
+import { format, addDays, startOfWeek, addWeeks, subWeeks } from 'date-fns';
 import alicePhoto from "../img/people/alice.jpg";
 import bobPhoto from "../img/people/bob.jpg";
 import charliePhoto from "../img/people/charlie.jpg";
 import charlottePhoto from "../img/people/charlotte.jpg";
 import emmaPhoto from "../img/people/emma.jpg";
 import "./Home.scss";
+import Form from "../components/Form"
 
-const availableTags = ["gestion de projet", "production", "développement", "design"];
-const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
-const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
-
-// Objet JavaScript pour mapper les tags aux couleurs CSS
 const tagColors = {
     "gestion de projet": "blue",
     "production": "green",
@@ -32,18 +26,11 @@ const personPhotos = {
 };
 
 function Home() {
-
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes);
-    const [newNoteTitle, setNewNoteTitle] = useState('');
-    const [newNoteDescription, setNewNoteDescription] = useState('');
-    const [selectedTag, setSelectedTag] = useState('');
-    const [newNoteTime, setNewNoteTime] = useState('');
-    const [selectedEmote, setSelectedEmote] = useState('');
-    const [selectedDay, setSelectedDay] = useState(''); // State pour stocker le jour sélectionné par l'utilisateur
-    const [selectedPeople, setSelectedPeople] = useState([]);
-    const [formActive, setFormActive] = useState(false); // Etat local pour gérer la visibilité du formulaire
-    const [currentWeekStart, setCurrentWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 })); // Premier jour de la semaine actuelle
+    const [selectedDay, setSelectedDay] = useState('');
+    const [formActive, setFormActive] = useState(false);
+    const [currentWeekStart, setCurrentWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 }));
     const daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
 
     const daysWithDates = daysOfWeek.map((day, index) => {
@@ -54,46 +41,15 @@ function Home() {
         return { day, dateForDay, isCurrentDay, notesForDay };
     });
 
-    const getColorClass = (tag) => {
-        return tagColors[tag] || tagColors.default;
+    const handleAddNote = (newNote) => {
+        dispatch(addNote(newNote));
+        setFormActive(false);
     };
-
-    const handleAddNote = () => {
-        if (
-            newNoteTitle.trim() !== '' &&
-            newNoteDescription.trim() !== '' &&
-            selectedTag !== '' &&
-            newNoteTime !== '' &&
-            selectedEmote !== '' &&
-            selectedDay !== ''
-        ) {
-            dispatch(addNote({
-                id: Date.now(), // Générer un identifiant unique
-                title: newNoteTitle,
-                description: newNoteDescription,
-                tag: selectedTag,
-                time: newNoteTime,
-                emote: selectedEmote,
-                day: selectedDay, // Ajouter le jour sélectionné à la note
-                people: selectedPeople
-            }));
-            setNewNoteTitle('');
-            setNewNoteDescription('');
-            setSelectedTag('');
-            setNewNoteTime('');
-            setSelectedEmote('');
-            setSelectedDay('');
-            setSelectedPeople([]);
-            setFormActive(false); // Réinitialiser la visibilité du formulaire après l'ajout d'une note
-        }
-    };
-
 
     const handleAddNoteForDay = (day) => {
         setSelectedDay(day);
         setFormActive(true);
     };
-  
 
     const handleNextWeek = () => {
         setCurrentWeekStart(addWeeks(currentWeekStart, 1));
@@ -103,80 +59,19 @@ function Home() {
         setCurrentWeekStart(subWeeks(currentWeekStart, 1));
     };
 
-    
-
     return (
         <div className="container">
-
             <div className="container_navigation">
                 <button onClick={handlePreviousWeek}> Previous </button>
                 <button onClick={handleNextWeek}>Next</button>
             </div>
 
-            <div className={`container_form ${formActive ? 'active' : ''}`}>
-                <div className="container_form-content">
-                    <fieldset className="fieldset">
-                        <input
-                            className="input"
-                            type="text"
-                            value={newNoteTitle}
-                            onChange={(e) => setNewNoteTitle(e.target.value)}
-                            placeholder="Title"
-                        />
-                    </fieldset>
-                    <fieldset className="fieldset">
-                        <textarea
-                            className="input input_textarea"
-                            value={newNoteDescription}
-                            onChange={(e) => setNewNoteDescription(e.target.value)}
-                            placeholder="Description"
-                        />
-                    </fieldset>
-                    <fieldset className="fieldset">
-                        <select className="input" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
-                            <option value="">Select Tag</option>
-                            {availableTags.map(tag => (
-                                <option key={tag} value={tag}>{tag}</option>
-                            ))}
-                        </select>
-                    </fieldset>
-
-                    <fieldset className="fieldset">
-                        <input className="input" type="time" value={newNoteTime} onChange={(e) => setNewNoteTime(e.target.value)} />
-                    </fieldset>
-
-                    <fieldset className="fieldset">
-                        <select className="input" value={selectedEmote} onChange={(e) => setSelectedEmote(e.target.value)}>
-                            <option value="">Select Emote</option>
-                            {availableEmotes.map(emote => (
-                                <option key={emote} value={emote}>{emote}</option>
-                            ))}
-                        </select>
-                    </fieldset>
-
-                    <fieldset className="fieldset fieldset_people">
-                        {availablePeople.map(person => (
-                            <div
-                                key={person}
-                                className={`bouton bouton_people ${selectedPeople.includes(person) ? 'selected' : ''}`}
-                                onClick={() => {
-                                    if (selectedPeople.includes(person)) {
-                                        setSelectedPeople(selectedPeople.filter(p => p !== person));
-                                    } else {
-                                        setSelectedPeople([...selectedPeople, person]);
-                                    }
-                                }}
-                            >
-                                {person}
-                            </div>
-                        ))}
-                    </fieldset>
-
-                    <button className="bouton" onClick={handleAddNote}>
-                        Valider
-                    </button>
-                </div>
-            </div>
+            <Form 
+                onAddNote={handleAddNote} 
+                formActive={formActive} 
+                setFormActive={setFormActive} 
+                selectedDayProp={selectedDay}
+            />
 
             <div className="container_content">
                 {daysWithDates.map(({ day, dateForDay, isCurrentDay, notesForDay }) => (
@@ -186,7 +81,7 @@ function Home() {
                             {notesForDay.map(note => (
                                 <div 
                                     key={note.id} 
-                                    className={`note ${getColorClass(note.tag)}`}
+                                    className={`note ${tagColors[note.tag] || 'default'}`}
                                 >
                                     <div className="note_content">
                                         <div className="note_content-title">
@@ -200,21 +95,8 @@ function Home() {
                                                 <img key={person} src={personPhotos[person]} alt={person} />
                                             ))}
                                         </div>
-                                        <div className={`bouton bouton_tag ${getColorClass(note.tag)}`}>{note.tag}</div>
+                                        <div className={`bouton bouton_tag ${tagColors[note.tag] || 'default'}`}>{note.tag}</div>
                                     </div>
-
-                                    {/* <div className="note_update">
-                                        <button
-                                            className="bouton bouton_icon"
-                                            onClick={() => handleDeleteNote(note.id)}>
-                                            <img src={poubelle} alt="Poubelle" />
-                                        </button>
-                                        <button
-                                            className="bouton bouton_icon"
-                                            onClick={() => handleEditClick(note)}>
-                                            <img src={edit} alt="modifier" />
-                                        </button>
-                                    </div> */}
                                 </div>
                             ))}
                         </div>
