@@ -1,3 +1,5 @@
+import "./Note.scss";
+
 const Note = ({ note, tagColors, dateForDay, personPhotos, onClick }) => {
     return (
         <div className={`note ${tagColors[note.tag] || 'default'}`} onClick={onClick}>

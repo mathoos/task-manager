@@ -14,29 +14,6 @@
         left : 0;
     }
 
-    .modal{
-        position : absolute;
-        top : 0;
-        left : 0;
-        display : none;
-        justify-content: center;
-        align-items: center;
-        width : 100%;
-        height : 100vh;
-        background-color: $noir-opacity;
-        z-index : 50;
-
-        &_content{
-            background-color: $blanc;
-            padding : 2.5vw;
-            border-radius : 15px;
-        }
-
-        &.active{
-            display : flex;
-        }
-    }
-
     &_content{
         display : grid;
         grid-template-columns: repeat(5, 1fr);
@@ -75,66 +52,6 @@
 
                 &::-webkit-scrollbar {
                     display : none;
-                }
-
-                .note{
-                    display : flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    gap : 7vh;
-                    padding : 2vw 1vw 1vw 1vw;
-                    border-radius : 15px;
-                    background-color: $blanc;
-                    cursor: pointer;
-        
-                    &.blue {
-                        border: 2px solid $bleu;
-                    }
-                    
-                    &.green {
-                        border: 2px solid $vert;
-                    }
-                    
-                    &.orange {
-                        border: 2px solid $orange;
-                    }
-                    
-                    &.pink {
-                        border: 2px solid $rose;
-                    }
-        
-                    &_content{
-                        display : flex;
-                        flex-direction: column;
-                        gap : 2vh;
-                        
-                        &-title{
-                            display : flex;
-                            justify-content: space-between;
-                        }
-    
-                        &-people{
-                            display : flex;
-    
-                            img{
-                                width : 2.5vw;
-                                height : 2.5vw;
-                                border-radius : 100vmax;
-                                object-fit: cover;
-                                border : 1px solid $noir;
-                                &:not(:first-child){
-                                    margin-left : -15px;
-                                }
-                            }
-                        }
-                        
-                    }
-        
-                    &_update{
-                        display : flex;
-                        gap : .5vw;
-                        align-self: flex-end;
-                    } 
                 }
             }
 

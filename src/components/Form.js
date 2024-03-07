@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import "./Form.scss";
-import { format } from 'date-fns';
 
 const availableTags = ["gestion de projet", "production", "développement", "design"];
 const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
-
-const tagColors = {
-    "gestion de projet": "blue",
-    "production": "green",
-    "développement": "orange",
-    "design": "pink",
-};
 
 const Form = ({ onAddNote, formActive, setFormActive, selectedDayProp }) => {
     const [newNoteTitle, setNewNoteTitle] = useState('');
