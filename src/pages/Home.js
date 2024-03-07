@@ -8,7 +8,8 @@ import charliePhoto from "../img/people/charlie.jpg";
 import charlottePhoto from "../img/people/charlotte.jpg";
 import emmaPhoto from "../img/people/emma.jpg";
 import "./Home.scss";
-import Form from "../components/Form"
+import Form from "../components/Form";
+import Note from "../components/Note";
 
 const tagColors = {
     "gestion de projet": "blue",
@@ -79,25 +80,13 @@ function Home() {
                         <h2 className="container_content-day--title">{day}</h2>
                         <div className="container_content-day--notes">
                             {notesForDay.map(note => (
-                                <div 
+                                <Note 
                                     key={note.id} 
-                                    className={`note ${tagColors[note.tag] || 'default'}`}
-                                >
-                                    <div className="note_content">
-                                        <div className="note_content-title">
-                                            <h3>{note.title}</h3>
-                                            <p>{note.emote}</p>
-                                        </div>
-                                        <p>{note.description}</p>
-                                        <p>{note.time} - {dateForDay}</p>
-                                        <div className="note_content-people">
-                                            {note.people.map(person => (
-                                                <img key={person} src={personPhotos[person]} alt={person} />
-                                            ))}
-                                        </div>
-                                        <div className={`bouton bouton_tag ${tagColors[note.tag] || 'default'}`}>{note.tag}</div>
-                                    </div>
-                                </div>
+                                    note={note} 
+                                    tagColors={tagColors} 
+                                    dateForDay={dateForDay} 
+                                    personPhotos={personPhotos} 
+                                />
                             ))}
                         </div>
                         <div className="container_content-day--button">
