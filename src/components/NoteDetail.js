@@ -1,10 +1,11 @@
 import React from 'react';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ note, tagColors, personPhotos }) => {
+const NoteDetail = ({ note, tagColors, personPhotos, onClose }) => {
     return (
         <div className="noteDetail">
             <div className="noteDetail_container">
+                <button className="closeButton" onClick={onClose}>Fermer</button>
                 <h3>{note.title}</h3>
                 <p>{note.emote}</p>
                 <p>{note.description}</p>

@@ -69,6 +69,10 @@ function Home() {
         setSelectedNote(note); // Mettre à jour l'état avec la note sélectionnée
     };
 
+    const handleCloseNoteDetail = () => {
+        setSelectedNote(null);
+    };
+
     return (
         <div className="container">
             <div className="container_navigation">
@@ -117,9 +121,9 @@ function Home() {
                     note={selectedNote} 
                     tagColors={tagColors} 
                     personPhotos={personPhotos} 
+                    onClose={handleCloseNoteDetail}
                 />
             } 
-
         </div>
     );
 }
