@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Form.scss";
 import { format } from 'date-fns';
 
 const availableTags = ["gestion de projet", "production", "développement", "design"];
@@ -51,8 +52,8 @@ const Form = ({ onAddNote, formActive, setFormActive, selectedDayProp }) => {
     };
 
     return (
-        <div className={`container_form ${formActive ? 'active' : ''}`}>
-            <div className="container_form-content">
+        <div className={`form ${formActive ? 'active' : ''}`}>
+            <div className="form_content">
                 <fieldset className="fieldset">
                     <input
                         className="input"
