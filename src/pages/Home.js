@@ -31,7 +31,7 @@ function Home() {
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes);
     const [selectedDay, setSelectedDay] = useState('');
-    const [formActive, setFormActive] = useState(false);
+    const [isFormVisible, setIsFormVisible] = useState(false);
     const [currentWeekStart, setCurrentWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 }));
     const [selectedNote, setSelectedNote] = useState(null);
 
@@ -48,12 +48,12 @@ function Home() {
 
     const handleAddNote = (newNote) => {
         dispatch(addNote(newNote));
-        setFormActive(false);
+        //setFormActive(false);
     };
 
     const handleAddNoteForDay = (day) => {
         setSelectedDay(day);
-        setFormActive(true);
+        setIsFormVisible(true)
     };
 
     const handleNextWeek = () => {
@@ -65,7 +65,6 @@ function Home() {
     };
 
     const handleNoteClick = (note) => {
-        console.log("bonjour")
         setSelectedNote(note); // Mettre à jour l'état avec la note sélectionnée
     };
 
@@ -84,12 +83,14 @@ function Home() {
                 <button onClick={handleNextWeek}>Next</button>
             </div>
 
-            <Form 
-                onAddNote={handleAddNote} 
-                formActive={formActive} 
-                setFormActive={setFormActive} 
-                selectedDayProp={selectedDay}
-            />
+            {isFormVisible && (
+                <Form 
+                    onAddNote={handleAddNote} 
+                    selectedDayProp={selectedDay}
+                    selectedNote={selectedNote}
+                    setIsVisible={setIsFormVisible} // Utiliser setIsFormVisible ici
+                />
+            )}
 
             <div className="container_content">
                 {daysWithDates.map(({ day, dateForDay, isCurrentDay, notesForDay }) => (

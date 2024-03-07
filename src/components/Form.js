@@ -5,7 +5,7 @@ const availableTags = ["gestion de projet", "production", "développement", "des
 const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
-const Form = ({ onAddNote, formActive, setFormActive, selectedDayProp }) => {
+const Form = ({ onAddNote, selectedDayProp, setIsVisible }) => {
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
@@ -39,12 +39,12 @@ const Form = ({ onAddNote, formActive, setFormActive, selectedDayProp }) => {
             setNewNoteTime('');
             setSelectedEmote('');
             setSelectedPeople([]);
-            setFormActive(false);
+            setIsVisible(false);
         }
     };
 
     return (
-        <div className={`form ${formActive ? 'active' : ''}`}>
+        <div className="form">
             <div className="form_content">
                 <fieldset className="fieldset">
                     <input
