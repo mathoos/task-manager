@@ -1,8 +1,6 @@
-import React from 'react';
-
-const Note = ({ note, tagColors, dateForDay, personPhotos }) => {
+const Note = ({ note, tagColors, dateForDay, personPhotos, onClick }) => {
     return (
-        <div className={`note ${tagColors[note.tag] || 'default'}`}>
+        <div className={`note ${tagColors[note.tag] || 'default'}`} onClick={onClick}>
             <div className="note_content">
                 <div className="note_content-title">
                     <h3>{note.title}</h3>

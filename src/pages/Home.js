@@ -10,6 +10,7 @@ import emmaPhoto from "../img/people/emma.jpg";
 import "./Home.scss";
 import Form from "../components/Form";
 import Note from "../components/Note";
+import NoteDetail from "../components/NoteDetail";
 
 const tagColors = {
     "gestion de projet": "blue",
@@ -32,7 +33,10 @@ function Home() {
     const [selectedDay, setSelectedDay] = useState('');
     const [formActive, setFormActive] = useState(false);
     const [currentWeekStart, setCurrentWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 }));
+    const [selectedNote, setSelectedNote] = useState(null);
+
     const daysOfWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
+
 
     const daysWithDates = daysOfWeek.map((day, index) => {
         const currentDate = addDays(currentWeekStart, index);
@@ -58,6 +62,11 @@ function Home() {
 
     const handlePreviousWeek = () => {
         setCurrentWeekStart(subWeeks(currentWeekStart, 1));
+    };
+
+    const handleNoteClick = (note) => {
+        console.log("bonjour")
+        setSelectedNote(note); // Mettre à jour l'état avec la note sélectionnée
     };
 
     return (
@@ -86,6 +95,7 @@ function Home() {
                                     tagColors={tagColors} 
                                     dateForDay={dateForDay} 
                                     personPhotos={personPhotos} 
+                                    onClick={() => handleNoteClick(note)}
                                 />
                             ))}
                         </div>
@@ -101,6 +111,15 @@ function Home() {
                     <h2>Done</h2>
                 </div>
             </div>
+
+            {selectedNote && 
+                <NoteDetail 
+                    note={selectedNote} 
+                    tagColors={tagColors} 
+                    personPhotos={personPhotos} 
+                />
+            } 
+
         </div>
     );
 }
