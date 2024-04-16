@@ -9,6 +9,8 @@
     border-radius : 15px;
     background-color: $blanc;
     cursor: pointer;
+    min-height: calc(100% / 3 - 2.5vh);
+    overflow : hidden;
 
     &.blue {
         border: 2px solid $bleu;

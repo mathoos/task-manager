@@ -32,16 +32,22 @@
                 flex-direction: column;
                 gap : 2.5vh;
                 width : calc(100% / 3);
-  
-                overflow-y: scroll;
-                background-color: grey;
-
-                &::-webkit-scrollbar {
-                    display : none;
-                }
+                height: 100%;
+                border : 1px solid blue;
 
                 h2{
                     color : $noir;
+                }
+
+                &--content{
+                    display : flex;
+                    flex-direction: column;
+                    gap : 2.5vh;
+                    overflow-y: auto;
+
+                    &::-webkit-scrollbar {
+                        display : none;
+                    }
                 }
             }
 
