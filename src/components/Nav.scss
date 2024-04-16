@@ -1,0 +1,63 @@
+@import "../style.scss";
+
+.nav{
+    display : flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width : fit-content;
+    height : 100%;
+    background-color: $noir;
+    padding : 5vh 1.5vw;
+    z-index : 100;
+
+    &_logo{
+        img{
+            width : 4vw;
+            height : auto;
+        }
+    }
+
+    &_links{
+        display : flex;
+        flex-direction: column;
+        gap : 2vw;
+
+        &-link{
+            display : flex;
+            flex-direction: column;
+            align-items : center;
+            gap : 1vh;
+            
+            img{
+                width : 1.5vw;
+                height : auto;
+            }
+
+            p{
+                color : $blanc;
+            }
+        }
+    }
+
+    &_parameters{
+        display : flex;
+        flex-direction: column;
+        gap : 2vw;
+
+        &-link{
+            display : flex;
+            flex-direction: column;
+            align-items : center;
+            gap : 1vh;
+            
+            img{
+                width : 1.5vw;
+                height : auto;
+            }
+
+            p{
+                color : $blanc;
+            }
+        }
+    }
+}

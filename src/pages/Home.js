@@ -11,6 +11,7 @@ import "./Home.scss";
 import Form from "../components/Form";
 import Note from "../components/Note";
 import NoteDetail from "../components/NoteDetail";
+import Nav from "../components/Nav";
 
 const tagColors = {
     "gestion de projet": "blue",
@@ -78,10 +79,12 @@ function Home() {
 
     return (
         <div className="container">
-            <div className="container_navigation">
+            <Nav/>
+
+            {/* <div className="container_navigation">
                 <button onClick={handlePreviousWeek}> Previous </button>
                 <button onClick={handleNextWeek}>Next</button>
-            </div>
+            </div> */}
 
             {isFormVisible && (
                 <Form 
