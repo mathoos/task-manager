@@ -5,7 +5,7 @@ const availableTags = ["gestion de projet", "production", "développement", "des
 const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
-const Form = ({ onAddNote, selectedDayProp, setIsVisible }) => {
+const Form = ({ onAddNote, setIsVisible }) => {
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
@@ -19,8 +19,7 @@ const Form = ({ onAddNote, selectedDayProp, setIsVisible }) => {
             newNoteDescription.trim() !== '' &&
             selectedTag !== '' &&
             newNoteTime !== '' &&
-            selectedEmote !== '' &&
-            selectedDayProp !== ''
+            selectedEmote !== ''
         ) {
             const newNote = {
                 id: Date.now(),
@@ -29,7 +28,6 @@ const Form = ({ onAddNote, selectedDayProp, setIsVisible }) => {
                 tag: selectedTag,
                 time: newNoteTime,
                 emote: selectedEmote,
-                day: selectedDayProp,
                 people: selectedPeople
             };
             onAddNote(newNote);

@@ -1,6 +1,7 @@
+import React from 'react';
 import "./Note.scss";
 
-const Note = ({ note, tagColors, dateForDay, personPhotos, onClick }) => {
+const Note = ({ note, tagColors, personPhotos, onClick }) => {
     return (
         <div className={`note ${tagColors[note.tag] || 'default'}`} onClick={onClick}>
             <div className="note_content">
@@ -9,7 +10,7 @@ const Note = ({ note, tagColors, dateForDay, personPhotos, onClick }) => {
                     <p>{note.emote}</p>
                 </div>
                 <p>{note.description}</p>
-                <p>{note.time} - {dateForDay}</p>
+                <p>{note.time}</p>
                 <div className="note_content-people">
                     {note.people.map(person => (
                         <img key={person} src={personPhotos[person]} alt={person} />
