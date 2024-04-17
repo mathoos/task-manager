@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { tagData } from '../utilities/Tags';
 import "./Form.scss";
 
-const availableTags = ["gestion de projet", "production", "développement", "design"];
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
 const Form = ({ onAddNote, setIsVisible }) => {
@@ -59,7 +59,7 @@ const Form = ({ onAddNote, setIsVisible }) => {
                 <fieldset className="fieldset">
                     <select className="input" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
                         <option value="">Select Tag</option>
-                        {availableTags.map(tag => (
+                        {Object.keys(tagData).map(tag => (
                             <option key={tag} value={tag}>{tag}</option>
                         ))}
                     </select>

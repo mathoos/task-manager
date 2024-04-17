@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
+import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
-const Note = ({ note, tagColors, onClick, onDragStart, onDragEnd }) => {
+const Note = ({ note, onClick, onDragStart, onDragEnd }) => {
     const [isDragging, setIsDragging] = useState(false);
     const noteRef = useRef(null);
 
@@ -27,7 +28,7 @@ const Note = ({ note, tagColors, onClick, onDragStart, onDragEnd }) => {
     
     return (
         <div
-            className={`note ${tagColors[note.tag] || 'default'} ${isDragging ? 'dragging' : ''}`}
+            className={`note ${tagData[note.tag]?.class || 'default'} ${isDragging ? 'dragging' : ''}`}
             onClick={onClick}
             draggable="true"
             onDragStart={handleDragStart}
@@ -38,10 +39,10 @@ const Note = ({ note, tagColors, onClick, onDragStart, onDragEnd }) => {
 
                 <div className="note_content-up">
                     <div className="tag">
-                        <div className={`bouton tag_icon ${tagColors[note.tag] || 'default'}`}>
-                            {note.icone && <span className="tag-icon">{note.icone}</span>}
-                        </div>
-                        <div className={`bouton bouton_min ${tagColors[note.tag] || 'default'}`}>
+                        <figure className="bouton tag_icon">
+                            <img src={tagData[note.tag]?.icon} alt={note.tag} />
+                        </figure>
+                        <div className="bouton bouton_min">
                             {note.tag}
                         </div>
                     </div>

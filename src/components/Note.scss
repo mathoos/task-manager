@@ -25,11 +25,21 @@
 
             .tag{
                 display : flex;
-                gap : .8vw;
 
                 &_icon{
+                    display : flex;
+                    justify-content: center;
+                    align-items: center;
                     width : 2.2vw;
                     padding : 0;
+
+                    img{
+                        width : 1.4vw;
+                    }
+                }
+
+                .bouton{
+                    margin-left : -.2vw;
                 }
             }
         }
@@ -65,11 +75,5 @@
                 }
             }
         }    
-    }
-
-    &_update{
-        display : flex;
-        gap : .5vw;
-        align-self: flex-end;
     } 
 }

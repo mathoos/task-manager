@@ -1,30 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote } from '../utilities/Slice';
+
 import alicePhoto from "../img/people/alice.jpg";
 import bobPhoto from "../img/people/bob.jpg";
 import charliePhoto from "../img/people/charlie.jpg";
 import charlottePhoto from "../img/people/charlotte.jpg";
 import emmaPhoto from "../img/people/emma.jpg";
+
 import "./Home.scss";
+
 import Form from "../components/Form";
 import Note from "../components/Note";
 import NoteDetail from "../components/NoteDetail";
 import Nav from "../components/Nav";
-
-const tagColors = {
-    "gestion de projet": "blue",
-    "production": "green",
-    "développement": "orange",
-    "design": "pink",
-};
-
-const tagIcons = {
-    "gestion de projet": "📊",
-    "production": "🏭",
-    "développement": "💻",
-    "design": "🎨"
-};
 
 const personPhotos = {
     "Alice": alicePhoto,
@@ -104,8 +93,7 @@ function Home() {
                             {notes.filter(note => note.container === 'A faire').map(note => (
                                 <Note 
                                     key={note.id} 
-                                    note={{...note, icone: tagIcons[note.tag]}} 
-                                    tagColors={tagColors} 
+                                    note={note}
                                     onClick={() => handleNoteClick(note)}
                                     personPhotos={personPhotos}  
                                     onDragStart={() => handleDragStart(note.id)}
@@ -125,8 +113,7 @@ function Home() {
                             {notes.filter(note => note.container === 'En cours').map(note => (
                                 <Note 
                                     key={note.id} 
-                                    note={{...note, icone: tagIcons[note.tag]}} 
-                                    tagColors={tagColors} 
+                                    note={note}
                                     onClick={() => handleNoteClick(note)}
                                     personPhotos={personPhotos}  
                                     onDragStart={() => handleDragStart(note.id)}
@@ -146,8 +133,7 @@ function Home() {
                             {notes.filter(note => note.container === 'Fait').map(note => (
                                 <Note 
                                     key={note.id} 
-                                    note={{...note, icone: tagIcons[note.tag]}} 
-                                    tagColors={tagColors} 
+                                    note={note} 
                                     onClick={() => handleNoteClick(note)}
                                     personPhotos={personPhotos}  
                                     onDragStart={() => handleDragStart(note.id)}
@@ -160,8 +146,7 @@ function Home() {
             </div>
             {selectedNote && 
                 <NoteDetail 
-                    note={{...selectedNote, icone: tagIcons[selectedNote.tag]}} 
-                    tagColors={tagColors} 
+                    note={selectedNote}
                     personPhotos={personPhotos} 
                     onClose={handleCloseNoteDetail}
                     onDelete={handleDeleteNote}

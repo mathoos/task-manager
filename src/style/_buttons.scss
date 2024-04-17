@@ -21,30 +21,6 @@
         background-color: $noir;
     }
 
-    &.blue {
-        background-color: $bleu;
-        color : $blanc;
-        border-color : transparent;
-    }
-    
-    &.green {
-        background-color: $vert;
-        color : $blanc;
-        border-color : transparent;
-    }
-    
-    &.orange {
-        background-color: $orange;
-        color : $blanc;
-        border-color : transparent;
-    }
-    
-    &.pink {
-        background-color: $rose;
-        color : $blanc;
-        border-color : transparent;
-    }
-
     &_min{
         height : fit-content;
         padding : .5vw .8vw;

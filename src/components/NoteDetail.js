@@ -1,7 +1,8 @@
 import React from 'react';
+import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ note, tagColors, personPhotos, onClose, onDelete }) => {
+const NoteDetail = ({ note, personPhotos, onClose, onDelete }) => {
 
     const handleDelete = () => {
         onDelete(note.id);
@@ -19,16 +20,16 @@ const NoteDetail = ({ note, tagColors, personPhotos, onClose, onDelete }) => {
     };
 
     return (
-        <div className="noteDetail">
+        <div className={`noteDetail ${tagData[note.tag]?.class || 'default'}`}>
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">
 
                     <div className="tag">
-                        <div className={`bouton tag_icon ${tagColors[note.tag] || 'default'}`}>
-                            {note.icone && <span className="tag-icon">{note.icone}</span>}
+                        <div className="bouton tag_icon">
+                            {tagData[note.tag]?.icon}
                         </div>
-                        <div className={`bouton bouton_min ${tagColors[note.tag] || 'default'}`}>
+                        <div className="bouton bouton_min">
                             {note.tag}
                         </div>
                     </div>
@@ -36,8 +37,8 @@ const NoteDetail = ({ note, tagColors, personPhotos, onClose, onDelete }) => {
                     <div className="txt">
                         <h3>{note.title}</h3>
                         {note.description && note.description.split('\n').map((line, index) => (
-                        <p key={index} className="description">{line}</p>
-                    ))}
+                            <p key={index} className="description">{line}</p>
+                        ))}
                         <p>{formatDate(note.date)}</p>
                     </div>
 

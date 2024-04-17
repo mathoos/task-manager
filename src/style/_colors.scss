@@ -9,18 +9,24 @@ $orange : rgb(242, 173, 94);
 $noir-opacity: rgba($noir, 0.95);
 
 
-.blue {
+.gestion-de-projet {
     border: 2px solid $bleu;
+
+    .bouton{
+        background-color: $bleu;
+        color : $blanc;
+        border-color : transparent;
+    }
 }
 
-.green {
+.production {
     border: 2px solid $vert;
 }
 
-.orange {
+.developpement {
     border: 2px solid $orange;
 }
 
-.pink {
+.design {
     border: 2px solid $rose;
 }
