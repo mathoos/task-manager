@@ -7,3 +7,20 @@ $rose : rgb(238, 195, 211);
 $orange : rgb(242, 173, 94);
 
 $noir-opacity: rgba($noir, 0.95);
+
+
+.blue {
+    border: 2px solid $bleu;
+}
+
+.green {
+    border: 2px solid $vert;
+}
+
+.orange {
+    border: 2px solid $orange;
+}
+
+.pink {
+    border: 2px solid $rose;
+}

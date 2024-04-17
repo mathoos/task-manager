@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import "./Note.scss";
 
-const Note = ({ note, tagColors, personPhotos, onClick, onDragStart, onDragEnd }) => {
+const Note = ({ note, tagColors, onClick, onDragStart, onDragEnd }) => {
     const [isDragging, setIsDragging] = useState(false);
     const noteRef = useRef(null);
 
@@ -24,6 +24,7 @@ const Note = ({ note, tagColors, personPhotos, onClick, onDragStart, onDragEnd }
         const year = dateObj.getFullYear() === currentYear ? '' : `/${dateObj.getFullYear()}`;
         return `${day}/${month}${year}`;
     };
+    
     return (
         <div
             className={`note ${tagColors[note.tag] || 'default'} ${isDragging ? 'dragging' : ''}`}

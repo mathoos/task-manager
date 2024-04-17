@@ -14,27 +14,93 @@
 
     &_container{
         display : flex;
-        flex-direction: column;
-        gap : 2vh;
+        align-items: stretch;
+        gap : 2.5vw;
         background-color: $blanc;
         padding : 2.5vw;
-        width : fit-content;
-        height : fit-content;
+        width : 50vw;
+        min-height : 70vh;
         border-radius : 15px;
 
-        &-people{
+        &-left{          
             display : flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap : 5vh;
+            width : 100%;
+            flex-grow : 1;
+            padding : 1.5vw;
+            border-radius : 15px;    
+            background-color: rgb(254, 247, 250);   
 
-            img{
-                width : 2.5vw;
-                height : 2.5vw;
-                border-radius : 100vmax;
-                object-fit: cover;
-                border : 1px solid $noir;
-                &:not(:first-child){
-                    margin-left : -15px;
+            .tag{
+                display : flex;
+                gap : .8vw;
+
+                &_icon{
+                    width : 2.2vw;
+                    padding : 0;
+                }
+            }
+
+            .txt{
+                display : flex;
+                flex-direction: column;
+                gap : 2.5vh;
+                height : 100%;
+
+                h3{
+                    font-size : 2vw;
+                }
+            }
+
+            .persons{
+                display : flex;
+    
+                img{
+                    width : 2.5vw;
+                    height : 2.5vw;
+                    border-radius : 100vmax;
+                    object-fit: cover;
+                    border : 1px solid $noir;
+                    &:not(:first-child){
+                        margin-left : -15px;
+                    }
                 }
             }
         }
+
+        &-right{
+            
+            display : flex;
+            flex-direction: column;
+            gap : 1.5vw;
+            flex-grow : 1;
+            
+
+            &--close{
+                display : flex;
+                justify-content: flex-end;
+            }
+
+            &--links{
+                display : flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                gap : 2vh;
+                width : 100%;
+                flex-grow : 1;
+                border-radius : 15px;
+                padding : 1.5vw;
+                background-color: rgb(254, 247, 250);  
+            }
+
+            .bouton{
+                width : 100%;
+            }
+        }
+
+        
     }
 }

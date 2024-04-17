@@ -160,7 +160,7 @@ function Home() {
             </div>
             {selectedNote && 
                 <NoteDetail 
-                    note={selectedNote} 
+                    note={{...selectedNote, icone: tagIcons[selectedNote.tag]}} 
                     tagColors={tagColors} 
                     personPhotos={personPhotos} 
                     onClose={handleCloseNoteDetail}

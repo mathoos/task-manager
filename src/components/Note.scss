@@ -10,23 +10,7 @@
     cursor: pointer;
     min-height: calc(100% / 3 - 2.5vh);
     height : calc(100% / 3 - 2.5vh);
-    overflow : hidden;
-
-    &.blue {
-        border: 2px solid $bleu;
-    }
-    
-    &.green {
-        border: 2px solid $vert;
-    }
-    
-    &.orange {
-        border: 2px solid $orange;
-    }
-    
-    &.pink {
-        border: 2px solid $rose;
-    }
+    overflow : hidden; 
 
     &_content{
         display : flex;
