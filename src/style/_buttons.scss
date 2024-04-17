@@ -5,7 +5,7 @@
     align-items: center;
     width : fit-content;
     height : 2.2vw;
-    padding : 1vh 1.5vw;
+    padding : 0 1.5vw;
     border-radius: 100vmax; 
     border : 1px solid $noir;
     background-color: transparent;
@@ -21,34 +21,34 @@
         background-color: $noir;
     }
 
-    &_tag{
-        height : fit-content;
-        padding : .5vh .5vw;
-        pointer-events: none;
+    &.blue {
+        background-color: $bleu;
+        color : $blanc;
+        border-color : transparent;
+    }
+    
+    &.green {
+        background-color: $vert;
+        color : $blanc;
+        border-color : transparent;
+    }
+    
+    &.orange {
+        background-color: $orange;
+        color : $blanc;
+        border-color : transparent;
+    }
+    
+    &.pink {
+        background-color: $rose;
+        color : $blanc;
+        border-color : transparent;
+    }
 
-        &.blue {
-            background-color: $bleu;
-            color : $blanc;
-            border-color : transparent;
-        }
-        
-        &.green {
-            background-color: $vert;
-            color : $blanc;
-            border-color : transparent;
-        }
-        
-        &.orange {
-            background-color: $orange;
-            color : $blanc;
-            border-color : transparent;
-        }
-        
-        &.pink {
-            background-color: $rose;
-            color : $blanc;
-            border-color : transparent;
-        }
+    &_min{
+        height : fit-content;
+        padding : .5vw .8vw;
+        pointer-events: none;
     }
 
     &_icon{

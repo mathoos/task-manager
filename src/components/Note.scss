@@ -4,12 +4,12 @@
     display : flex;
     flex-direction: column;
     justify-content: space-between;
-    gap : 7vh;
-    padding : 2vw 1vw 1vw 1vw;
+    padding : 1vw;
     border-radius : 15px;
     background-color: $blanc;
     cursor: pointer;
     min-height: calc(100% / 3 - 2.5vh);
+    height : calc(100% / 3 - 2.5vh);
     overflow : hidden;
 
     &.blue {
@@ -31,19 +31,48 @@
     &_content{
         display : flex;
         flex-direction: column;
-        gap : 2vh;
-        
-        &-title{
+        justify-content: space-between;
+        gap : 3vh;
+        height : 100%;
+       
+        &-up{
             display : flex;
             justify-content: space-between;
+
+            .tag{
+                display : flex;
+                gap : .8vw;
+
+                &_icon{
+                    width : 2.2vw;
+                    padding : 0;
+                }
+            }
+        }
+
+        &-middle{
+           display : flex;
+           flex-direction: column;
+           gap : .5vh;
+           height : 100%;
+           overflow : hidden;    
+    
+
+           .description{
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                line-clamp: 3; 
+                -webkit-box-orient: vertical;
+           }
         }
 
         &-people{
             display : flex;
 
             img{
-                width : 2.5vw;
-                height : 2.5vw;
+                width : 2.2vw;
+                height : 2.2vw;
                 border-radius : 100vmax;
                 object-fit: cover;
                 border : 1px solid $noir;

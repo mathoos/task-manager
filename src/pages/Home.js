@@ -19,6 +19,13 @@ const tagColors = {
     "design": "pink",
 };
 
+const tagIcons = {
+    "gestion de projet": "📊",
+    "production": "🏭",
+    "développement": "💻",
+    "design": "🎨"
+};
+
 const personPhotos = {
     "Alice": alicePhoto,
     "Bob": bobPhoto,
@@ -64,7 +71,6 @@ function Home() {
 
     const handleDrop = (containerType) => {
         if (selectedNoteId !== null) {
-            // Modifier l'état des notes pour déplacer la note dans le conteneur cible
             const updatedNotes = notes.map(note => {
                 if (note.id === selectedNoteId) {
                     return { ...note, container: containerType };
@@ -91,12 +97,14 @@ function Home() {
                 )}
                 <div className="container_notes">
                     <div className="container_notes-bloc" onDrop={() => handleDrop('A faire')} onDragOver={(e) => e.preventDefault()}>
-                        <h2>A faire</h2>
+                        <div className="container_notes-bloc--title">
+                            <h2>A faire</h2>
+                        </div>
                         <div className="container_notes-bloc--content">
                             {notes.filter(note => note.container === 'A faire').map(note => (
                                 <Note 
                                     key={note.id} 
-                                    note={note} 
+                                    note={{...note, icone: tagIcons[note.tag]}} 
                                     tagColors={tagColors} 
                                     onClick={() => handleNoteClick(note)}
                                     personPhotos={personPhotos}  
@@ -110,12 +118,14 @@ function Home() {
                     <div className="container_notes-separation"></div>
 
                     <div className="container_notes-bloc" onDrop={() => handleDrop('En cours')} onDragOver={(e) => e.preventDefault()}>
-                        <h2>En cours</h2>
+                        <div className="container_notes-bloc--title">
+                            <h2>En cours</h2>
+                        </div>
                         <div className="container_notes-bloc--content">
                             {notes.filter(note => note.container === 'En cours').map(note => (
                                 <Note 
                                     key={note.id} 
-                                    note={note} 
+                                    note={{...note, icone: tagIcons[note.tag]}} 
                                     tagColors={tagColors} 
                                     onClick={() => handleNoteClick(note)}
                                     personPhotos={personPhotos}  
@@ -129,12 +139,14 @@ function Home() {
                     <div className="container_notes-separation"></div>
 
                     <div className="container_notes-bloc" onDrop={() => handleDrop('Fait')} onDragOver={(e) => e.preventDefault()}>
-                        <h2>Fait</h2>
+                        <div className="container_notes-bloc--title">
+                            <h2>Fait</h2>
+                        </div>
                         <div className="container_notes-bloc--content">
                             {notes.filter(note => note.container === 'Fait').map(note => (
                                 <Note 
                                     key={note.id} 
-                                    note={note} 
+                                    note={{...note, icone: tagIcons[note.tag]}} 
                                     tagColors={tagColors} 
                                     onClick={() => handleNoteClick(note)}
                                     personPhotos={personPhotos}  

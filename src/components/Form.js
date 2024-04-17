@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import "./Form.scss";
 
 const availableTags = ["gestion de projet", "production", "développement", "design"];
-const availableEmotes = ["😊", "👍", "❤️", "🎉", "🚀"];
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
 const Form = ({ onAddNote, setIsVisible }) => {
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
-    const [newNoteTime, setNewNoteTime] = useState('');
-    const [selectedEmote, setSelectedEmote] = useState('');
+    const [newNoteDate, setNewNoteDate] = useState('');
     const [selectedPeople, setSelectedPeople] = useState([]);
 
     const handleAddNote = () => {
@@ -18,24 +16,21 @@ const Form = ({ onAddNote, setIsVisible }) => {
             newNoteTitle.trim() !== '' &&
             newNoteDescription.trim() !== '' &&
             selectedTag !== '' &&
-            newNoteTime !== '' &&
-            selectedEmote !== ''
+            newNoteDate !== ''
         ) {
             const newNote = {
                 id: Date.now(),
                 title: newNoteTitle,
                 description: newNoteDescription,
                 tag: selectedTag,
-                time: newNoteTime,
-                emote: selectedEmote,
+                date: newNoteDate,
                 people: selectedPeople
             };
             onAddNote(newNote);
             setNewNoteTitle('');
             setNewNoteDescription('');
             setSelectedTag('');
-            setNewNoteTime('');
-            setSelectedEmote('');
+            setNewNoteDate('');
             setSelectedPeople([]);
             setIsVisible(false);
         }
@@ -70,15 +65,7 @@ const Form = ({ onAddNote, setIsVisible }) => {
                     </select>
                 </fieldset>
                 <fieldset className="fieldset">
-                    <input className="input" type="time" value={newNoteTime} onChange={(e) => setNewNoteTime(e.target.value)} />
-                </fieldset>
-                <fieldset className="fieldset">
-                    <select className="input" value={selectedEmote} onChange={(e) => setSelectedEmote(e.target.value)}>
-                        <option value="">Select Emote</option>
-                        {availableEmotes.map(emote => (
-                            <option key={emote} value={emote}>{emote}</option>
-                        ))}
-                    </select>
+                    <input className="input" type="date" value={newNoteDate} onChange={(e) => setNewNoteDate(e.target.value)} />
                 </fieldset>
                 <fieldset className="fieldset fieldset_people">
                     {availablePeople.map(person => (

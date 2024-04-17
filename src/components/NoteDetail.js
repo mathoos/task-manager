@@ -15,7 +15,7 @@ const NoteDetail = ({ note, tagColors, personPhotos, onClose, onDelete }) => {
                 <h3>{note.title}</h3>
                 <p>{note.emote}</p>
                 <p>{note.description}</p>
-                <p>{note.time} - {note.day}</p>
+                <p>{note.time} - {note.date}</p>
                 <div className="noteDetail_container-people">
                     {note.people.map(person => (
                         <img key={person} src={personPhotos[person]} alt={person} />
