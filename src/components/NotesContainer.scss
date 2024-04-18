@@ -62,6 +62,12 @@
                 background: $roseDark; 
             }
         }
+
+        .bouton{
+            border: 1px dashed $roseDark;
+            color : $roseDark;
+            background-color: $roseLight;
+        }
     }
 
     &.frontend{
@@ -79,6 +85,11 @@
             &::-webkit-scrollbar-thumb {
                 background: $bleuDark; 
             }
+        }
+        .bouton{
+            border: 1px dashed $bleuDark;
+            color : $bleuDark;
+            background-color: $bleuLight;
         }
     }
 
@@ -98,6 +109,11 @@
                 background: $jauneDark; 
             }
         }
+        .bouton{
+            border: 1px dashed $jauneDark;
+            color : $jauneDark;
+            background-color: $jauneLight;
+        }
     }
 
     &.testing{
@@ -115,6 +131,11 @@
             &::-webkit-scrollbar-thumb {
                 background: $violetDark; 
             }
+        }
+        .bouton{
+            border: 1px dashed $violetDark;
+            color : $violetDark;
+            background-color: $violetLight;
         }
     }
 }

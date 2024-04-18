@@ -20,7 +20,7 @@ function NotesContainer({ title, containerType , personPhotos,  notes, handleNot
                     />
                 ))}
             </div>
-                <button className="bouton" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
+            <button className="bouton" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
         </div>
     );
 }
