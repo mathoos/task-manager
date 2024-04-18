@@ -1,6 +1,10 @@
-import IconDesign from "../img/icons/icon-design.svg";
 import IconGestionProjet from "../img/icons/icon-production.svg";
 import IconProduction from "../img/icons/icon-production.svg";
+import IconDeveloppement from "../img/icons/icon-dev.svg";
+import IconDesign from "../img/icons/icon-design.svg";
+
+
+
 
 export const tagData = {
     "gestion de projet": {
@@ -13,7 +17,7 @@ export const tagData = {
     },
     "développement": {
         class: "developpement",
-        icon: IconProduction
+        icon: IconDeveloppement
     },
     "design": {
         class: "design",

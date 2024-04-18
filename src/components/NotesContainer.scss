@@ -1,0 +1,29 @@
+@import "../style.scss";
+
+.bloc{
+    display : flex;
+    flex-direction: column;
+    gap : 2.5vh;
+    width : calc(100% / 3);
+    height: 100%;
+
+    &_title{
+
+        h2{
+            color : $noir;
+        }
+    }   
+
+    &_content{
+        display : flex;
+        flex-direction: column;
+        gap : 2.5vh;
+        height : 100%;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            //display : none;
+            width : 10px;
+        }
+    }
+}

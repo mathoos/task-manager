@@ -13,11 +13,6 @@
         width : 100%;
         height : 100%;
 
-        &_header{
-            width : 100%;
-            height : 15vh;
-        }
-
         &_notes{
             display : flex;
             gap : 2vw;
@@ -25,33 +20,6 @@
             height : 85vh;
             padding : 0 2.5vw 2.5vw 2.5vw;
             overflow : hidden;
-
-            &-bloc{
-                display : flex;
-                flex-direction: column;
-                gap : 2.5vh;
-                width : calc(100% / 3);
-                height: 100%;
-
-                &--title{
-
-                    h2{
-                        color : $noir;
-                    }
-                }   
-
-                &--content{
-                    display : flex;
-                    flex-direction: column;
-                    gap : 2.5vh;
-                    height : 100%;
-                    overflow-y: auto;
-
-                    &::-webkit-scrollbar {
-                        display : none;
-                    }
-                }
-            }
         }
     }
 }

@@ -11,10 +11,10 @@ import emmaPhoto from "../img/people/emma.jpg";
 import "./Home.scss";
 
 import Form from "../components/Form";
-import Note from "../components/Note";
 import NoteDetail from "../components/NoteDetail";
 import Nav from "../components/Nav";
-import Header from "../components/Header"
+import Header from "../components/Header";
+import NotesContainer from "../components/NotesContainer";
 
 const personPhotos = {
     "Alice": alicePhoto,
@@ -94,28 +94,18 @@ function Home() {
                 )}
 
                 <div className="container_notes">
-
                     {noteContainers.map(({ title, containerType }) => (
-                        <div key={containerType} className="container_notes-bloc" onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
-                            <div className="container_notes-bloc--title">
-                                <h2>{title}</h2>
-                            </div>
-                            <div className="container_notes-bloc--content">
-                                {notes.filter(note => note.container === containerType).map(note => (
-                                    <Note 
-                                        key={note.id} 
-                                        note={note}
-                                        onClick={() => handleNoteClick(note)}
-                                        personPhotos={personPhotos}  
-                                        onDragStart={() => handleDragStart(note.id)}
-                                        onDragEnd={handleDragEnd} 
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        <NotesContainer
+                            key={containerType}
+                            title={title}
+                            containerType={containerType}
+                            notes={notes.filter(note => note.container === containerType)}
+                            handleNoteClick={handleNoteClick}
+                            handleDragStart={handleDragStart}
+                            handleDragEnd={handleDragEnd}
+                            handleDrop={handleDrop}
+                        />
                     ))}
-
-
                 </div>
             </div>
 
