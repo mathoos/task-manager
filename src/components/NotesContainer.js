@@ -2,7 +2,7 @@ import React from 'react';
 import Note from './Note';
 import "./NotesContainer.scss";
 
-function NotesContainer({ title, containerType, notes, handleNoteClick, handleDragStart, handleDragEnd, handleDrop }) {
+function NotesContainer({ title, containerType, notes, handleNoteClick, handleDragStart, handleDragEnd, handleDrop, handleShowForm }) {
     return (
         <div className="bloc" onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
             <div className="bloc_title">
@@ -19,6 +19,7 @@ function NotesContainer({ title, containerType, notes, handleNoteClick, handleDr
                     />
                 ))}
             </div>
+                <button className="bouton bouton_add" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
         </div>
     );
 }

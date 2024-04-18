@@ -25,9 +25,10 @@ const personPhotos = {
 };
 
 const noteContainers = [
-    { title: "A faire", containerType: "A faire" },
-    { title: "En cours", containerType: "En cours" },
-    { title: "Fait", containerType: "Fait" }
+    { title: "Design", containerType: "Design" },
+    { title: "Frontend", containerType: "Frontend" },
+    { title: "Backend", containerType: "Backend" },
+    { title: "Testing", containerType: "Testing" }
 ];
 
 function Home() {
@@ -36,11 +37,18 @@ function Home() {
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
     const [selectedNoteId, setSelectedNoteId] = useState(null);
+    const [selectedContainerType, setSelectedContainerType] = useState(null);
+
+    const handleShowForm = (containerType) => {
+        setIsFormVisible(true);
+        setSelectedContainerType(containerType);
+    };
 
     const handleAddNote = (newNote) => {
-        const updatedNotes = [...notes, { ...newNote, container: "A faire" }];
+        const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; // Utiliser le type de conteneur sélectionné pour ajouter la note
         setNotes(updatedNotes);
-        dispatch(addNote({ ...newNote, container: "A faire" }));
+        dispatch(addNote({ ...newNote, container: selectedContainerType }));
+        setIsFormVisible(false); // Masquer le formulaire une fois que la note est ajoutée
     };
 
     const handleNoteClick = (note) => {
@@ -83,7 +91,7 @@ function Home() {
 
             <div className="container">
 
-                <Header setIsFormVisible={setIsFormVisible} />
+                <Header/>
 
                 {isFormVisible && (
                     <Form 
@@ -104,6 +112,7 @@ function Home() {
                             handleDragStart={handleDragStart}
                             handleDragEnd={handleDragEnd}
                             handleDrop={handleDrop}
+                            handleShowForm={handleShowForm} 
                         />
                     ))}
                 </div>
