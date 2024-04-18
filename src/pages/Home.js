@@ -48,7 +48,7 @@ function Home() {
         const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; // Utiliser le type de conteneur sélectionné pour ajouter la note
         setNotes(updatedNotes);
         dispatch(addNote({ ...newNote, container: selectedContainerType }));
-        setIsFormVisible(false); // Masquer le formulaire une fois que la note est ajoutée
+        setIsFormVisible(false);
     };
 
     const handleNoteClick = (note) => {
@@ -107,6 +107,7 @@ function Home() {
                             key={containerType}
                             title={title}
                             containerType={containerType}
+                            personPhotos={personPhotos}
                             notes={notes.filter(note => note.container === containerType)}
                             handleNoteClick={handleNoteClick}
                             handleDragStart={handleDragStart}

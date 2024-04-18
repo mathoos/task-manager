@@ -1,13 +1,9 @@
 @import "../style.scss";
 
 .header{
+    display : flex;
+    align-items: center;
     width : 100%;
-    height : 15vh;
-    padding : 2.5vw;
-    background-color: pink;
-
-    &_txt{
-        display : flex;
-        justify-content: space-between;
-    }
+    height : 10vh;
+    padding-left : 2.5vw;
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import Note from './Note';
 import "./NotesContainer.scss";
 
-function NotesContainer({ title, containerType, notes, handleNoteClick, handleDragStart, handleDragEnd, handleDrop, handleShowForm }) {
+function NotesContainer({ title, containerType , personPhotos,  notes, handleNoteClick, handleDragStart, handleDragEnd, handleDrop, handleShowForm }) {
     return (
-        <div className="bloc" onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
+        <div className={`bloc ${containerType.toLowerCase()}`} onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
             <div className="bloc_title">
                 <h2>{title}</h2>
             </div>
@@ -16,10 +16,11 @@ function NotesContainer({ title, containerType, notes, handleNoteClick, handleDr
                         onClick={() => handleNoteClick(note)}
                         onDragStart={() => handleDragStart(note.id)}
                         onDragEnd={handleDragEnd} 
+                        personPhotos={personPhotos} 
                     />
                 ))}
             </div>
-                <button className="bouton bouton_add" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
+                <button className="bouton" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
         </div>
     );
 }

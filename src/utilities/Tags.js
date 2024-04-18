@@ -1,26 +1,19 @@
 import IconGestionProjet from "../img/icons/icon-production.svg";
 import IconProduction from "../img/icons/icon-production.svg";
 import IconDeveloppement from "../img/icons/icon-dev.svg";
-import IconDesign from "../img/icons/icon-design.svg";
-
-
 
 
 export const tagData = {
-    "gestion de projet": {
-        class: "gestion-de-projet",
+    "high": {
+        class: "high",
         icon: IconGestionProjet
     },
-    "production": {
-        class: "production",
+    "medium": {
+        class: "medium",
         icon: IconProduction
     },
-    "développement": {
-        class: "developpement",
+    "low": {
+        class: "low",
         icon: IconDeveloppement
     },
-    "design": {
-        class: "design",
-        icon: IconDesign
-    }
 };

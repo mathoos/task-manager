@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
-const Note = ({ note, onClick, onDragStart, onDragEnd }) => {
+const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd }) => {
     const [isDragging, setIsDragging] = useState(false);
     const noteRef = useRef(null);
 
@@ -28,7 +28,7 @@ const Note = ({ note, onClick, onDragStart, onDragEnd }) => {
     
     return (
         <div
-            className={`note ${tagData[note.tag]?.class || 'default'} ${isDragging ? 'dragging' : ''}`}
+            className={`note ${isDragging ? 'dragging' : ''}`}
             onClick={onClick}
             draggable="true"
             onDragStart={handleDragStart}
@@ -37,26 +37,32 @@ const Note = ({ note, onClick, onDragStart, onDragEnd }) => {
         >
             <div className="note_content">
 
-                <div className="note_content-up">
-                    <div className="tag">
-                        <figure className="bouton tag_icon">
-                            <img src={tagData[note.tag]?.icon} alt={note.tag} />
-                        </figure>
-                        <div className="bouton bouton_min">
-                            {note.tag}
-                        </div>
-                    </div>
-                    <div>
-                        <p className="bouton bouton_min">
-                            {formatDate(note.date)}
-                        </p>
-                    </div>
+                <div className="note_content-top">
+                    <h3 className="title">{note.title}</h3>
+                    {/* <p className="description">{note.description}</p> */}
                 </div>
 
                 <div className="note_content-middle">
-                    <h3>{note.title}</h3>
-                    <p className="description">{note.description}</p>
+                    
+              
+                        <p>
+                            {formatDate(note.date)}
+                        </p>
+                  
                 </div>
+
+                <div className="note_content-bottom">
+                    <div className="equipe">
+                        {note.people.map(person => (
+                            <img key={person} src={personPhotos[person]} alt={person} />
+                        ))}
+                    </div>
+                    <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
+                        {note.tag}
+                    </p>
+                </div>
+
+                
             </div>
         </div>
     );

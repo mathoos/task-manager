@@ -6,7 +6,8 @@
     gap : 2.5vh;
     width : calc(100% / 4);
     height: 100%;
-    border : 1px solid red;
+    padding : 1vw;
+    border-radius : 15px;
 
     &_title{
 
@@ -36,6 +37,84 @@
         &::-webkit-scrollbar-thumb {
             background: $noir; 
             border-radius: 100vmax;
+        }
+    }
+
+    .bouton{
+        width : 100%;
+    }
+
+    &.design{
+        background-color: $rose;
+
+        .bloc_title{
+            h2{
+                color : $roseDark;
+            }
+        }
+
+        .bloc_content{
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px $roseLight; 
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: $roseDark; 
+            }
+        }
+    }
+
+    &.frontend{
+        background-color: $bleu;
+        .bloc_title{
+            h2{
+                color : $bleuDark;
+            }
+        }
+        .bloc_content{
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px $bleuLight; 
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: $bleuDark; 
+            }
+        }
+    }
+
+    &.backend{
+        background-color: $jaune;
+        .bloc_title{
+            h2{
+                color : $jauneDark;
+            }
+        }
+        .bloc_content{
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px $jauneLight; 
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: $jauneDark; 
+            }
+        }
+    }
+
+    &.testing{
+        background-color : $violet;
+        .bloc_title{
+            h2{
+                color : $violetDark;
+            }
+        }
+        .bloc_content{
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px $violetLight; 
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: $violetDark; 
+            }
         }
     }
 }

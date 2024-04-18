@@ -1,51 +1,47 @@
 $noir : #373636;
 $blanc : white;
 
-$vert : rgb(179, 207, 179);
-$bleu : rgb(182, 182, 226);
+$violet : #d4ceff;
+$bleu : #cbe4ff;
+$jaune : #fae7cb;
 $rose : rgb(238, 195, 211);
-$orange : rgb(242, 173, 94);
+
+$violetDark : #3317a5;
+$bleuDark : #6295cc;
+$jauneDark : #d6680a;
+$roseDark : rgb(140, 77, 100);
+
+$violetLight : #e2dcfc;
+$bleuLight : #daecff;
+$jauneLight : #f9f5e8;
+$roseLight : rgb(247, 223, 232);
 
 $noir-opacity: rgba($noir, 0.9);
 $noir-middle-opacity: rgba($noir, 0.5);
 
+$highBg : #ff9494;
+$highTxt : #feeaea;
+$mediumBg : #fef8e8;
+$mediumTxt : #feb98d;
+$lowBg : #eefff8;
+$lowTxt : #99efca;
 
-.gestion-de-projet {
-    border: 2px solid $bleu;
 
-    .bouton{
-        background-color: $bleu;
-        color : $blanc;
-        border-color : transparent;
-    }
+
+
+
+
+.high {
+    background-color : $highBg;
+    color : $highTxt;
 }
 
-.production {
-    border: 2px solid $vert;
-
-    .bouton{
-        background-color: $vert;
-        color : $blanc;
-        border-color : transparent;
-    }
+.medium {
+    background-color: $mediumBg;
+    color : $mediumTxt;
 }
 
-.developpement {
-    border: 2px solid $orange;
-
-    .bouton{
-        background-color: $orange;
-        color : $blanc;
-        border-color : transparent;
-    }
-}
-
-.design {
-    border: 2px solid $rose;
-
-    .bouton{
-        background-color: $rose;
-        color : $blanc;
-        border-color : transparent;
-    }
+.low {
+    background-color: $lowBg;
+    color : $lowTxt;
 }
