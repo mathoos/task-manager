@@ -23,6 +23,12 @@ const personPhotos = {
     "Emma": emmaPhoto
 };
 
+const noteContainers = [
+    { title: "A faire", containerType: "A faire" },
+    { title: "En cours", containerType: "En cours" },
+    { title: "Fait", containerType: "Fait" }
+];
+
 function Home() {
     const dispatch = useDispatch();
     const [notes, setNotes] = useState(useSelector(state => state.notes));
@@ -85,63 +91,28 @@ function Home() {
                     />
                 )}
                 <div className="container_notes">
-                    <div className="container_notes-bloc" onDrop={() => handleDrop('A faire')} onDragOver={(e) => e.preventDefault()}>
-                        <div className="container_notes-bloc--title">
-                            <h2>A faire</h2>
-                        </div>
-                        <div className="container_notes-bloc--content">
-                            {notes.filter(note => note.container === 'A faire').map(note => (
-                                <Note 
-                                    key={note.id} 
-                                    note={note}
-                                    onClick={() => handleNoteClick(note)}
-                                    personPhotos={personPhotos}  
-                                    onDragStart={() => handleDragStart(note.id)}
-                                    onDragEnd={handleDragEnd} 
-                                />
-                            ))}
-                        </div>
-                    </div>
 
-                    <div className="container_notes-separation"></div>
-
-                    <div className="container_notes-bloc" onDrop={() => handleDrop('En cours')} onDragOver={(e) => e.preventDefault()}>
-                        <div className="container_notes-bloc--title">
-                            <h2>En cours</h2>
+                    {noteContainers.map(({ title, containerType }) => (
+                        <div key={containerType} className="container_notes-bloc" onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
+                            <div className="container_notes-bloc--title">
+                                <h2>{title}</h2>
+                            </div>
+                            <div className="container_notes-bloc--content">
+                                {notes.filter(note => note.container === containerType).map(note => (
+                                    <Note 
+                                        key={note.id} 
+                                        note={note}
+                                        onClick={() => handleNoteClick(note)}
+                                        personPhotos={personPhotos}  
+                                        onDragStart={() => handleDragStart(note.id)}
+                                        onDragEnd={handleDragEnd} 
+                                    />
+                                ))}
+                            </div>
                         </div>
-                        <div className="container_notes-bloc--content">
-                            {notes.filter(note => note.container === 'En cours').map(note => (
-                                <Note 
-                                    key={note.id} 
-                                    note={note}
-                                    onClick={() => handleNoteClick(note)}
-                                    personPhotos={personPhotos}  
-                                    onDragStart={() => handleDragStart(note.id)}
-                                    onDragEnd={handleDragEnd} 
-                                />
-                            ))}
-                        </div>              
-                    </div>
+                    ))}
 
-                    <div className="container_notes-separation"></div>
 
-                    <div className="container_notes-bloc" onDrop={() => handleDrop('Fait')} onDragOver={(e) => e.preventDefault()}>
-                        <div className="container_notes-bloc--title">
-                            <h2>Fait</h2>
-                        </div>
-                        <div className="container_notes-bloc--content">
-                            {notes.filter(note => note.container === 'Fait').map(note => (
-                                <Note 
-                                    key={note.id} 
-                                    note={note} 
-                                    onClick={() => handleNoteClick(note)}
-                                    personPhotos={personPhotos}  
-                                    onDragStart={() => handleDragStart(note.id)}
-                                    onDragEnd={handleDragEnd} 
-                                />
-                            ))}
-                        </div>   
-                    </div>
                 </div>
             </div>
             {selectedNote && 

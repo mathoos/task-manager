@@ -52,18 +52,6 @@
                     }
                 }
             }
-
-            &-separation{
-                width : 1px;
-                height : 100%;
-                background-color: $noir;
-            }
         }
-    }
-
-
-    &_add{
-        display : flex;
-        justify-content: flex-end;
     }
 }
