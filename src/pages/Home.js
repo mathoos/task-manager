@@ -14,6 +14,7 @@ import Form from "../components/Form";
 import Note from "../components/Note";
 import NoteDetail from "../components/NoteDetail";
 import Nav from "../components/Nav";
+import Header from "../components/Header"
 
 const personPhotos = {
     "Alice": alicePhoto,
@@ -78,11 +79,12 @@ function Home() {
 
     return (
         <div className="home">
-            <Nav />
+            <Nav/>
+
             <div className="container">
-                <div className="container_header">
-                    <button className="bouton bouton_add" onClick={() => setIsFormVisible(true)}>Ajouter une note</button>
-                </div> 
+
+                <Header setIsFormVisible={setIsFormVisible} />
+
                 {isFormVisible && (
                     <Form 
                         onAddNote={handleAddNote} 
@@ -90,6 +92,7 @@ function Home() {
                         setIsVisible={setIsFormVisible}
                     />
                 )}
+
                 <div className="container_notes">
 
                     {noteContainers.map(({ title, containerType }) => (
@@ -115,6 +118,7 @@ function Home() {
 
                 </div>
             </div>
+
             {selectedNote && 
                 <NoteDetail 
                     note={selectedNote}
@@ -123,6 +127,7 @@ function Home() {
                     onDelete={handleDeleteNote}
                 />
             } 
+
         </div>
     );
 }
