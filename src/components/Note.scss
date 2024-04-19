@@ -8,8 +8,8 @@
     border-radius : 15px;
     background-color: $blanc;
     cursor: pointer;
-    min-height: calc(100% / 3 - 2.5vh);
-    height : calc(100% / 3 - 2.5vh);
+    min-height: calc(100% / 2.5 - 2.5vh);
+    height : calc(100% / 2.5 - 2.5vh);
     overflow : hidden; 
 
     &_content{
@@ -20,13 +20,12 @@
         height : 100%;
 
         &-top{
-            overflow : hidden; 
             
             .title{
                 overflow: hidden;
                 display: -webkit-box;
-                -webkit-line-clamp: 3;
-                line-clamp: 3; 
+                -webkit-line-clamp: 2;
+                line-clamp: 2; 
                 -webkit-box-orient: vertical;
             }
      

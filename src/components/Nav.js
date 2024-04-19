@@ -1,6 +1,6 @@
 import Logo from "../img/logo.svg";
 import IconChat from "../img/icons/icon-chat.svg";
-import IconList from "../img/icons/icon-list.svg";
+import IconDashboard from "../img/icons/icon-list.svg";
 import IconCalendar from "../img/icons/icon-calendar.svg";
 import Iconlogout from "../img/icons/icon-logout.svg";
 import './Nav.scss';
@@ -16,11 +16,11 @@ const Nav = () => {
             </figure>
             <div className="nav_links">
                 <a href="" className="nav_links-link">
-                    <img src={IconCalendar} alt="Logo"/>
+                    <img src={IconDashboard} alt="Logo"/>
                     <p>Dashboard</p>
                 </a>
                 <a href="" className="nav_links-link">
-                    <img src={IconList} alt="Logo"/>
+                    <img src={IconCalendar} alt="Logo"/>
                     <p>Calendar</p>
                 </a>
                 <a href="" className="nav_links-link">
