@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
-const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd }) => {
+const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd, }) => {
     const [isDragging, setIsDragging] = useState(false);
     const noteRef = useRef(null);
 
@@ -39,16 +39,12 @@ const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd }) => {
 
                 <div className="note_content-top">
                     <h3 className="title">{note.title}</h3>
-                    {/* <p className="description">{note.description}</p> */}
                 </div>
 
                 <div className="note_content-middle">
-                    
-              
-                        <p>
-                            {formatDate(note.date)}
-                        </p>
-                  
+                    <p>
+                        {formatDate(note.date)}
+                    </p>
                 </div>
 
                 <div className="note_content-bottom">
@@ -61,8 +57,6 @@ const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd }) => {
                         {note.tag}
                     </p>
                 </div>
-
-                
             </div>
         </div>
     );

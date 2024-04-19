@@ -60,37 +60,36 @@
     }
 
     &.design{
-        background-color: $rose;
-
+        background-color : $violet;
         .bloc_title{
             h2{
-                color : $roseDark;
+                color : $violetDark;
             }
             &-number{
-                color : $roseDark;
+                color : $violetDark;
             }
         }
-
         .bloc_content{
             &::-webkit-scrollbar-track {
-                box-shadow: inset 0 0 5px $roseLight; 
+                box-shadow: inset 0 0 5px $violetLight; 
             }
             
             &::-webkit-scrollbar-thumb {
-                background: $roseDark; 
+                background: $violetDark; 
+            }
+        }
+        .bouton{
+            border: 1px dashed $violetDark;
+            color : $violetDark;
+            background-color: $violetLight;
+            &:hover{
+                background-color: $violetDark;
+                color : $violetLight;
             }
         }
 
-        .bouton{
-            border: 1px dashed $roseDark;
-            color : $roseDark;
-            background-color: $roseLight;
-            transition : .3s ease;
-
-            &:hover{
-                background-color: $roseDark;
-                color : $roseLight;
-            }
+        .noteDetail{
+            background-color: red;
         }
     }
 
@@ -155,31 +154,36 @@
     }
 
     &.testing{
-        background-color : $violet;
+        background-color: $rose;
+
         .bloc_title{
             h2{
-                color : $violetDark;
+                color : $roseDark;
             }
             &-number{
-                color : $violetDark;
+                color : $roseDark;
             }
         }
+
         .bloc_content{
             &::-webkit-scrollbar-track {
-                box-shadow: inset 0 0 5px $violetLight; 
+                box-shadow: inset 0 0 5px $roseLight; 
             }
             
             &::-webkit-scrollbar-thumb {
-                background: $violetDark; 
+                background: $roseDark; 
             }
         }
+
         .bouton{
-            border: 1px dashed $violetDark;
-            color : $violetDark;
-            background-color: $violetLight;
+            border: 1px dashed $roseDark;
+            color : $roseDark;
+            background-color: $roseLight;
+            transition : .3s ease;
+
             &:hover{
-                background-color: $violetDark;
-                color : $violetLight;
+                background-color: $roseDark;
+                color : $roseLight;
             }
         }
     }

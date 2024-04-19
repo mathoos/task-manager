@@ -20,19 +20,10 @@ const NoteDetail = ({ note, personPhotos, onClose, onDelete }) => {
     };
 
     return (
-        <div className={`noteDetail ${tagData[note.tag]?.class || 'default'}`}>
+        <div className="noteDetail">
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">
-
-                    <div className="tag">
-                        <div className="bouton tag_icon">
-                            {tagData[note.tag]?.icon}
-                        </div>
-                        <div className="bouton bouton_min">
-                            {note.tag}
-                        </div>
-                    </div>
 
                     <div className="txt">
                         <h3>{note.title}</h3>
@@ -41,6 +32,11 @@ const NoteDetail = ({ note, personPhotos, onClose, onDelete }) => {
                         ))}
                         <p>{formatDate(note.date)}</p>
                     </div>
+
+                    <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
+                        {note.tag}
+                    </p>
+
 
                     <div className="persons">
                         {note.people.map(person => (
