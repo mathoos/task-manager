@@ -53,6 +53,7 @@ function Home() {
 
     const handleNoteClick = (note) => {
         setSelectedNote(note);
+        setSelectedContainerType(note.container);
     };
 
     const handleCloseNoteDetail = () => {
@@ -122,6 +123,7 @@ function Home() {
             {selectedNote && 
                 <NoteDetail 
                     note={selectedNote}
+                    containerType={selectedContainerType}
                     personPhotos={personPhotos} 
                     onClose={handleCloseNoteDetail}
                     onDelete={handleDeleteNote}

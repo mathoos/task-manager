@@ -31,7 +31,6 @@
             flex-grow : 1;
             padding : 1.5vw;
             border-radius : 15px;    
-            background-color: rgb(254, 247, 250);   
 
             .tag{
                 display : flex;
@@ -75,13 +74,11 @@
             }
         }
 
-        &-right{
-            
+        &-right{       
             display : flex;
             flex-direction: column;
             gap : 1.5vw;
-            flex-grow : 1;
-            
+            flex-grow : 1;   
 
             &--close{
                 display : flex;
@@ -98,11 +95,122 @@
                 flex-grow : 1;
                 border-radius : 15px;
                 padding : 1.5vw;
-                background-color: rgb(254, 247, 250);  
             }
 
             .bouton{
                 width : 100%;
+            }
+        }
+    }
+
+    &.design{
+        .noteDetail_container{
+            &-left{
+                background-color: $violetLight;
+                .txt{
+                    h3{
+                        color : $violetDark;
+                    }
+                }
+            }
+            &-right{
+                &--links{
+                    background-color: $violetLight;
+                    .bouton{
+                        border: 1px dashed $violetDark;
+                        color : $violetDark;
+                        background-color: $violetLight;
+                        &:hover{
+                            background-color: $violetDark;
+                            color : $violetLight;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    &.frontend{
+        .noteDetail_container{
+            &-left{
+                background-color: $bleuLight;
+                .txt{
+                    h3{
+                        color : $bleuDark;
+                    }
+                }
+            }
+            &-right{
+                &--links{
+                    background-color: $bleuLight;
+                    .bouton{
+                        border: 1px dashed $bleuDark;
+                        color : $bleuDark;
+                        background-color: $bleuLight;
+                        &:hover{
+                            background-color: $bleuDark;
+                            color : $bleuLight;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    &.backend{
+        .noteDetail_container{
+            &-left{
+                background-color: $jauneLight;
+                .txt{
+                    h3{
+                        color : $jauneDark;
+                    }
+                }
+            }
+            &-right{
+                &--links{
+                    background-color: $jauneLight;
+                    .bouton{
+                        border: 1px dashed $jauneDark;
+                        color : $jauneDark;
+                        background-color: $jauneLight;
+                        &:hover{
+                            background-color: $jauneDark;
+                            color : $jauneLight;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    &.testing{
+        .noteDetail_container{
+            &-left{
+                background-color: $roseLight;
+                .txt{
+                    h3{
+                        color : $roseDark;
+                    }
+                }
+            }
+            &-right{
+                &--links{
+                    background-color: $roseLight;
+                    .bouton{
+                        border: 1px dashed $roseDark;
+                        color : $roseDark;
+                        background-color: $roseLight;
+                        &:hover{
+                            background-color: $roseDark;
+                            color : $roseLight;
+                        }
+                    }
+                }
+                
             }
         }
     }

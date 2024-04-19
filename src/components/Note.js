@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
-const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd, }) => {
+const Note = ({ note, containerType, personPhotos, onClick, onDragStart, onDragEnd }) => {
     const [isDragging, setIsDragging] = useState(false);
     const noteRef = useRef(null);
 
@@ -16,6 +16,8 @@ const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd, }) => {
         onDragEnd();
     };
 
+    const containerClass = containerType.toLowerCase();
+
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
         const day = String(dateObj.getDate()).padStart(2, '0'); // Ajoute un zéro au début si nécessaire
@@ -28,7 +30,7 @@ const Note = ({ note, personPhotos, onClick, onDragStart, onDragEnd, }) => {
     
     return (
         <div
-            className={`note ${isDragging ? 'dragging' : ''}`}
+            className={`note ${isDragging ? 'dragging' : ''} ${containerClass}`}
             onClick={onClick}
             draggable="true"
             onDragStart={handleDragStart}

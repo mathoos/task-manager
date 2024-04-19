@@ -24,6 +24,7 @@ function NotesContainer({ title, containerType , personPhotos,  notes, handleNot
                         onDragStart={() => handleDragStart(note.id)}
                         onDragEnd={handleDragEnd} 
                         personPhotos={personPhotos} 
+                        containerType={containerType}
                     />
                 ))}
             </div>

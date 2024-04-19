@@ -2,7 +2,7 @@ import React from 'react';
 import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ note, personPhotos, onClose, onDelete }) => {
+const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) => {
 
     const handleDelete = () => {
         onDelete(note.id);
@@ -19,8 +19,10 @@ const NoteDetail = ({ note, personPhotos, onClose, onDelete }) => {
         return `${day}/${month}${year}`;
     };
 
+    const containerClass = containerType ? containerType.toLowerCase() : '';
+
     return (
-        <div className="noteDetail">
+        <div className={`noteDetail ${containerClass}`}>
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">
@@ -50,9 +52,9 @@ const NoteDetail = ({ note, personPhotos, onClose, onDelete }) => {
                         <button className="closeButton" onClick={onClose}>Fermer</button>
                     </div>
                     <div className="noteDetail_container-right--links">         
-                        <button className="bouton deleteButton" onClick={handleDelete}>Dupliquer</button>
-                        <button className="bouton deleteButton" onClick={handleDelete}>Modifier</button>
-                        <button className="bouton deleteButton" onClick={handleDelete}>Supprimer</button>
+                        <button className="bouton" onClick={handleDelete}>Dupliquer</button>
+                        <button className="bouton" onClick={handleDelete}>Modifier</button>
+                        <button className="bouton" onClick={handleDelete}>Supprimer</button>
                     </div>
                 </div>
             </div>
