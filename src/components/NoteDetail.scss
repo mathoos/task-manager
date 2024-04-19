@@ -83,6 +83,32 @@
             &--close{
                 display : flex;
                 justify-content: flex-end;
+                
+
+                .closeButton{
+                    position : relative;
+                    width : 2vw;
+                    height : 2vw;
+                    cursor : pointer;
+
+                    &::after{
+                        position : absolute;
+                        content : "";
+                        width : 100%;
+                        height : 2px;
+                        transform : rotate(45deg);
+                        background-color: $noir;
+                    }
+
+                    &::before{
+                        position : absolute;
+                        content : "";
+                        width : 100%;
+                        height : 2px;
+                        transform : rotate(-45deg);
+                        background-color: $noir;
+                    }
+                }
             }
 
             &--links{
@@ -114,6 +140,13 @@
                 }
             }
             &-right{
+                &--close{
+                    .closeButton{
+                        &::after, &::before{
+                            background-color: $violetDark;
+                        }
+                    }
+                }
                 &--links{
                     background-color: $violetLight;
                     .bouton{
@@ -142,6 +175,13 @@
                 }
             }
             &-right{
+                &--close{
+                    .closeButton{
+                        &::after, &::before{
+                            background-color: $bleuDark;
+                        }
+                    }
+                }
                 &--links{
                     background-color: $bleuLight;
                     .bouton{
@@ -170,6 +210,13 @@
                 }
             }
             &-right{
+                &--close{
+                    .closeButton{
+                        &::after, &::before{
+                            background-color: $jauneDark;
+                        }
+                    }
+                }
                 &--links{
                     background-color: $jauneLight;
                     .bouton{
@@ -198,6 +245,13 @@
                 }
             }
             &-right{
+                &--close{
+                    .closeButton{
+                        &::after, &::before{
+                            background-color: $roseDark;
+                        }
+                    }
+                }
                 &--links{
                     background-color: $roseLight;
                     .bouton{

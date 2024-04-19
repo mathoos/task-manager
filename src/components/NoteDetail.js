@@ -49,7 +49,7 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) =>
 
                 <div className="noteDetail_container-right">
                     <div className="noteDetail_container-right--close">
-                        <button className="closeButton" onClick={onClose}>Fermer</button>
+                        <button className="closeButton" onClick={onClose}></button>
                     </div>
                     <div className="noteDetail_container-right--links">         
                         <button className="bouton" onClick={handleDelete}>Dupliquer</button>
