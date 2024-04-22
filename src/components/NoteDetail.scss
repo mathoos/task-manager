@@ -133,7 +133,15 @@
             }
 
             .bouton{
+                display : flex;
+                justify-content: space-between;
+                gap : 1vw;
                 width : 100%;
+
+                svg{
+                    width : 1.2vw;
+                    height : 1.2vw;
+                }
             }
         }
     }
@@ -170,9 +178,40 @@
                         border: 1px dashed $violetDark;
                         color : $violetDark;
                         background-color: $violetLight;
+                        
+                        svg{                      
+                            path{
+                                stroke : $violetDark;
+                                fill : $violetDark;
+                            }
+                        }
+
+                        &.duplicate{
+                            svg{
+                                path{
+                                    fill : none;
+                                }
+                            }
+                        }
+
                         &:hover{
                             background-color: $violetDark;
                             color : $violetLight;
+
+                            svg{                      
+                                path{
+                                    stroke : $violetLight;
+                                    fill : $violetLight;
+                                }
+                            }
+
+                            &.duplicate{
+                                svg{
+                                    path{
+                                        fill : none;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -212,9 +251,40 @@
                         border: 1px dashed $bleuDark;
                         color : $bleuDark;
                         background-color: $bleuLight;
+
+                        svg{                      
+                            path{
+                                stroke : $bleuDark;
+                                fill : $bleuDark;
+                            }
+                        }
+
+                        &.duplicate{
+                            svg{
+                                path{
+                                    fill : none;
+                                }
+                            }
+                        }
+
                         &:hover{
                             background-color: $bleuDark;
                             color : $bleuLight;
+
+                            svg{                      
+                                path{
+                                    stroke : $bleuLight;
+                                    fill : $bleuLight;
+                                }
+                            }
+
+                            &.duplicate{
+                                svg{
+                                    path{
+                                        fill : none;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -254,9 +324,40 @@
                         border: 1px dashed $jauneDark;
                         color : $jauneDark;
                         background-color: $jauneLight;
+
+                        svg{                      
+                            path{
+                                stroke : $jauneDark;
+                                fill : $jauneDark;
+                            }
+                        }
+
+                        &.duplicate{
+                            svg{
+                                path{
+                                    fill : none;
+                                }
+                            }
+                        }
+
                         &:hover{
                             background-color: $jauneDark;
                             color : $jauneLight;
+
+                            svg{                      
+                                path{
+                                    stroke : $jauneLight;
+                                    fill : $jauneLight;
+                                }
+                            }
+
+                            &.duplicate{
+                                svg{
+                                    path{
+                                        fill : none;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -296,9 +397,40 @@
                         border: 1px dashed $roseDark;
                         color : $roseDark;
                         background-color: $roseLight;
+
+                        svg{                      
+                            path{
+                                stroke : $roseDark;
+                                fill : $roseDark;
+                            }
+                        }
+
+                        &.duplicate{
+                            svg{
+                                path{
+                                    fill : none;
+                                }
+                            }
+                        }
+
                         &:hover{
                             background-color: $roseDark;
                             color : $roseLight;
+
+                            svg{                      
+                                path{
+                                    stroke : $roseLight;
+                                    fill : $roseLight;
+                                }
+                            }
+
+                            &.duplicate{
+                                svg{
+                                    path{
+                                        fill : none;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
