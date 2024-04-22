@@ -32,19 +32,21 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) =>
                         {note.description && note.description.split('\n').map((line, index) => (
                             <p key={index} className="description">{line}</p>
                         ))}
-                        <p>{formatDate(note.date)}</p>
+                        <p className="date">{formatDate(note.date)}</p>
                     </div>
+   
 
-                    <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
-                        {note.tag}
-                    </p>
-
-
-                    <div className="persons">
-                        {note.people.map(person => (
-                            <img key={person} src={personPhotos[person]} alt={person} />
-                        ))}
+                    <div className="bottom">
+                        <div className="equipe">
+                            {note.people.map(person => (
+                                <img key={person} src={personPhotos[person]} alt={person} />
+                            ))}
+                        </div>
+                        <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
+                            {note.tag}
+                        </p>
                     </div>
+                    
                 </div>
 
                 <div className="noteDetail_container-right">

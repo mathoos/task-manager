@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote } from '../utilities/Slice';
 
+
 import alicePhoto from "../img/people/alice.jpg";
 import bobPhoto from "../img/people/bob.jpg";
 import charliePhoto from "../img/people/charlie.jpg";

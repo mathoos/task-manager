@@ -44,7 +44,7 @@ const Note = ({ note, containerType, personPhotos, onClick, onDragStart, onDragE
                 </div>
 
                 <div className="note_content-middle">
-                    <p>
+                    <p className="date">
                         {formatDate(note.date)}
                     </p>
                 </div>

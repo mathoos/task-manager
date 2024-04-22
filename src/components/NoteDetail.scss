@@ -32,46 +32,55 @@
             padding : 1.5vw;
             border-radius : 15px;    
 
-            .tag{
-                display : flex;
-
-                &_icon{
-                    width : 2.2vw;
-                    padding : 0;
-                }
-
-                .bouton{
-                    &:nth-of-type(2){
-                        margin-left : -.2vw;
-                    }
-                }
-            }
+            
 
             .txt{
                 display : flex;
                 flex-direction: column;
-                gap : 2.5vh;
+                gap : 3vh;
                 height : 100%;
 
                 h3{
                     font-size : 2vw;
                 }
-            }
 
-            .persons{
-                display : flex;
-    
-                img{
-                    width : 2.5vw;
-                    height : 2.5vw;
+                .date{
+                    width : fit-content;
+                    padding : .5vh 1vw;
                     border-radius : 100vmax;
-                    object-fit: cover;
-                    border : 1px solid $noir;
-                    &:not(:first-child){
-                        margin-left : -15px;
-                    }
+                    background-color: rgb(240, 240, 241);
+                    color : $noir;
                 }
             }
+
+            .bottom{
+                display : flex;
+                justify-content: space-between;
+                align-items: flex-end;
+
+                .tag{
+                    padding : .5vw 1vw;
+                    font-weight : bold;
+                    border-radius : 7px;
+                }
+
+                .equipe{
+                    display : flex;
+    
+                    img{
+                        width : 3vw;
+                        height : 3vw;
+                        border-radius : 100vmax;
+                        object-fit: cover;
+                        border-width : 2px;
+                        border-style : solid;
+
+                        &:not(:first-child){
+                            margin-left : -10px;
+                        }
+                    }
+                }
+            }  
         }
 
         &-right{       
@@ -138,6 +147,14 @@
                         color : $violetDark;
                     }
                 }
+                .bottom{
+                    .equipe{
+                        img{
+                            border-color : $violetLight;
+                        }
+                    }
+                }
+                
             }
             &-right{
                 &--close{
@@ -171,6 +188,13 @@
                 .txt{
                     h3{
                         color : $bleuDark;
+                    }
+                }
+                .bottom{
+                    .equipe{
+                        img{
+                            border-color : $bleuLight;
+                        }
                     }
                 }
             }
@@ -208,6 +232,13 @@
                         color : $jauneDark;
                     }
                 }
+                .bottom{
+                    .equipe{
+                        img{
+                            border-color : $jauneLight;
+                        }
+                    }
+                }
             }
             &-right{
                 &--close{
@@ -241,6 +272,13 @@
                 .txt{
                     h3{
                         color : $roseDark;
+                    }
+                }
+                .bottom{
+                    .equipe{
+                        img{
+                            border-color : $roseLight;
+                        }
                     }
                 }
             }

@@ -4,7 +4,7 @@
     display : flex;
     flex-direction: column;
     justify-content: space-between;
-    padding : 1vw;
+    padding : 1.5vw;
     border-radius : 15px;
     background-color: $blanc;
     cursor: pointer;
@@ -38,6 +38,17 @@
                 -webkit-box-orient: vertical;
             }
         }
+
+        &-middle{
+
+            .date{
+                width : fit-content;
+                padding : .5vh 1vw;
+                border-radius : 100vmax;
+                background-color: rgb(240, 240, 241);
+                color : $noir;
+            }
+        }
     
 
         &-bottom{
@@ -53,7 +64,7 @@
                     height : 2.2vw;
                     border-radius : 100vmax;
                     object-fit: cover;
-                    border : 1px solid $blanc;
+                    border : 2px solid $blanc;
                     &:not(:first-child){
                         margin-left : -10px;
                     }
@@ -67,4 +78,15 @@
             }
         }
     } 
+
+    // &.design{
+    //     .note_content{
+    //         &-middle{
+    //             .date{
+    //                 background-color: $violet;
+    //                 color : $violetDark;
+    //             }
+    //         }
+    //     }
+    // }
 }
