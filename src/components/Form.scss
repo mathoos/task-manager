@@ -1,7 +1,7 @@
 @import "../style.scss";
 
 .form{
-    display : flex;
+    display : none;
     justify-content: center;
     align-items: center;
     position : absolute;
@@ -14,6 +14,57 @@
 
     &.active{
         display : flex;    
+    }
+
+    &_close{
+        position : absolute;
+        top : 2.5vh;
+        right : 2vw;
+        width : 3vw;
+        height : 3vw;
+        display : flex;
+        justify-content: center;
+        align-items: center;
+        border-radius : 100%;
+        transition : .5s ease;
+        will-change : transform;
+        cursor : pointer;
+        background-color: pink;
+
+        @media screen and (max-width : 990px){
+            width : 15vw;
+            height : 15vw;
+        }
+
+        &-barre{
+            position : absolute;           
+            width : 1.5vw;
+            height : 2px;
+            background-color: $noir;
+            transition : .3s ease;
+            @media screen and (max-width : 990px){
+                width : 5vw;
+            }
+
+            &--1 {
+                top : 50%;
+                left : 50%;
+                transform : translate(-50%, -50%) rotate(45deg);
+            }
+
+            &--2 {
+                top : 50%;
+                left : 50%;
+                transform : translate(-50%, -50%) rotate(-45deg);
+            }
+        }
+
+        &:hover{
+            background-color: $noir;
+            .form_close-barre{
+                background-color : $blanc;
+            }
+        }
     }
 
     &_content{

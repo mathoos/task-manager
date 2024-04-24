@@ -35,13 +35,18 @@ const noteContainers = [
 function Home() {
     const dispatch = useDispatch();
     const [notes, setNotes] = useState(useSelector(state => state.notes));
-    const [isFormVisible, setIsFormVisible] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
     const [selectedNoteId, setSelectedNoteId] = useState(null);
     const [selectedContainerType, setSelectedContainerType] = useState(null);
 
+    const [modalActive, setModalActive] = useState(false); 
+
+    const closeModal = () => {
+        setModalActive(false);
+    };
+
     const handleShowForm = (containerType) => {
-        setIsFormVisible(true);
+        setModalActive(true);
         setSelectedContainerType(containerType);
     };
 
@@ -49,7 +54,7 @@ function Home() {
         const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; 
         setNotes(updatedNotes);
         dispatch(addNote({ ...newNote, container: selectedContainerType }));
-        setIsFormVisible(false);
+        setModalActive(false);
     };
 
     const handleNoteClick = (note) => {
@@ -95,13 +100,15 @@ function Home() {
 
                 <Header/>
 
-                {isFormVisible && (
+               
                     <Form 
                         onAddNote={handleAddNote} 
                         selectedNote={selectedNote}
-                        setIsVisible={setIsFormVisible}
+                        closeModal={closeModal} 
+                        modalActive={modalActive}
+                        setModalActive={setModalActive}
                     />
-                )}
+           
 
                 <div className="container_notes">
                     {noteContainers.map(({ title, containerType }) => (

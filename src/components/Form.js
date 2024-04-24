@@ -4,12 +4,18 @@ import "./Form.scss";
 
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
-const Form = ({ onAddNote, setIsVisible }) => {
+const Form = ({ onAddNote, closeModal, modalActive, setModalActive }) => {
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
     const [newNoteDate, setNewNoteDate] = useState('');
     const [selectedPeople, setSelectedPeople] = useState([]);
+
+    const handleCloseButtonClick = (event) => {
+        event.preventDefault();
+        event.stopPropagation(); 
+        closeModal();
+    };
 
     const handleAddNote = () => {
         if (
@@ -32,12 +38,16 @@ const Form = ({ onAddNote, setIsVisible }) => {
             setSelectedTag('');
             setNewNoteDate('');
             setSelectedPeople([]);
-            setIsVisible(false);
+            setModalActive(false);
         }
     };
 
     return (
-        <div className="form">
+        <div className={`form ${modalActive ? 'active' : ''}`}>
+            <button className="form_close" onClick={handleCloseButtonClick}>
+                    <div className="form_close-barre form_close-barre--1"></div>
+                    <div className="form_close-barre form_close-barre--2"></div>
+                </button>
             <div className="form_content">
                 <fieldset className="fieldset">
                     <input
