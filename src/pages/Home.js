@@ -46,7 +46,7 @@ function Home() {
     };
 
     const handleAddNote = (newNote) => {
-        const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; // Utiliser le type de conteneur sélectionné pour ajouter la note
+        const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; 
         setNotes(updatedNotes);
         dispatch(addNote({ ...newNote, container: selectedContainerType }));
         setIsFormVisible(false);
