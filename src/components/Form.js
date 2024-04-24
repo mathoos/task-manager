@@ -4,7 +4,7 @@ import "./Form.scss";
 
 const availablePeople = ["Alice", "Bob", "Charlie", "Charlotte", "Emma"];
 
-const Form = ({ onAddNote, closeModal, modalActive, setModalActive }) => {
+const Form = ({ onAddNote, handleSubmit, closeModal, modalActive, setModalActive }) => {
     const [newNoteTitle, setNewNoteTitle] = useState('');
     const [newNoteDescription, setNewNoteDescription] = useState('');
     const [selectedTag, setSelectedTag] = useState('');
@@ -17,7 +17,9 @@ const Form = ({ onAddNote, closeModal, modalActive, setModalActive }) => {
         closeModal();
     };
 
-    const handleAddNote = () => {
+    const handleAddNote = (event) => {
+        event.preventDefault(); // Empêcher le comportement par défaut du formulaire
+
         if (
             newNoteTitle.trim() !== '' &&
             newNoteDescription.trim() !== '' &&
@@ -32,7 +34,7 @@ const Form = ({ onAddNote, closeModal, modalActive, setModalActive }) => {
                 date: newNoteDate,
                 people: selectedPeople
             };
-            onAddNote(newNote);
+            handleSubmit(newNote); // Appeler handleSubmit avec la nouvelle note
             setNewNoteTitle('');
             setNewNoteDescription('');
             setSelectedTag('');
@@ -48,7 +50,7 @@ const Form = ({ onAddNote, closeModal, modalActive, setModalActive }) => {
                     <div className="form_close-barre form_close-barre--1"></div>
                     <div className="form_close-barre form_close-barre--2"></div>
                 </button>
-            <div className="form_content">
+            <form className="form_content" onSubmit={handleSubmit}>
                 <fieldset className="fieldset">
                     <input
                         className="input"
@@ -94,10 +96,10 @@ const Form = ({ onAddNote, closeModal, modalActive, setModalActive }) => {
                         </div>
                     ))}
                 </fieldset>
-                <button className="bouton" onClick={handleAddNote}>
+                <button className="bouton" type="submit" onClick={handleAddNote}>
                     Valider
                 </button>
-            </div>
+            </form>
         </div>
     );
 };

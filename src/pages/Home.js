@@ -102,7 +102,7 @@ function Home() {
 
                
                     <Form 
-                        onAddNote={handleAddNote} 
+                        handleSubmit={handleAddNote}
                         selectedNote={selectedNote}
                         closeModal={closeModal} 
                         modalActive={modalActive}
