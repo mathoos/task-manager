@@ -79,6 +79,7 @@ function Home() {
     const handleEditNote = (note) => {
         setEditingNote(note); 
         setFormActive(true); 
+        setNoteActive(false);
     };
 
     // SYSTEME DE DRAG & DROP
@@ -105,12 +106,8 @@ function Home() {
     return (
         <div className="home">
             <Nav/>
-
             <div className="container">
-
                 <Header/>
-
-               
                 <Form             
                     selectedNote={selectedNote}
                     formActive={formActive}
@@ -118,8 +115,6 @@ function Home() {
                     handleClose={handleCloseForm}
                     handleSubmit={handleAddNote}
                 />
-           
-
                 <div className="container_notes">
                     {noteContainers.map(({ title, containerType }) => (
                         <div className={`bloc ${containerType.toLowerCase()}`} key={containerType} onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
