@@ -3,7 +3,8 @@ import { tagData } from '../utilities/Tags';
 import { personPhotos } from "../data/equipe"
 import "./Form.scss";
 
-const Form = ({ handleSubmit, modalActive, editingNote, handleCloseButtonClick }) => {
+const Form = ({ handleSubmit, formActive, editingNote, handleClose }) => {
+
     const initialFormData = {
         id: Date.now(),
         title: '',
@@ -47,8 +48,8 @@ const Form = ({ handleSubmit, modalActive, editingNote, handleCloseButtonClick }
     };
 
     return (
-        <div className={`form ${modalActive ? 'active' : ''}`}>
-            <button className="form_close" onClick={handleCloseButtonClick}>
+        <div className={`form ${formActive ? 'active' : ''}`}>
+            <button className="form_close" onClick={handleClose}>
                 <div className="form_close-barre form_close-barre--1"></div>
                 <div className="form_close-barre form_close-barre--2"></div>
             </button>

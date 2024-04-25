@@ -2,7 +2,7 @@ import React from 'react';
 import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete, onEdit , noteDetailVisible }) => {
+const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete, onEdit , noteActive }) => {
 
     const handleDelete = () => {
         onDelete(note.id);
@@ -22,7 +22,7 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete, onEd
     const containerClass = containerType ? containerType.toLowerCase() : '';
 
     return (
-        <div className={`noteDetail ${containerClass} ${noteDetailVisible ? 'active' : ''}`}>
+        <div className={`noteDetail ${containerClass} ${noteActive ? 'active' : ''}`}>
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">
