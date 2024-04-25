@@ -16,9 +16,9 @@ function NotesContainer({ title, containerType , personPhotos,  notes, handleNot
                 <h2>{title}</h2>
             </div>
             <div className="bloc_content">
-            {notes.map((note, index) => (
+            {notes.map(note => (
                 <Note 
-                    key={index} 
+                    key={note.id} 
                     note={note}
                     onClick={() => handleNoteClick(note)}
                     onDragStart={() => handleDragStart(note.id)}

@@ -61,10 +61,10 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) =>
                                     <rect width="700" height="700" fill="#D9D9D9"/>
                                 </mask>
                                 <g mask="url(#mask0_244_728)">
-                                    <path d="M585.938 150H239.062C189.875 150 150 189.875 150 239.062V585.938C150 635.125 189.875 675 239.062 675H585.938C635.125 675 675 635.125 675 585.938V239.062C675 189.875 635.125 150 585.938 150Z" stroke="black" stroke-width="50" stroke-linejoin="round"/>
-                                    <path d="M549.219 150L550 112.5C549.934 89.3138 540.694 67.0962 524.299 50.701C507.904 34.3059 485.686 25.066 462.5 25H125C98.5024 25.0783 73.1125 35.6392 54.3758 54.3758C35.6392 73.1125 25.0783 98.5024 25 125V462.5C25.066 485.686 34.3059 507.904 50.701 524.299C67.0962 540.694 89.3138 549.934 112.5 550H150" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M412.5 287.5V537.5" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M537.5 412.5H287.5" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M585.938 150H239.062C189.875 150 150 189.875 150 239.062V585.938C150 635.125 189.875 675 239.062 675H585.938C635.125 675 675 635.125 675 585.938V239.062C675 189.875 635.125 150 585.938 150Z" stroke="black" strokeWidth="50" strokeLinejoin="round"/>
+                                    <path d="M549.219 150L550 112.5C549.934 89.3138 540.694 67.0962 524.299 50.701C507.904 34.3059 485.686 25.066 462.5 25H125C98.5024 25.0783 73.1125 35.6392 54.3758 54.3758C35.6392 73.1125 25.0783 98.5024 25 125V462.5C25.066 485.686 34.3059 507.904 50.701 524.299C67.0962 540.694 89.3138 549.934 112.5 550H150" stroke="black" strokeWidth="50" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M412.5 287.5V537.5" stroke="black" strokeWidth="50" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M537.5 412.5H287.5" stroke="black" strokeWidth="50" strokeLinecap="round" strokeLinejoin="round"/>
                                 </g>
                             </svg>
                         </button>

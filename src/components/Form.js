@@ -5,6 +5,7 @@ import "./Form.scss";
 
 const Form = ({ handleSubmit, closeModal, modalActive, setModalActive }) => {
     const initialFormData = {
+        id: Date.now(),
         title: '',
         description: '',
         tag: '',
@@ -38,11 +39,9 @@ const Form = ({ handleSubmit, closeModal, modalActive, setModalActive }) => {
 
     const handleAddNote = (event) => {
         event.preventDefault();
-        if (formData.title.trim() !== '' && formData.description.trim() !== '' && formData.tag !== '' && formData.date !== '') {
-            handleSubmit(formData);
-            setFormData(initialFormData);
-            setModalActive(false);
-        }
+        handleSubmit(formData);
+        setFormData({ ...initialFormData, id: Date.now() }); // Réinitialisation de formData avec un nouvel ID unique
+        setModalActive(false);
     };
 
     return (
