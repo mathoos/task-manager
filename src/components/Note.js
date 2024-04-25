@@ -30,7 +30,7 @@ const Note = ({ note, containerType, personPhotos, onClick, onDragStart, onDragE
     
     return (
         <div
-            className={`note ${isDragging ? 'dragging' : ''} ${containerClass}`}
+            className={`note ${containerClass} ${isDragging ? 'dragging' : ''}`}
             onClick={onClick}
             draggable="true"
             onDragStart={handleDragStart}
@@ -51,9 +51,9 @@ const Note = ({ note, containerType, personPhotos, onClick, onDragStart, onDragE
 
                 <div className="note_content-bottom">
                     <div className="equipe">
-                        {note.people.map(person => (
-                            <img key={person} src={personPhotos[person]} alt={person} />
-                        ))}
+                    {note.people.map(person => (
+                        <img key={person} src={personPhotos.find(p => p.name === person)?.photo} alt={person} />
+                    ))}
                     </div>
                     <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
                         {note.tag}

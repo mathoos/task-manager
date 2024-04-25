@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote } from '../utilities/Slice';
-
-
-import alicePhoto from "../img/people/alice.jpg";
-import bobPhoto from "../img/people/bob.jpg";
-import charliePhoto from "../img/people/charlie.jpg";
-import charlottePhoto from "../img/people/charlotte.jpg";
-import emmaPhoto from "../img/people/emma.jpg";
-
-import "./Home.scss";
+import { personPhotos } from '../data/equipe';
+import { noteContainers } from '../data/noteContainers';
 
 import Form from "../components/Form";
 import NoteDetail from "../components/NoteDetail";
@@ -17,20 +10,8 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import NotesContainer from "../components/NotesContainer";
 
-const personPhotos = {
-    "Alice": alicePhoto,
-    "Bob": bobPhoto,
-    "Charlie": charliePhoto,
-    "Charlotte": charlottePhoto,
-    "Emma": emmaPhoto
-};
+import "./Home.scss";
 
-const noteContainers = [
-    { title: "Design", containerType: "Design" },
-    { title: "Frontend", containerType: "Frontend" },
-    { title: "Backend", containerType: "Backend" },
-    { title: "Testing", containerType: "Testing" }
-];
 
 function Home() {
     const dispatch = useDispatch();
@@ -67,10 +48,15 @@ function Home() {
     };
 
     const handleDeleteNote = (noteId) => {
-        const updatedNotes = notes.filter(note => note.id !== noteId);
-        setNotes(updatedNotes);
-        dispatch(deleteNote(noteId));
+        const noteIndex = notes.findIndex(note => note.id === noteId);
+        if (noteIndex !== -1) {
+            const updatedNotes = [...notes];
+            updatedNotes.splice(noteIndex, 1);
+            setNotes(updatedNotes);
+            dispatch(deleteNote(noteId));
+        }
     };
+    
 
     const handleDragStart = (noteId) => {
         setSelectedNoteId(noteId);

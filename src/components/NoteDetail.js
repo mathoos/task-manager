@@ -38,9 +38,9 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) =>
 
                     <div className="bottom">
                         <div className="equipe">
-                            {note.people.map(person => (
-                                <img key={person} src={personPhotos[person]} alt={person} />
-                            ))}
+                        {note.people.map(person => (
+                            <img key={person} src={personPhotos.find(p => p.name === person)?.photo} alt={person} />
+                        ))}
                         </div>
                         <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
                             {note.tag}
