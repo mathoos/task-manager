@@ -29,11 +29,13 @@ function Home() {
     const [noteActive, setNoteActive] = useState(true);
 
 
+    // OUVRIR LE FORMULAIRE
     const handleShowForm = (containerType) => {
         setFormActive(true);
         setSelectedContainerType(containerType);
     };
 
+    // FERMER LE FORMULAIRE
     const handleCloseForm = () => {
         if (editingNote) {
             setEditingNote(null); 
@@ -41,27 +43,27 @@ function Home() {
         setFormActive(false);
     };
 
+    // OUVRIR UNE NOTE
+    const handleShowNote = (note) => {
+        setSelectedNote(note);
+        setSelectedContainerType(note.container);
+        setNoteActive(true)
+    };
+    
+    // FERMER UNE NOTE
+    const handleCloseNote = () => {
+        setSelectedNote(null); // Ferme NoteDetail en réinitialisant selectedNote
+    };
+
+    // AJOUTER UNE NOTE
     const handleAddNote = (newNote) => {
         const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; 
         setNotes(updatedNotes);
         dispatch(addNote({ ...newNote, container: selectedContainerType }));
         setFormActive(false);
-    };
+    };  
 
-    
-
-    const handleNoteClick = (note) => {
-        setSelectedNote(note);
-        setSelectedContainerType(note.container);
-    };
-
-    
-
-
-    const handleCloseNoteDetail = () => {
-        setSelectedNote(null); // Ferme NoteDetail en réinitialisant selectedNote
-    };
-
+    // SUPPRIMER UNE NOTE
     const handleDeleteNote = (noteId) => {
         const noteIndex = notes.findIndex(note => note.id === noteId);
         if (noteIndex !== -1) {
@@ -69,15 +71,17 @@ function Home() {
             updatedNotes.splice(noteIndex, 1);
             setNotes(updatedNotes);
             dispatch(deleteNote(noteId));
+            setNoteActive(false)
         }
     };
-    
-    // Ajoutez une fonction pour gérer l'édition d'une note
+ 
+    // EDITER UNE NOTE
     const handleEditNote = (note) => {
-        setEditingNote(note); // Mettez à jour la note sélectionnée pour édition
-        setFormActive(true); // Ouvrez le formulaire de modification
+        setEditingNote(note); 
+        setFormActive(true); 
     };
 
+    // SYSTEME DE DRAG & DROP
     const handleDragStart = (noteId) => {
         setSelectedNoteId(noteId);
     };
@@ -128,7 +132,7 @@ function Home() {
                                     <Note 
                                         key={note.id} 
                                         note={note}
-                                        onClick={() => handleNoteClick(note)}
+                                        onClick={() => handleShowNote(note)}
                                         onDragStart={() => handleDragStart(note.id)}
                                         onDragEnd={handleDragEnd} 
                                         personPhotos={personPhotos} 
@@ -147,7 +151,7 @@ function Home() {
                     note={selectedNote}
                     containerType={selectedContainerType}
                     personPhotos={personPhotos} 
-                    onClose={handleCloseNoteDetail}
+                    onClose={handleCloseNote}
                     onDelete={handleDeleteNote}
                     onEdit={handleEditNote}
                     noteActive={noteActive}
