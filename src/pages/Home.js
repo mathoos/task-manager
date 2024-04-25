@@ -4,22 +4,24 @@ import { addNote, deleteNote } from '../utilities/Slice';
 import { personPhotos } from '../data/equipe';
 import { noteContainers } from '../data/noteContainers';
 
-import Form from "../components/Form";
-import NoteDetail from "../components/NoteDetail";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
-import NotesContainer from "../components/NotesContainer";
+import Form from "../components/Form";
+import Note from '../components/Note'; 
+import NoteDetail from "../components/NoteDetail";
 
 import "./Home.scss";
+import "../components/NotesContainer.scss";
 
 
 function Home() {
+
     const dispatch = useDispatch();
+
     const [notes, setNotes] = useState(useSelector(state => state.notes));
     const [selectedNote, setSelectedNote] = useState(null);
     const [selectedNoteId, setSelectedNoteId] = useState(null);
     const [selectedContainerType, setSelectedContainerType] = useState(null);
-
     const [modalActive, setModalActive] = useState(false); 
 
     const closeModal = () => {
@@ -98,18 +100,26 @@ function Home() {
 
                 <div className="container_notes">
                     {noteContainers.map(({ title, containerType }) => (
-                        <NotesContainer
-                            key={containerType}
-                            title={title}
-                            containerType={containerType}
-                            personPhotos={personPhotos}
-                            notes={notes.filter(note => note.container === containerType)}
-                            handleNoteClick={handleNoteClick}
-                            handleDragStart={handleDragStart}
-                            handleDragEnd={handleDragEnd}
-                            handleDrop={handleDrop}
-                            handleShowForm={handleShowForm} 
-                        />
+                        <div className={`bloc ${containerType.toLowerCase()}`} key={containerType} onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
+                            <div className="bloc_title">
+                                <p className="bloc_title-number">{notes.filter(note => note.container === containerType).length}</p>
+                                <h2>{title}</h2>
+                            </div>
+                            <div className="bloc_content">
+                                {notes.filter(note => note.container === containerType).map(note => (
+                                    <Note 
+                                        key={note.id} 
+                                        note={note}
+                                        onClick={() => handleNoteClick(note)}
+                                        onDragStart={() => handleDragStart(note.id)}
+                                        onDragEnd={handleDragEnd} 
+                                        personPhotos={personPhotos} 
+                                        containerType={containerType}
+                                    />
+                                ))}
+                            </div>
+                            <button className="bouton" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
+                        </div>
                     ))}
                 </div>
             </div>

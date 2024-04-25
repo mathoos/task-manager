@@ -40,7 +40,7 @@ const Form = ({ handleSubmit, closeModal, modalActive, setModalActive }) => {
     const handleAddNote = (event) => {
         event.preventDefault();
         handleSubmit(formData);
-        setFormData({ ...initialFormData, id: Date.now() }); // Réinitialisation de formData avec un nouvel ID unique
+        setFormData({ ...initialFormData, id: Date.now() });
         setModalActive(false);
     };
 
