@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { tagData } from '../utilities/Tags';
 import { personPhotos } from "../data/equipe"
 import "./Form.scss";
 
-const Form = ({ handleSubmit, closeModal, modalActive, setModalActive }) => {
+const Form = ({ handleSubmit, modalActive, editingNote, handleCloseButtonClick }) => {
     const initialFormData = {
         id: Date.now(),
         title: '',
@@ -15,11 +15,14 @@ const Form = ({ handleSubmit, closeModal, modalActive, setModalActive }) => {
 
     const [formData, setFormData] = useState(initialFormData);
 
-    const handleCloseButtonClick = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        closeModal();
-    };
+    useEffect(() => {
+        if (editingNote) {
+            setFormData(editingNote);
+        } else {
+            setFormData(initialFormData);
+        }
+    }, [editingNote]);
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -41,7 +44,6 @@ const Form = ({ handleSubmit, closeModal, modalActive, setModalActive }) => {
         event.preventDefault();
         handleSubmit(formData);
         setFormData({ ...initialFormData, id: Date.now() });
-        setModalActive(false);
     };
 
     return (

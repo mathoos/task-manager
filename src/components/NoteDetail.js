@@ -2,7 +2,7 @@ import React from 'react';
 import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) => {
+const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete, onEdit , noteDetailVisible }) => {
 
     const handleDelete = () => {
         onDelete(note.id);
@@ -22,7 +22,7 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) =>
     const containerClass = containerType ? containerType.toLowerCase() : '';
 
     return (
-        <div className={`noteDetail ${containerClass}`}>
+        <div className={`noteDetail ${containerClass} ${noteDetailVisible ? 'active' : ''}`}>
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">
@@ -68,7 +68,7 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete }) =>
                                 </g>
                             </svg>
                         </button>
-                        <button className="bouton update">
+                        <button className="bouton update" onClick={() => onEdit(note)}>
                             Modifier
                             <svg width="700" height="701" viewBox="0 0 700 701" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M496.409 25.6627L430.165 91.9066L608.093 269.835L674.337 203.591C708.554 169.374 708.554 113.942 674.337 79.7254L620.411 25.6627C586.195 -8.55423 530.763 -8.55423 496.546 25.6627H496.409ZM399.233 122.839L80.1949 442.014C65.9607 456.248 55.5588 473.904 49.8103 493.202L1.35919 657.854C-2.0625 669.488 1.08546 681.943 9.57125 690.429C18.057 698.915 30.512 702.062 42.0089 698.778L206.661 650.327C225.959 644.578 243.615 634.176 257.849 619.942L577.161 300.767L399.233 122.839Z" fill="#636363"/>

@@ -22,7 +22,12 @@ function Home() {
     const [selectedNote, setSelectedNote] = useState(null);
     const [selectedNoteId, setSelectedNoteId] = useState(null);
     const [selectedContainerType, setSelectedContainerType] = useState(null);
+    
+    const [editingNote, setEditingNote] = useState(null); // Ajoutez l'état pour la note en cours d'édition
+    
+
     const [modalActive, setModalActive] = useState(false); 
+    const [noteDetailVisible, setNoteDetailVisible] = useState(true);
 
     const closeModal = () => {
         setModalActive(false);
@@ -40,13 +45,23 @@ function Home() {
         setModalActive(false);
     };
 
+    
+
     const handleNoteClick = (note) => {
         setSelectedNote(note);
         setSelectedContainerType(note.container);
     };
 
+    const handleCloseButtonClick = () => {
+        if (editingNote) {
+            setEditingNote(null); // Réinitialisez l'état de la note en cours d'édition uniquement si elle est en cours d'édition
+        }
+        closeModal();
+    };
+
+
     const handleCloseNoteDetail = () => {
-        setSelectedNote(null);
+        setSelectedNote(null); // Ferme NoteDetail en réinitialisant selectedNote
     };
 
     const handleDeleteNote = (noteId) => {
@@ -59,6 +74,11 @@ function Home() {
         }
     };
     
+    // Ajoutez une fonction pour gérer l'édition d'une note
+    const handleEditNote = (note) => {
+        setEditingNote(note); // Mettez à jour la note sélectionnée pour édition
+        setModalActive(true); // Ouvrez le formulaire de modification
+    };
 
     const handleDragStart = (noteId) => {
         setSelectedNoteId(noteId);
@@ -89,13 +109,13 @@ function Home() {
                 <Header/>
 
                
-                    <Form 
-                        handleSubmit={handleAddNote}
-                        selectedNote={selectedNote}
-                        closeModal={closeModal} 
-                        modalActive={modalActive}
-                        setModalActive={setModalActive}
-                    />
+                <Form 
+                    handleSubmit={handleAddNote}
+                    selectedNote={selectedNote}
+                    modalActive={modalActive}
+                    editingNote={editingNote} // Passez la note en cours d'édition
+                    handleCloseButtonClick={handleCloseButtonClick}
+                />
            
 
                 <div className="container_notes">
@@ -131,8 +151,10 @@ function Home() {
                     personPhotos={personPhotos} 
                     onClose={handleCloseNoteDetail}
                     onDelete={handleDeleteNote}
+                    onEdit={handleEditNote}
+                    noteDetailVisible={noteDetailVisible}
                 />
-            } 
+            }
 
         </div>
     );
