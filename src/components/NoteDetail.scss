@@ -26,7 +26,8 @@
         min-height : 70vh;
         border-radius : 15px;
 
-        &-left{          
+        &-left{       
+            position : relative;   
             display : flex;
             flex-direction: column;
             justify-content: space-between;
@@ -57,34 +58,41 @@
                 }
             }
 
-            .bottom{
-                display : flex;
-                justify-content: space-between;
-                align-items: flex-end;
+            .tag-container{
+                position : absolute;
+                bottom : 0;
+                right : 0;
+                background-color: $blanc;
+                padding : 1vw 0 1vw 1vw;
+                border-radius : 10px 0 0 0;
+       
 
                 .tag{
-                    padding : .5vw 1vw;
+                    padding : .5vw 1.5vw;
                     font-weight : bold;
                     border-radius : 7px;
                 }
+            }
 
-                .equipe{
-                    display : flex;
-    
-                    img{
-                        width : 3vw;
-                        height : 3vw;
-                        border-radius : 100vmax;
-                        object-fit: cover;
-                        border-width : 2px;
-                        border-style : solid;
 
-                        &:not(:first-child){
-                            margin-left : -10px;
-                        }
+
+            .equipe{
+                display : flex;
+
+                img{
+                    width : 3vw;
+                    height : 3vw;
+                    border-radius : 100vmax;
+                    object-fit: cover;
+                    border-width : 2px;
+                    border-style : solid;
+
+                    &:not(:first-child){
+                        margin-left : -10px;
                     }
                 }
-            }  
+            }
+            
         }
 
         &-right{       
@@ -159,13 +167,13 @@
                         color : $violetDark;
                     }
                 }
-                .bottom{
-                    .equipe{
-                        img{
-                            border-color : $violetLight;
-                        }
+                
+                .equipe{
+                    img{
+                        border-color : $violetLight;
                     }
                 }
+                
                 
             }
             &-right{
@@ -233,13 +241,13 @@
                         color : $bleuDark;
                     }
                 }
-                .bottom{
-                    .equipe{
-                        img{
-                            border-color : $bleuLight;
-                        }
+             
+                .equipe{
+                    img{
+                        border-color : $bleuLight;
                     }
                 }
+                
             }
             &-right{
                 &--close{
@@ -306,13 +314,13 @@
                         color : $jauneDark;
                     }
                 }
-                .bottom{
-                    .equipe{
-                        img{
-                            border-color : $jauneLight;
-                        }
+              
+                .equipe{
+                    img{
+                        border-color : $jauneLight;
                     }
                 }
+                
             }
             &-right{
                 &--close{
@@ -379,13 +387,13 @@
                         color : $roseDark;
                     }
                 }
-                .bottom{
-                    .equipe{
-                        img{
-                            border-color : $roseLight;
-                        }
+             
+                .equipe{
+                    img{
+                        border-color : $roseLight;
                     }
                 }
+                
             }
             &-right{
                 &--close{

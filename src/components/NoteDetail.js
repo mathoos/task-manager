@@ -29,30 +29,33 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
 
                 <div className="noteDetail_container-left">
 
-                <div className="txt">
-                    <h3>{note.title}</h3>
-                    <p>
-                        {note.description && note.description.split('\n').map((line, index) => (
-                            <React.Fragment key={index}>
-                                {line}
-                                <br />
-                            </React.Fragment>
-                        ))}
-                    </p>
-                    <p className="date">{formatDate(note.date)}</p>
-                </div>
-   
+                    <div className="txt">
+                        <h3>{note.title}</h3>
+                        <p>
+                            {note.description && note.description.split('\n').map((line, index) => (
+                                <React.Fragment key={index}>
+                                    {line}
+                                    <br />
+                                </React.Fragment>
+                            ))}
+                        </p>
+                        <p className="date">{formatDate(note.date)}</p>
+                    </div>
 
-                    <div className="bottom">
-                        <div className="equipe">
-                        {note.people.map(person => (
-                            <img key={person} src={personPhotos.find(p => p.name === person)?.photo} alt={person} />
-                        ))}
-                        </div>
+                    <div className="tag-container">
                         <p className={`tag ${tagData[note.tag]?.class || 'default'}`}>
                             {note.tag}
                         </p>
                     </div>
+   
+
+                  
+                        <div className="equipe">
+                            {note.people.map(person => (
+                                <img key={person} src={personPhotos.find(p => p.name === person)?.photo} alt={person} />
+                            ))}
+                        </div>
+                    
                     
                 </div>
 
