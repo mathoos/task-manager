@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
+
+
 const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, onEdit, onDuplicate, noteActive }) => {
+
+  
+    useEffect(() => {
+        const logTagContainerHeight = () => {
+            const tagContainer = document.querySelector('.tag-container');
+            const leftRight = document.querySelector('.leftRight');
+            const leftBottom = document.querySelector('.leftBottom');
+
+            if (tagContainer) {
+                const tagContainerHeight = tagContainer.offsetHeight;
+                const tagContainerWidth = tagContainer.offsetWidth;
+                leftRight.style.height = `calc(100% - ${tagContainerHeight}px)`;
+                leftBottom.style.width = `calc(100% - ${tagContainerWidth}px + 1px)`;
+
+                console.log(tagContainerWidth);
+                console.log(leftRight);
+            } 
+        };
+        logTagContainerHeight();
+    }, []);
+    
 
     const note = useSelector(state => state.notes.find(note => note.id === noteId));
 
@@ -23,11 +46,14 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
         return null; 
     }
 
+
     return (
         <div className={`noteDetail ${containerClass} ${noteActive ? 'active' : ''}`}>
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">
+                    <div className="leftRight"></div>
+                    <div className="leftBottom"></div>
 
                     <div className="txt">
                         <h3>{note.title}</h3>
@@ -47,15 +73,12 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
                             {note.tag}
                         </p>
                     </div>
-   
 
-                  
-                        <div className="equipe">
-                            {note.people.map(person => (
-                                <img key={person} src={personPhotos.find(p => p.name === person)?.photo} alt={person} />
-                            ))}
-                        </div>
-                    
+                    <div className="equipe">
+                        {note.people.map(person => (
+                            <img key={person} src={personPhotos.find(p => p.name === person)?.photo} alt={person} />
+                        ))}
+                    </div>
                     
                 </div>
 

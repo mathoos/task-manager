@@ -13,7 +13,7 @@ $roseDark : rgb(140, 77, 100);
 
 $violetLight : #e2dcfc;
 $bleuLight : #daecff;
-$jauneLight : #f9f5e8;
+$jauneLight : #fff7e0;
 $roseLight : rgb(247, 223, 232);
 
 $noir-opacity: rgba($noir, 0.9);
@@ -34,14 +34,17 @@ $lowTxt : #99efca;
 .high {
     background-color : $highBg;
     color : $highTxt;
+    border : 1px solid $highTxt;
 }
 
 .medium {
     background-color: $mediumBg;
     color : $mediumTxt;
+    border : 1px solid $mediumTxt;
 }
 
 .low {
     background-color: $lowBg;
     color : $lowTxt;
+    border : 1px solid $lowTxt;
 }
