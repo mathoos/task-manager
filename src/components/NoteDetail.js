@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, onEdit , noteActive }) => {
+const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, onEdit, onDuplicate, noteActive }) => {
 
     const note = useSelector(state => state.notes.find(note => note.id === noteId));
 
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
-        const day = String(dateObj.getDate()).padStart(2, '0'); // Ajoute un zéro au début si nécessaire
-        const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+        const day = String(dateObj.getDate()).padStart(2, '0'); 
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0'); 
         const today = new Date();
         const currentYear = today.getFullYear();
         const year = dateObj.getFullYear() === currentYear ? '' : `/${dateObj.getFullYear()}`;
@@ -61,7 +61,7 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
                         <button className="closeButton" onClick={onClose}></button>
                     </div>
                     <div className="noteDetail_container-right--links">         
-                        <button className="bouton duplicate">
+                        <button className="bouton duplicate" onClick={() => onDuplicate(note)}>
                             Dupliquer
                             <svg width="700" height="700" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_244_728" maskUnits="userSpaceOnUse" x="0" y="0" width="700" height="700">

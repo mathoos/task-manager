@@ -18,9 +18,14 @@ const notesSlice = createSlice({
             if (noteIndex !== -1) {
                 state[noteIndex] = updatedNote;
             }
+        },
+        duplicateNote: (state, action) => {
+            const newNote = { ...action.payload }; 
+            newNote.id = Date.now(); 
+            state.push(newNote); 
         }
     }
 });
 
-export const { addNote, deleteNote, updateNote } = notesSlice.actions;
+export const { addNote, deleteNote, updateNote, duplicateNote } = notesSlice.actions;
 export default notesSlice.reducer;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, deleteNote, updateNote } from '../utilities/Slice';
+import { addNote, deleteNote, updateNote, duplicateNote } from '../utilities/Slice';
 import { personPhotos } from '../data/equipe';
 import { noteContainers } from '../data/noteContainers';
 
@@ -88,6 +88,15 @@ function Home() {
         setNoteActive(false);
     };
 
+    // DUPLIQUER UNE NOTE
+    const handleDuplicateNote = (note) => {
+        const newNote = { ...note, id: Date.now() }; 
+        const updatedNotes = [...notes, newNote];
+        setNotes(updatedNotes); 
+        dispatch(duplicateNote(newNote)); 
+        setNoteActive(false);
+    };
+
     // SYSTEME DE DRAG & DROP
     const handleDragStart = (noteId) => {
         setSelectedNoteId(noteId);
@@ -155,6 +164,7 @@ function Home() {
         onClose={handleCloseNote}
         onDelete={handleDeleteNote}
         onEdit={handleEditNote}
+        onDuplicate={handleDuplicateNote}
         noteActive={noteActive}
     />
 }

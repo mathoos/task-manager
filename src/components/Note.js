@@ -23,8 +23,8 @@ const Note = ({ noteId, containerType, personPhotos, onClick, onDragStart, onDra
 
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
-        const day = String(dateObj.getDate()).padStart(2, '0'); // Ajoute un zéro au début si nécessaire
-        const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+        const day = String(dateObj.getDate()).padStart(2, '0'); 
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0'); 
         const today = new Date();
         const currentYear = today.getFullYear();
         const year = dateObj.getFullYear() === currentYear ? '' : `/${dateObj.getFullYear()}`;
