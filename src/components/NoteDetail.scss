@@ -31,7 +31,6 @@
             display : flex;
             flex-direction: column;
             justify-content: space-between;
-            gap : 5vh;
             width : 100%;
             flex-grow : 1;
             padding : 1.5vw;
@@ -61,7 +60,7 @@
             .txt{
                 display : flex;
                 flex-direction: column;
-                gap : 3vh;
+                gap : 5vh;
                 height : 100%;
 
                 h3{
