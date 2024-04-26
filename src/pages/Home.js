@@ -112,8 +112,8 @@ function Home() {
                     selectedNote={selectedNote}
                     formActive={formActive}
                     editingNote={editingNote} 
-                    handleClose={handleCloseForm}
-                    handleSubmit={handleAddNote}
+                    onClose={handleCloseForm}
+                    onSubmit={handleAddNote}
                 />
                 <div className="container_notes">
                     {noteContainers.map(({ title, containerType }) => (

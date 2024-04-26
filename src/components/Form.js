@@ -3,7 +3,7 @@ import { tagData } from '../utilities/Tags';
 import { personPhotos } from "../data/equipe"
 import "./Form.scss";
 
-const Form = ({ handleSubmit, formActive, editingNote, handleClose }) => {
+const Form = ({ onSubmit, formActive, editingNote, onClose }) => {
 
     const initialFormData = {
         id: Date.now(),
@@ -43,13 +43,13 @@ const Form = ({ handleSubmit, formActive, editingNote, handleClose }) => {
 
     const handleAddNote = (event) => {
         event.preventDefault();
-        handleSubmit(formData);
+        onSubmit(formData);
         setFormData({ ...initialFormData, id: Date.now() });
     };
 
     return (
         <div className={`form ${formActive ? 'active' : ''}`}>
-            <button className="form_close" onClick={handleClose}>
+            <button className="form_close" onClick={onClose}>
                 <div className="form_close-barre form_close-barre--1"></div>
                 <div className="form_close-barre form_close-barre--2"></div>
             </button>
