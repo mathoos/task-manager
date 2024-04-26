@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
-const Note = ({ note, containerType, personPhotos, onClick, onDragStart, onDragEnd }) => {
+const Note = ({ noteId, containerType, personPhotos, onClick, onDragStart, onDragEnd }) => {
     const [isDragging, setIsDragging] = useState(false);
     const noteRef = useRef(null);
+
+    const note = useSelector(state => state.notes.find(note => note.id === noteId));
 
     const handleDragStart = () => {
         setIsDragging(true);

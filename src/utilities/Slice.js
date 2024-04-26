@@ -10,10 +10,17 @@ const notesSlice = createSlice({
             state.push(action.payload);
         },
         deleteNote: (state, action) => {
-            return state.filter(note => note.id !== action.payload); // Modifier cette ligne
+            return state.filter(note => note.id !== action.payload); 
+        },
+        updateNote: (state, action) => {
+            const { id, updatedNote } = action.payload;
+            const noteIndex = state.findIndex(note => note.id === id);
+            if (noteIndex !== -1) {
+                state[noteIndex] = updatedNote;
+            }
         }
     }
 });
 
-export const { addNote, deleteNote } = notesSlice.actions;
+export const { addNote, deleteNote, updateNote } = notesSlice.actions;
 export default notesSlice.reducer;

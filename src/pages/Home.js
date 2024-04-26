@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, deleteNote } from '../utilities/Slice';
+import { addNote, deleteNote, updateNote } from '../utilities/Slice';
 import { personPhotos } from '../data/equipe';
 import { noteContainers } from '../data/noteContainers';
 
@@ -57,11 +57,17 @@ function Home() {
 
     // AJOUTER UNE NOTE
     const handleAddNote = (newNote) => {
-        const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }]; 
-        setNotes(updatedNotes);
-        dispatch(addNote({ ...newNote, container: selectedContainerType }));
+        if (editingNote) {
+            const updatedNote = { ...editingNote, ...newNote };
+            dispatch(updateNote({ id: editingNote.id, updatedNote }));
+            setEditingNote(null);
+        } else {
+            const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }];
+            setNotes(updatedNotes);
+            dispatch(addNote({ ...newNote, container: selectedContainerType }));
+        }
         setFormActive(false);
-    };  
+    };
 
     // SUPPRIMER UNE NOTE
     const handleDeleteNote = (noteId) => {
@@ -126,7 +132,7 @@ function Home() {
                                 {notes.filter(note => note.container === containerType).map(note => (
                                     <Note 
                                         key={note.id} 
-                                        note={note}
+                                        noteId={note.id}
                                         onClick={() => handleShowNote(note)}
                                         onDragStart={() => handleDragStart(note.id)}
                                         onDragEnd={handleDragEnd} 
@@ -142,16 +148,16 @@ function Home() {
             </div>
 
             {selectedNote && 
-                <NoteDetail 
-                    note={selectedNote}
-                    containerType={selectedContainerType}
-                    personPhotos={personPhotos} 
-                    onClose={handleCloseNote}
-                    onDelete={handleDeleteNote}
-                    onEdit={handleEditNote}
-                    noteActive={noteActive}
-                />
-            }
+    <NoteDetail 
+        noteId={selectedNote.id}
+        containerType={selectedContainerType}
+        personPhotos={personPhotos} 
+        onClose={handleCloseNote}
+        onDelete={handleDeleteNote}
+        onEdit={handleEditNote}
+        noteActive={noteActive}
+    />
+}
 
         </div>
     );

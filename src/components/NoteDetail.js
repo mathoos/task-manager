@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { tagData } from '../utilities/Tags';
 import "./NoteDetail.scss";
 
-const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete, onEdit , noteActive }) => {
+const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, onEdit , noteActive }) => {
+
+    const note = useSelector(state => state.notes.find(note => note.id === noteId));
 
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
@@ -15,6 +18,10 @@ const NoteDetail = ({ note, containerType, personPhotos, onClose, onDelete, onEd
     };
 
     const containerClass = containerType ? containerType.toLowerCase() : '';
+
+    if (!note) {
+        return null; // Si la note n'existe pas, ne rend rien
+    }
 
     return (
         <div className={`noteDetail ${containerClass} ${noteActive ? 'active' : ''}`}>
