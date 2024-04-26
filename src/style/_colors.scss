@@ -40,11 +40,11 @@ $lowTxt : #99efca;
 .medium {
     background-color: $mediumBg;
     color : $mediumTxt;
-    border : 1px solid $highTxt;
+    border : 1px solid $mediumTxt;
 }
 
 .low {
     background-color: $lowBg;
     color : $lowTxt;
-    border : 1px solid $highTxt;
+    border : 1px solid $lowTxt;
 }
