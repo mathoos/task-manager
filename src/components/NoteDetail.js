@@ -20,7 +20,7 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
     const containerClass = containerType ? containerType.toLowerCase() : '';
 
     if (!note) {
-        return null; // Si la note n'existe pas, ne rend rien
+        return null; 
     }
 
     return (
@@ -29,13 +29,16 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
 
                 <div className="noteDetail_container-left">
 
-                    <div className="txt">
-                        <h3>{note.title}</h3>
-                        {note.description && note.description.split('\n').map((line, index) => (
-                            <p key={index} className="description">{line}</p>
-                        ))}
-                        <p className="date">{formatDate(note.date)}</p>
-                    </div>
+                <div className="txt">
+                    <h3>{note.title}</h3>
+                    {note.description && note.description.split('\n').map((line, index) => (
+                        <React.Fragment key={index}>
+                            {line}
+                            <br />
+                        </React.Fragment>
+                    ))}
+                    <p className="date">{formatDate(note.date)}</p>
+                </div>
    
 
                     <div className="bottom">
