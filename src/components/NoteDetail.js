@@ -31,12 +31,14 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
 
                 <div className="txt">
                     <h3>{note.title}</h3>
-                    {note.description && note.description.split('\n').map((line, index) => (
-                        <React.Fragment key={index}>
-                            {line}
-                            <br />
-                        </React.Fragment>
-                    ))}
+                    <p>
+                        {note.description && note.description.split('\n').map((line, index) => (
+                            <React.Fragment key={index}>
+                                {line}
+                                <br />
+                            </React.Fragment>
+                        ))}
+                    </p>
                     <p className="date">{formatDate(note.date)}</p>
                 </div>
    
