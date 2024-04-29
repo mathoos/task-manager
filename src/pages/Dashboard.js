@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote, updateNote, duplicateNote } from '../utilities/Slice';
 import { personPhotos } from '../data/equipe';
 import { noteContainers } from '../data/noteContainers';
 
 import Nav from "../components/Nav";
-import Header from "../components/Header";
 import Form from "../components/Form";
 import Note from '../components/Note'; 
 import NoteDetail from "../components/NoteDetail";
@@ -15,6 +15,8 @@ import "../components/NotesContainer.scss";
 
 
 function Dashboard() {
+
+    const { title } = useParams();
 
     const dispatch = useDispatch();
 
@@ -122,7 +124,9 @@ function Dashboard() {
         <div className="dashboard">
             <Nav/>
             <div className="container">
-                <Header/>
+                <div className="container_title">
+                    <h1>{title}</h1>
+                </div>
                 <Form             
                     selectedNote={selectedNote}
                     formActive={formActive}
