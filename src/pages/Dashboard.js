@@ -10,7 +10,7 @@ import Form from "../components/Form";
 import Note from '../components/Note'; 
 import NoteDetail from "../components/NoteDetail";
 
-import "./Home.scss";
+import "./Dashboard.scss";
 import "../components/NotesContainer.scss";
 
 
@@ -119,7 +119,7 @@ function Dashboard() {
     };
 
     return (
-        <div className="home">
+        <div className="dashboard">
             <Nav/>
             <div className="container">
                 <Header/>
@@ -157,17 +157,17 @@ function Dashboard() {
             </div>
 
             {selectedNote && 
-    <NoteDetail 
-        noteId={selectedNote.id}
-        containerType={selectedContainerType}
-        personPhotos={personPhotos} 
-        onClose={handleCloseNote}
-        onDelete={handleDeleteNote}
-        onEdit={handleEditNote}
-        onDuplicate={handleDuplicateNote}
-        noteActive={noteActive}
-    />
-}
+                <NoteDetail 
+                    noteId={selectedNote.id}
+                    containerType={selectedContainerType}
+                    personPhotos={personPhotos} 
+                    onClose={handleCloseNote}
+                    onDelete={handleDeleteNote}
+                    onEdit={handleEditNote}
+                    onDuplicate={handleDuplicateNote}
+                    noteActive={noteActive}
+                />
+            }
 
         </div>
     );

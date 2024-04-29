@@ -1,6 +1,6 @@
 @import "../style.scss";
 
-.home{
+.dashboard{
     position : relative;
     display : flex;
     width : 100%;
@@ -10,10 +10,16 @@
     .container{
         display : flex;
         flex-direction: column;
-        gap : 5vh;
-        padding : 5vw;
         width : 100%;
         height : 100%;
-        border : 2px solid pink;
+
+        &_notes{
+            display : flex;
+            gap : 2vw;
+            width : 100%;
+            height : 100%;
+            padding : 0 2.5vw 2.5vw 2.5vw;
+            overflow : hidden;
+        }
     }
 }

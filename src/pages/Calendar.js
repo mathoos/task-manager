@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 function Calendar() {
 
     return (
-        <div className="home">
+        <div className="calendar">
             <Nav/>
         </div>
     );
