@@ -1,5 +1,6 @@
+import React from 'react';
+import {Link} from "react-router-dom";
 import Logo from "../img/logo.svg";
-import IconChat from "../img/icons/icon-chat.svg";
 import IconDashboard from "../img/icons/icon-list.svg";
 import IconCalendar from "../img/icons/icon-calendar.svg";
 import Iconlogout from "../img/icons/icon-logout.svg";
@@ -9,24 +10,20 @@ const Nav = () => {
 
     return(           
         <nav className="nav">
-            <figure className="nav_logo">
-                <a href="">
-                    <img src={Logo} alt="Logo"/>
-                </a>
-            </figure>
+           
+           <Link to="/" className="nav_logo">
+                <img src={Logo} alt="Logo Task Manager"/>
+            </Link>
+            
             <div className="nav_links">
-                <a href="" className="nav_links-link">
+                <Link to="/dashboard" className="nav_links-link">
                     <img src={IconDashboard} alt="Logo"/>
                     <p>Dashboard</p>
-                </a>
-                <a href="" className="nav_links-link">
+                </Link>
+                <Link to="/calendar" className="nav_links-link">
                     <img src={IconCalendar} alt="Logo"/>
                     <p>Calendar</p>
-                </a>
-                <a href="" className="nav_links-link">
-                    <img src={IconChat} alt="Logo"/>
-                    <p>Messages</p>
-                </a>
+                </Link>
             </div>
             <div className="nav_parameters">
                 <a href="" className="nav_parameters-link">

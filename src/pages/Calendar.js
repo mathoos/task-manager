@@ -1,6 +1,6 @@
 import Nav from "../components/Nav";
 
-function Home() {
+function Calendar() {
 
     return (
         <div className="home">
@@ -9,4 +9,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Calendar;
