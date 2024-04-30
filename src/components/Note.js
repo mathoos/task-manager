@@ -1,23 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
-const Note = ({ noteId, containerType, personPhotos, onClick, onDragStart, onDragEnd }) => {
-    const [isDragging, setIsDragging] = useState(false);
+const Note = ({ noteId, containerType, personPhotos, onClick }) => {
     const noteRef = useRef(null);
 
     const note = useSelector(state => state.notes.find(note => note.id === noteId));
-
-    const handleDragStart = () => {
-        setIsDragging(true);
-        onDragStart(note);
-    };
-
-    const handleDragEnd = () => {
-        setIsDragging(false);
-        onDragEnd();
-    };
 
     const containerClass = containerType.toLowerCase();
 
@@ -33,11 +22,9 @@ const Note = ({ noteId, containerType, personPhotos, onClick, onDragStart, onDra
     
     return (
         <div
-            className={`note ${containerClass} ${isDragging ? 'dragging' : ''}`}
+            className={`note ${containerClass}`}
             onClick={onClick}
             draggable="true"
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
             ref={noteRef}
         >
             <div className="note_content">

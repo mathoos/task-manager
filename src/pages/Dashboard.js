@@ -54,7 +54,7 @@ function Dashboard() {
     
     // FERMER UNE NOTE
     const handleCloseNote = () => {
-        setSelectedNote(null); // Ferme NoteDetail en réinitialisant selectedNote
+        setSelectedNote(null); 
     };
 
     // AJOUTER UNE NOTE
@@ -99,27 +99,6 @@ function Dashboard() {
         setNoteActive(false);
     };
 
-    // SYSTEME DE DRAG & DROP
-    const handleDragStart = (noteId) => {
-        setSelectedNoteId(noteId);
-    };
-
-    const handleDragEnd = () => {
-        setSelectedNoteId(null);
-    };
-
-    const handleDrop = (containerType) => {
-        if (selectedNoteId !== null) {
-            const updatedNotes = notes.map(note => {
-                if (note.id === selectedNoteId) {
-                    return { ...note, container: containerType };
-                }
-                return note;
-            });
-            setNotes(updatedNotes);
-        }
-    };
-
     return (
         <div className="dashboard">
             <Nav/>
@@ -136,7 +115,7 @@ function Dashboard() {
                 />
                 <div className="container_notes">
                     {noteContainers.map(({ title, containerType }) => (
-                        <div className={`bloc ${containerType.toLowerCase()}`} key={containerType} onDrop={() => handleDrop(containerType)} onDragOver={(e) => e.preventDefault()}>
+                        <div className={`bloc ${containerType.toLowerCase()}`} key={containerType}>
                             <div className="bloc_title">
                                 <p className="bloc_title-number">{notes.filter(note => note.container === containerType).length}</p>
                                 <h2>{title}</h2>
@@ -147,8 +126,6 @@ function Dashboard() {
                                         key={note.id} 
                                         noteId={note.id}
                                         onClick={() => handleShowNote(note)}
-                                        onDragStart={() => handleDragStart(note.id)}
-                                        onDragEnd={handleDragEnd} 
                                         personPhotos={personPhotos} 
                                         containerType={containerType}
                                     />
