@@ -22,7 +22,6 @@ function Dashboard() {
 
     const [notes, setNotes] = useState(useSelector(state => state.notes));
     const [selectedNote, setSelectedNote] = useState(null);
-    const [selectedNoteId, setSelectedNoteId] = useState(null);
     const [selectedContainerType, setSelectedContainerType] = useState(null);
     
     const [editingNote, setEditingNote] = useState(null);
