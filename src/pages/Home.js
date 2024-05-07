@@ -1,20 +1,41 @@
-import {Link} from "react-router-dom";
-import Nav from "../components/Nav";
-
-import { projets } from '../data/projets';
-import "./Home.scss";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProject } from '../utilities/SliceProjects';
+import Nav from '../components/Nav';
+import './Home.scss';
 
 function Home() {
+    const [projects, setProjects] = useState([]);
+    const dispatch = useDispatch();
+
+    // Charger les projets depuis le localStorage au chargement de la page
+    useEffect(() => {
+        const projectsFromLocalStorage = localStorage.getItem('projects');
+        if (projectsFromLocalStorage) {
+            const parsedProjects = JSON.parse(projectsFromLocalStorage);
+            setProjects(parsedProjects);
+        }
+    }, []);
+
+    // Ajouter un nouveau projet et le sauvegarder dans le localStorage
+    const generateRandomTitle = () => {
+        const randomTitle = `Projet ${Math.floor(Math.random() * 1000)}`;
+        const newProject = { id: Date.now(), title: randomTitle };
+        setProjects([...projects, newProject]); // Mettre à jour le state local
+        dispatch(addProject(newProject)); // Ajouter le nouveau projet au store
+    };
 
     return (
         <div className="home">
-            <Nav/>
+            <Nav />
             <div className="container">
-                {projets.map(({ title }) => (
-                <Link key={title} to={`/dashboard/${title}`}>
-                    {title}
-                </Link>
+                {projects.map((project, index) => (
+                    <Link key={index} to={`/dashboard/${project.title}`}>
+                        {project.title}
+                    </Link>
                 ))}
+                <button onClick={generateRandomTitle}>Créer un projet</button>
             </div>
         </div>
     );
