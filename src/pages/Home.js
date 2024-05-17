@@ -30,12 +30,17 @@ function Home() {
         <div className="home">
             <Nav />
             <div className="container">
-                {projects.map((project, index) => (
-                    <Link key={index} to={`/dashboard/${project.title}`}>
-                        {project.title}
-                    </Link>
-                ))}
-                <button onClick={generateRandomTitle}>Créer un projet</button>
+                
+                    <div className="container_links">
+                        {projects.map((project, index) => (
+                            <Link className="container_links-link" key={index} to={`/dashboard/${project.title}`}>
+                                {project.title}
+                            </Link>
+                        ))}
+                    </div>
+                    
+                
+                <button className="container_button" onClick={generateRandomTitle}>Créer un projet</button>
             </div>
         </div>
     );
