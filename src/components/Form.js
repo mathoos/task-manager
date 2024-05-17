@@ -3,7 +3,7 @@ import { tagData } from '../utilities/Tags';
 import { personPhotos } from "../data/equipe"
 import "./Form.scss";
 
-const Form = ({ onSubmit, formActive, editingNote, onClose }) => {
+const Form = ({ onSubmit, formActive, onClose, editingNote }) => {
 
     const initialFormData = {
         id: Date.now(),

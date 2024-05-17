@@ -4,9 +4,18 @@ import { tagData } from '../utilities/Tags';
 import "./Note.scss";
 
 const Note = ({ noteId, containerType, personPhotos, onClick }) => {
+
     const noteRef = useRef(null);
 
-    const note = useSelector(state => state.notes.find(note => note.id === noteId));
+    const note = useSelector(state => {
+        const { projects } = state;
+        const project = projects.find(project => project.notes.some(note => note.id === noteId));
+        return project ? project.notes.find(note => note.id === noteId) : null;
+    });
+
+    if (!note) {
+        return null; // Si la note spécifique n'est pas trouvée dans le projet, retourne null
+    }
 
     const containerClass = containerType.toLowerCase();
 
@@ -24,7 +33,6 @@ const Note = ({ noteId, containerType, personPhotos, onClick }) => {
         <div
             className={`note ${containerClass}`}
             onClick={onClick}
-            draggable="true"
             ref={noteRef}
         >
             <div className="note_content">

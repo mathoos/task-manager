@@ -19,16 +19,14 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
                 const tagContainerWidth = tagContainer.offsetWidth;
                 leftRight.style.height = `calc(100% - ${tagContainerHeight}px)`;
                 leftBottom.style.width = `calc(100% - ${tagContainerWidth}px + 1px)`;
-
-                console.log(tagContainerWidth);
-                console.log(leftRight);
             } 
         };
         logTagContainerHeight();
     }, []);
     
 
-    const note = useSelector(state => state.notes.find(note => note.id === noteId));
+    const project = useSelector(state => state.projects.find(project => project.notes.some(note => note.id === noteId)));
+    const note = project ? project.notes.find(note => note.id === noteId) : null;
 
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);

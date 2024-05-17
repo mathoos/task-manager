@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNote, deleteNote, updateNote, duplicateNote } from '../utilities/Slice';
+
+import { addNote , deleteNote , duplicateNote, editNote } from '../utilities/SliceProjects';
 import { personPhotos } from '../data/equipe';
 import { noteContainers } from '../data/noteContainers';
 
@@ -17,14 +18,14 @@ import "../components/NotesContainer.scss";
 function Dashboard() {
 
     const { title } = useParams();
-
     const dispatch = useDispatch();
 
-    const [notes, setNotes] = useState(useSelector(state => state.notes));
-    const [selectedNote, setSelectedNote] = useState(null);
-    const [selectedContainerType, setSelectedContainerType] = useState(null);
+    const projects = useSelector(state => state.projects);
+    const project = projects.find(project => project.title === title);
     
     const [editingNote, setEditingNote] = useState(null);
+    const [selectedNote, setSelectedNote] = useState(null);
+    const [selectedContainerType, setSelectedContainerType] = useState(null);
     
     const [formActive, setFormActive] = useState(false); 
     const [noteActive, setNoteActive] = useState(true);
@@ -57,44 +58,37 @@ function Dashboard() {
     };
 
     // AJOUTER UNE NOTE
-    const handleAddNote = (newNote) => {
+    const handleAddNote = (formData) => {
         if (editingNote) {
-            const updatedNote = { ...editingNote, ...newNote };
-            dispatch(updateNote({ id: editingNote.id, updatedNote }));
-            setEditingNote(null);
+            dispatch(editNote({
+                projectId: project.id,
+                noteId: selectedNote.id,
+                newContent: formData
+            }));
         } else {
-            const updatedNotes = [...notes, { ...newNote, container: selectedContainerType }];
-            setNotes(updatedNotes);
-            dispatch(addNote({ ...newNote, container: selectedContainerType }));
+            const note = { ...formData, id: Date.now(), container: selectedContainerType };
+            dispatch(addNote({ projectId: project.id, note }));
         }
         setFormActive(false);
+        setEditingNote(null);
     };
 
     // SUPPRIMER UNE NOTE
     const handleDeleteNote = (noteId) => {
-        const noteIndex = notes.findIndex(note => note.id === noteId);
-        if (noteIndex !== -1) {
-            const updatedNotes = [...notes];
-            updatedNotes.splice(noteIndex, 1);
-            setNotes(updatedNotes);
-            dispatch(deleteNote(noteId));
-            setNoteActive(false)
-        }
-    };
- 
-    // EDITER UNE NOTE
-    const handleEditNote = (note) => {
-        setEditingNote(note); 
-        setFormActive(true); 
-        setNoteActive(false);
+        dispatch(deleteNote({ projectId: project.id, noteId })); 
+        setNoteActive(false)
     };
 
     // DUPLIQUER UNE NOTE
     const handleDuplicateNote = (note) => {
-        const newNote = { ...note, id: Date.now() }; 
-        const updatedNotes = [...notes, newNote];
-        setNotes(updatedNotes); 
-        dispatch(duplicateNote(newNote)); 
+        dispatch(duplicateNote({ projectId: project.id, noteId: note.id }));
+        setNoteActive(false);
+    };
+
+    // EDITER UNE NOTE
+    const handleEditNote = (note) => {
+        setEditingNote(note); 
+        setFormActive(true); 
         setNoteActive(false);
     };
 
@@ -108,26 +102,29 @@ function Dashboard() {
                 <Form             
                     selectedNote={selectedNote}
                     formActive={formActive}
-                    editingNote={editingNote} 
                     onClose={handleCloseForm}
                     onSubmit={handleAddNote}
+                    editingNote={editingNote} 
                 />
                 <div className="container_notes">
-                    {noteContainers.map(({ title, containerType }) => (
+                    {noteContainers.map(({ title: containerTitle, containerType }) => (
                         <div className={`bloc ${containerType.toLowerCase()}`} key={containerType}>
                             <div className="bloc_title">
-                                <p className="bloc_title-number">{notes.filter(note => note.container === containerType).length}</p>
-                                <h2>{title}</h2>
+                                <p className="bloc_title-number">{project.notes.filter(note => note.container === containerType).length}</p>
+                                <h2>{containerTitle}</h2>
                             </div>
                             <div className="bloc_content">
-                                {notes.filter(note => note.container === containerType).map(note => (
-                                    <Note 
-                                        key={note.id} 
-                                        noteId={note.id}
-                                        onClick={() => handleShowNote(note)}
-                                        personPhotos={personPhotos} 
-                                        containerType={containerType}
-                                    />
+                  
+                            {project.notes
+                                    .filter(note => note.container === containerType) // Filtrer les notes par le type de conteneur
+                                    .map(note => (
+                                        <Note 
+                                            key={note.id} 
+                                            noteId={note.id}
+                                            onClick={() => handleShowNote(note)}
+                                            personPhotos={personPhotos} 
+                                            containerType={containerType}
+                                        />
                                 ))}
                             </div>
                             <button className="bouton" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
@@ -143,8 +140,8 @@ function Dashboard() {
                     personPhotos={personPhotos} 
                     onClose={handleCloseNote}
                     onDelete={handleDeleteNote}
-                    onEdit={handleEditNote}
                     onDuplicate={handleDuplicateNote}
+                    onEdit={handleEditNote}
                     noteActive={noteActive}
                 />
             }

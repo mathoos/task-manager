@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addProject } from '../utilities/SliceProjects';
 import Nav from '../components/Nav';
 import './Home.scss';
