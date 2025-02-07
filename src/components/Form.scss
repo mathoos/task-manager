@@ -1,14 +1,14 @@
 @import "../style.scss";
 
 .form{
-    display : none;
-    justify-content: center;
-    align-items: center;
     position : absolute;
     top : 0;
     left : 0;
+    display : none;
+    justify-content: center;
+    align-items: center;
     width : 100%;
-    height : 100%;
+    height : 100vh;
     background-color: $noir-opacity;
     z-index : 5;
 
@@ -16,75 +16,150 @@
         display : flex;    
     }
 
-    &_close{
-        position : absolute;
-        top : 2.5vh;
-        right : 2vw;
-        width : 3vw;
-        height : 3vw;
-        display : flex;
-        justify-content: center;
-        align-items: center;
-        border-radius : 100%;
-        transition : .5s ease;
-        will-change : transform;
-        cursor : pointer;
-
-        @media screen and (max-width : 990px){
-            width : 15vw;
-            height : 15vw;
-        }
-
-        &-barre{
-            position : absolute;           
-            width : 1.5vw;
-            height : 2px;
-            background-color: $noir;
-            transition : .3s ease;
-            @media screen and (max-width : 990px){
-                width : 5vw;
-            }
-
-            &--1 {
-                top : 50%;
-                left : 50%;
-                transform : translate(-50%, -50%) rotate(45deg);
-            }
-
-            &--2 {
-                top : 50%;
-                left : 50%;
-                transform : translate(-50%, -50%) rotate(-45deg);
-            }
-        }
-
-        &:hover{
-            background-color: $noir;
-            .form_close-barre{
-                background-color : $blanc;
-            }
-        }
-    }
-
     &_content{
         display : flex;
-        flex-direction: column;
-        gap : 2vh;
+        align-items: stretch;
+        gap : 2.5vw;
         background-color: $blanc;
         padding : 2.5vw;
-        width : fit-content;
-        height : fit-content;
+        width : 50vw;
+        min-height : 70vh;
         border-radius : 15px;
 
-        .fieldset{
+        &-left{       
+            position : relative;   
             display : flex;
-            gap : 2vw;
-            width : 30vw;
+            flex-direction: column;
+            justify-content: space-between;
+            width : calc(100% - 13vw);
+            flex-grow : 1;
+            padding : 1.5vw;
+            border-radius : 15px;    
+            z-index : 1;
+            background-color: $violetLight;
 
-            &_people{
-                flex-wrap: wrap;
+            .fieldset{
+                display : flex;
+                gap : 2vw;
+            
+                input, textarea, select{
+                    border-radius : 5px;
+                    background-color: $blanc;
+                    outline: none;
+                    border : 1px solid $violetDark;
+                    color : $violetDark;
+
+                    &:focus{
+                        outline : 1px solid $violetDark;
+                    }
+                }
+    
+                &_people{
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    gap : .5vw;
+                }
+            }
+        }
+
+
+        &-right{       
+            display : flex;
+            flex-direction: column;
+            gap : 1.5vw;
+            flex-grow : 1;  
+            width : 13vw;
+
+            &--close{
+                display : flex;
+                justify-content: flex-end;
+                
+
+                .closeButton{
+                    position : relative;
+                    width : 2vw;
+                    height : 2vw;
+                    cursor : pointer;
+
+                    &::after{
+                        position : absolute;
+                        content : "";
+                        width : 100%;
+                        height : 2px;
+                        transform : rotate(45deg);
+                        background-color: $noir;
+                    }
+
+                    &::before{
+                        position : absolute;
+                        content : "";
+                        width : 100%;
+                        height : 2px;
+                        transform : rotate(-45deg);
+                        background-color: $noir;
+                    }
+                }
+            }
+
+            &--links{
+                display : flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                gap : 2vh;
+                width : 100%;
+                flex-grow : 1;
+                border-radius : 15px;
+                padding : 1.5vw;
+                background-color: $violetLight;
+            }
+
+            .bouton{
+                display : flex;
                 justify-content: space-between;
-                gap : .5vw;
+                gap : 1vw;
+                width : 100%;
+                border: 1px dashed $violetDark;
+                color : $violetDark;
+                background-color: $violetLight;
+                
+                svg{       
+                    width : 1.2vw;
+                    height : 1.2vw;
+
+                    path{
+                        stroke : $violetDark;
+                        fill : $violetDark;
+                    }
+                }
+
+                &.duplicate{
+                    svg{
+                        path{
+                            fill : none;
+                        }
+                    }
+                }
+
+                &:hover{
+                    background-color: $violetDark;
+                    color : $violetLight;
+
+                    svg{                      
+                        path{
+                            stroke : $violetLight;
+                            fill : $violetLight;
+                        }
+                    }
+
+                    &.duplicate{
+                        svg{
+                            path{
+                                fill : none;
+                            }
+                        }
+                    }
+                }
             }
         }
     }  

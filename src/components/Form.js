@@ -49,55 +49,73 @@ const Form = ({ onSubmit, formActive, onClose, editingNote }) => {
 
     return (
         <div className={`form ${formActive ? 'active' : ''}`}>
+
             <button className="form_close" onClick={onClose}>
                 <div className="form_close-barre form_close-barre--1"></div>
                 <div className="form_close-barre form_close-barre--2"></div>
             </button>
+
             <form className="form_content" onSubmit={handleAddNote}>
-                <fieldset className="fieldset">
-                    <input
-                        className="input"
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                        placeholder="Title"
-                    />
-                </fieldset>
-                <fieldset className="fieldset">
-                    <textarea
-                        className="input input_textarea"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        placeholder="Description"
-                    />
-                </fieldset>
-                <fieldset className="fieldset">
-                    <select className="input" name="tag" value={formData.tag} onChange={handleInputChange}>
-                        <option value="">Select Tag</option>
-                        {Object.keys(tagData).map(tag => (
-                            <option key={tag} value={tag}>{tag}</option>
+
+                <div className="form_content-left">
+
+                    <fieldset className="fieldset">
+                        <input
+                            className="input"
+                            type="text"
+                            name="title"
+                            value={formData.title}
+                            onChange={handleInputChange}
+                            placeholder="Title"
+                        />
+                    </fieldset>
+
+                    <fieldset className="fieldset">
+                        <textarea
+                            className="input input_textarea"
+                            name="description"
+                            value={formData.description}
+                            onChange={handleInputChange}
+                            placeholder="Description"
+                        />
+                    </fieldset>
+
+                    <fieldset className="fieldset">
+                        <select className="input" name="tag" value={formData.tag} onChange={handleInputChange}>
+                            <option value="">Select Tag</option>
+                            {Object.keys(tagData).map(tag => (
+                                <option key={tag} value={tag}>{tag}</option>
+                            ))}
+                        </select>
+                    </fieldset>
+
+                    <fieldset className="fieldset">
+                        <input className="input" type="date" name="date" value={formData.date} onChange={handleInputChange} />
+                    </fieldset>
+
+                    <fieldset className="fieldset fieldset_people">
+                        {personPhotos.map(person => (
+                            <div
+                                key={person.name}
+                                className={`bouton bouton_people ${formData.people.includes(person.name) ? 'selected' : ''}`}
+                                onClick={() => handlePeopleSelection(person.name)}
+                            >
+                                {person.name}
+                            </div>
                         ))}
-                    </select>
-                </fieldset>
-                <fieldset className="fieldset">
-                    <input className="input" type="date" name="date" value={formData.date} onChange={handleInputChange} />
-                </fieldset>
-                <fieldset className="fieldset fieldset_people">
-                    {personPhotos.map(person => (
-                        <div
-                            key={person.name}
-                            className={`bouton bouton_people ${formData.people.includes(person.name) ? 'selected' : ''}`}
-                            onClick={() => handlePeopleSelection(person.name)}
-                        >
-                            {person.name}
-                        </div>
-                    ))}
-                </fieldset>
-                <button className="bouton" type="submit">
-                    Valider
-                </button>
+                    </fieldset>
+                </div>
+
+                <div className="form_content-right">
+                    <div className="form_content-right--close">
+                        <button className="closeButton" onClick={onClose}></button>
+                    </div>
+                    <div className="form_content-right--links">         
+                        <button className="bouton" type="submit">
+                            Valider
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     );
