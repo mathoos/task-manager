@@ -1,0 +1,13 @@
+$note-colors: (
+    "Design": (light: $violetLight, dark: $violetDark),
+    "Frontend": (light: $bleuLight, dark: $bleuDark),
+    "Backend": (light: $jauneLight, dark: $jauneDark),
+    "Testing": (light: $roseLight, dark: $roseDark)
+);
+
+@each $category, $colors in $note-colors {
+    .#{$category} {
+        --light-color: #{map-get($colors, light)};
+        --dark-color: #{map-get($colors, dark)};
+    }
+}

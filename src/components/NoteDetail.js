@@ -46,7 +46,7 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
 
 
     return (
-        <div className={`noteDetail ${containerClass} ${noteActive ? 'active' : ''}`}>
+        <div className={`noteDetail ${containerType} ${noteActive ? 'active' : ''}`}>
             <div className="noteDetail_container">
 
                 <div className="noteDetail_container-left">

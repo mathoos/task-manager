@@ -99,7 +99,8 @@ function Dashboard() {
                 <div className="container_title">
                     <h1>{title}</h1>
                 </div>
-                <Form             
+                <Form    
+                    containerType={selectedContainerType}         
                     selectedNote={selectedNote}
                     formActive={formActive}
                     onClose={handleCloseForm}

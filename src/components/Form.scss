@@ -36,7 +36,7 @@
             padding : 1.5vw;
             border-radius : 15px;    
             z-index : 1;
-            background-color: $violetLight;
+            background-color: var(--light-color);
 
             .fieldset{
                 display : flex;
@@ -46,11 +46,11 @@
                     border-radius : 5px;
                     background-color: $blanc;
                     outline: none;
-                    border : 1px solid $violetDark;
-                    color : $violetDark;
+                    border : 1px solid var(--dark-color);
+                    color : var(--dark-color);
 
                     &:focus{
-                        outline : 1px solid $violetDark;
+                        outline : 1px solid var(--dark-color);
                     }
                 }
     
@@ -87,7 +87,7 @@
                         width : 100%;
                         height : 2px;
                         transform : rotate(45deg);
-                        background-color: $noir;
+                        background-color: var(--dark-color);
                     }
 
                     &::before{
@@ -96,7 +96,7 @@
                         width : 100%;
                         height : 2px;
                         transform : rotate(-45deg);
-                        background-color: $noir;
+                        background-color: var(--dark-color);
                     }
                 }
             }
@@ -111,7 +111,7 @@
                 flex-grow : 1;
                 border-radius : 15px;
                 padding : 1.5vw;
-                background-color: $violetLight;
+                background-color: var(--light-color);
             }
 
             .bouton{
@@ -119,17 +119,17 @@
                 justify-content: space-between;
                 gap : 1vw;
                 width : 100%;
-                border: 1px dashed $violetDark;
-                color : $violetDark;
-                background-color: $violetLight;
+                border: 1px dashed var(--dark-color);
+                color : var(--dark-color);
+                background-color: var(--light-color);
                 
                 svg{       
                     width : 1.2vw;
                     height : 1.2vw;
 
                     path{
-                        stroke : $violetDark;
-                        fill : $violetDark;
+                        stroke : var(--dark-color);
+                        fill : var(--dark-color);
                     }
                 }
 
@@ -142,13 +142,13 @@
                 }
 
                 &:hover{
-                    background-color: $violetDark;
-                    color : $violetLight;
+                    background-color: var(--dark-color);
+                    color : var(--light-color);
 
                     svg{                      
                         path{
-                            stroke : $violetLight;
-                            fill : $violetLight;
+                            stroke : var(--light-color);
+                            fill : var(--light-color);
                         }
                     }
 
