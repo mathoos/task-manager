@@ -1,8 +1,46 @@
-# Getting Started with Create React App
+# Application de gestion de projets
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://task-manager-journal.onrender.com/
 
-## Available Scripts
+## Description
+
+Task Manager est une application de gestion de projets qui permet à l'utilisateur de créer, modifier, dupliquer ou supprimer des tâches.
+Ces tâches peuvent être rangées par catégories : Design, Frontend, Backend ou Testing. 
+En fonction de l'avancée d'une tâche, celle-ci peut être déplacée de catégorie en catégorie.  
+
+## Fonctionnalités
+
+### - Créer une note
+### - Modifier une note
+### - Dupliquer une note
+### - Supprimer une note
+### - Déplacer une note
+### - Afficher une vue détaillée d'une note
+
+## Utilisation
+
+### 1. Créer un projet
+Sur la page d'accueil, cliquer sur le bouton "Créer un projet" ; cela va créer un projet avec un titre aléatoire. 
+Cliquer sur le nom du projet afin d'être dirigé vers la page /dashboard  de ce projet.
+
+### 2. Créer une note
+Une fois sur la page /dashboard du projet sélectionné, cliquer sur le bouton "Ajouter une note" dasn la catégorie souhaitée.
+Ajouter un titre, une description, un tag, une date et les personnes de l'équipes impliquées dans la tâche. 
+Cliquer sur "Valider". 
+La note est incrémentée dans la catégorie associée.
+Seuls le titre, la date, l'équipe et le tag sont visibles. 
+
+### 3. Visualiser une note
+Pour visualiser en détail la note créée, cliquer sur celle-ci afin qu'elle s'ouvre dans une lightbox.
+Toutes les informations sont regroupées dans cette note. 
+
+### 4. Intéragir avec une note
+Une fois la note ouverte, il est possible de la dupliquer, de la modifier ou de la supprimer en cliquant sur les boutons associés.
+Il est possible de déplacer la note de catégorie en catégorie. 
+
+## Installation
+
+Projet lancé avec Create React App.
 
 In the project directory, you can run:
 
@@ -38,33 +76,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
