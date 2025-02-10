@@ -2,6 +2,8 @@
 
 https://task-manager-journal.onrender.com/
 
+L'application ne possède pas encore de version mobile.
+
 ## Description
 
 Task Manager est une application de gestion de projets qui permet à l'utilisateur de créer, modifier, dupliquer ou supprimer des tâches.
@@ -37,6 +39,12 @@ Toutes les informations sont regroupées dans cette note.
 ### 4. Intéragir avec une note
 Une fois la note ouverte, il est possible de la dupliquer, de la modifier ou de la supprimer en cliquant sur les boutons associés.
 Il est possible de déplacer la note de catégorie en catégorie. 
+
+## Pistes d'amélioration
+
+### - Possibilité d'ajouter des images ou fichiers dans les notes.
+### - Possibilité de marquer quand une tâche a été effectuée. 
+### - Créer une page avec les tâches archivées. 
 
 ## Installation
 
