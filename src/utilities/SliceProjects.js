@@ -45,8 +45,18 @@ const projectSlice = createSlice({
                 }
             }
         },
+        moveNote: (state, action) => {
+            const { projectId, noteId, newContainer } = action.payload;
+            const project = state.find(project => project.id === projectId);
+            if (project) {
+                const note = project.notes.find(note => note.id === noteId);
+                if (note) {
+                    note.container = newContainer; // Met à jour la catégorie de la note
+                }
+            }
+        },
     },
 });
 
-export const { addProject, addNote, deleteNote, duplicateNote, editNote } = projectSlice.actions;
+export const { addProject, addNote, deleteNote, duplicateNote, editNote , moveNote } = projectSlice.actions;
 export default projectSlice.reducer;

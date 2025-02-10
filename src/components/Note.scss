@@ -7,9 +7,9 @@
     padding : 1.5vw;
     border-radius : 15px;
     background-color: $blanc;
+    // min-height: calc(100% / 2.5 - 2.5vh);
+    // height : calc(100% / 2.5 - 2.5vh);
     cursor: pointer;
-    min-height: calc(100% / 2.5 - 2.5vh);
-    height : calc(100% / 2.5 - 2.5vh);
     overflow : hidden; 
 
     &_content{
