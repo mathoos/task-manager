@@ -16,11 +16,11 @@ const Nav = () => {
             </Link>
             
             <div className="nav_links">
-                <Link to="/dashboard" className="nav_links-link">
+                <Link to="" className="nav_links-link">
                     <img src={IconDashboard} alt="Logo"/>
                     <p>Dashboard</p>
                 </Link>
-                <Link to="/calendar" className="nav_links-link">
+                <Link to="" className="nav_links-link">
                     <img src={IconCalendar} alt="Logo"/>
                     <p>Calendar</p>
                 </Link>
