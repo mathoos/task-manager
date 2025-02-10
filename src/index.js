@@ -17,7 +17,8 @@ if (projectsFromLocalStorage) {
     let parsedProjects;
     try {
         parsedProjects = JSON.parse(projectsFromLocalStorage);
-    } catch (error) {
+    } 
+    catch (error) {
         console.error('Error parsing projects from localStorage:', error);
     }
 
@@ -28,7 +29,8 @@ if (projectsFromLocalStorage) {
                 store.dispatch(addNote({ projectId: project.id, note }));
             });
         });
-    } else {
+    } 
+    else {
         console.error('Data retrieved from localStorage is not an array:', parsedProjects);
     }
 }

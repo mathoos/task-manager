@@ -12,10 +12,9 @@ const saveToLocalStorage = (key, data) => {
 };
 
 export const saveDataToLocalStorage = (projects) => {
-    // Sauvegarder chaque projet avec ses notes dans le localStorage
     const projectsWithNotes = projects.map(project => ({
         ...project,
-        notes: project.notes || [] // Assurez-vous que chaque projet a un tableau de notes initialisé
+        notes: project.notes || [] 
     }));
     saveToLocalStorage('projects', projectsWithNotes);
 };

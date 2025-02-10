@@ -109,7 +109,7 @@ function Dashboard() {
             dispatch(moveNote({
                 projectId: project.id,
                 noteId: parseInt(noteId),
-                newContainer: newContainerType, // Nouvelle catégorie
+                newContainer: newContainerType,
             }));
         }
     };
@@ -134,8 +134,8 @@ function Dashboard() {
                         <div
                             className={`bloc ${containerType.toLowerCase()}`}
                             key={containerType}
-                            onDragOver={handleDragOver} // Permet de survoler le conteneur
-                            onDrop={(e) => handleDrop(e, containerType)} // Gère le drop sur ce conteneur
+                            onDragOver={handleDragOver}
+                            onDrop={(e) => handleDrop(e, containerType)}
                         >
                             <div className="bloc_title">
                                 <p className="bloc_title-number">
@@ -150,7 +150,7 @@ function Dashboard() {
                                         <div
                                             key={note.id}
                                             draggable
-                                            onDragStart={(e) => handleDragStart(e, note.id, containerType)} // Début du drag
+                                            onDragStart={(e) => handleDragStart(e, note.id, containerType)} 
                                             className="note-item"
                                         >
                                             <Note 

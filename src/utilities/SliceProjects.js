@@ -51,7 +51,7 @@ const projectSlice = createSlice({
             if (project) {
                 const note = project.notes.find(note => note.id === noteId);
                 if (note) {
-                    note.container = newContainer; // Met à jour la catégorie de la note
+                    note.container = newContainer; 
                 }
             }
         },
