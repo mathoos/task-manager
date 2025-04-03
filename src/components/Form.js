@@ -1,6 +1,6 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { tagData } from '../utilities/Tags';
-import { personPhotos } from "../data/equipe"
+import { personPhotos } from "../data/equipe";
 import "./Form.scss";
 
 const Form = ({ containerType, onSubmit, formActive, onClose, editingNote }) => {
@@ -15,7 +15,9 @@ const Form = ({ containerType, onSubmit, formActive, onClose, editingNote }) => 
     };
 
     const [formData, setFormData] = useState(initialFormData);
+    const [formError, setFormError] = useState("");
 
+    // Réinitialiser le formulaire lors de l'édition ou d'une nouvelle note
     useEffect(() => {
         if (editingNote) {
             setFormData(editingNote);
@@ -24,7 +26,17 @@ const Form = ({ containerType, onSubmit, formActive, onClose, editingNote }) => 
         }
     }, [editingNote]);
 
+    // Fonction de validation du formulaire
+    const validateForm = () => {
+        if (!formData.title || !formData.description || !formData.tag || !formData.date || formData.people.length === 0) {
+            setFormError("Tous les champs sont obligatoires.");
+            return false;
+        }
+        setFormError("");
+        return true;
+    };
 
+    // Mise à jour des champs du formulaire
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -34,31 +46,48 @@ const Form = ({ containerType, onSubmit, formActive, onClose, editingNote }) => 
     };
 
     const handlePeopleSelection = (personName) => {
-        const updatedPeople = formData.people.includes(personName) ? formData.people.filter(p => p !== personName) : [...formData.people, personName];
+        const updatedPeople = formData.people.includes(personName)
+            ? formData.people.filter(p => p !== personName)
+            : [...formData.people, personName];
         setFormData({
             ...formData,
             people: updatedPeople
         });
     };
 
+    // Soumission du formulaire
     const handleAddNote = (event) => {
         event.preventDefault();
-        onSubmit(formData);
-        setFormData({ ...initialFormData, id: Date.now() });
+
+        // Vérification de la validité avant soumission
+        if (validateForm()) {
+            onSubmit(formData);
+            setFormData(initialFormData); // Réinitialisation du formulaire après soumission
+        }
     };
+
+    // Fonction de fermeture du formulaire
+    const handleCloseFormWrapper = () => {
+        onClose();
+        setFormData(initialFormData);  // Réinitialisation du formulaire lors de la fermeture
+    };
+
+    // Validation en temps réel
+    useEffect(() => {
+        if (formError) {
+            validateForm();  // Revalider à chaque modification
+        }
+    }, [formData]);
 
     return (
         <div className={`form ${containerType} ${formActive ? 'active' : ''}`}>
-
-            <button className="form_close" onClick={onClose}>
+            <button className="form_close" onClick={handleCloseFormWrapper}>
                 <div className="form_close-barre form_close-barre--1"></div>
                 <div className="form_close-barre form_close-barre--2"></div>
             </button>
 
             <form className="form_content" onSubmit={handleAddNote}>
-
                 <div className="form_content-left">
-
                     <fieldset className="fieldset">
                         <input
                             className="input"
@@ -108,17 +137,21 @@ const Form = ({ containerType, onSubmit, formActive, onClose, editingNote }) => 
 
                 <div className="form_content-right">
                     <div className="form_content-right--close">
-                    <button 
-                        className="closeButton" 
-                        onClick={(event) => {
-                            event.preventDefault();  // Empêche l'exécution du onSubmit du form
-                            event.stopPropagation(); // Empêche la propagation de l'événement
-                            onClose();
-                        }}
-                    ></button>
+                        <button 
+                            className="closeButton" 
+                            onClick={(event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                handleCloseFormWrapper();  // Réinitialisation du formulaire au moment de la fermeture
+                            }}
+                        ></button>
                     </div>
-                    <div className="form_content-right--links">         
-                        <button className="bouton" type="submit">
+
+                    {/* Affichage de l'erreur */}
+                    {formError && <div className="form_error">{formError}</div>}
+
+                    <div className="form_content-right--links">
+                        <button className="bouton" type="submit" disabled={!!formError}>
                             Valider
                             <svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_83_529)">
