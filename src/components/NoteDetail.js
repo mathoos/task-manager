@@ -29,13 +29,8 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
     const note = project ? project.notes.find(note => note.id === noteId) : null;
 
     const formatDate = (dateString) => {
-        const dateObj = new Date(dateString);
-        const day = String(dateObj.getDate()).padStart(2, '0'); 
-        const month = String(dateObj.getMonth() + 1).padStart(2, '0'); 
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const year = dateObj.getFullYear() === currentYear ? '' : `/${dateObj.getFullYear()}`;
-        return `${day}/${month}${year}`;
+        if (!dateString) return '';
+        return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(dateString));
     };
 
     const containerClass = containerType ? containerType.toLowerCase() : '';

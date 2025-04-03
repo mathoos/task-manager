@@ -20,13 +20,8 @@ const Note = ({ noteId, containerType, personPhotos, onClick }) => {
     const containerClass = containerType.toLowerCase();
 
     const formatDate = (dateString) => {
-        const dateObj = new Date(dateString);
-        const day = String(dateObj.getDate()).padStart(2, '0'); 
-        const month = String(dateObj.getMonth() + 1).padStart(2, '0'); 
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const year = dateObj.getFullYear() === currentYear ? '' : `/${dateObj.getFullYear()}`;
-        return `${day}/${month}${year}`;
+        if (!dateString) return '';
+        return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(dateString));
     };
     
     return (

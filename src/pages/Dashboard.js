@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, deleteNote, duplicateNote, editNote, moveNote } from '../utilities/SliceProjects';
@@ -26,6 +26,14 @@ function Dashboard() {
 
     const [formActive, setFormActive] = useState(false); 
     const [noteActive, setNoteActive] = useState(true);
+    
+    const notesByContainer = useMemo(() => {
+        return project ? project.notes.reduce((acc, note) => {
+            if (!acc[note.container]) acc[note.container] = [];
+            acc[note.container].push(note);
+            return acc;
+        }, {}) : {};
+    }, [project]);
 
     // Ouvrir le formulaire
     const handleShowForm = (containerType) => {
@@ -139,28 +147,26 @@ function Dashboard() {
                         >
                             <div className="bloc_title">
                                 <p className="bloc_title-number">
-                                    {project.notes.filter(note => note.container === containerType).length}
+                                    {notesByContainer[containerType]?.length || 0}
                                 </p>
                                 <h2>{containerTitle}</h2>
                             </div>
                             <div className="bloc_content">
-                                {project.notes
-                                    .filter(note => note.container === containerType)
-                                    .map((note, index) => (
-                                        <div
-                                            key={note.id}
-                                            draggable
-                                            onDragStart={(e) => handleDragStart(e, note.id, containerType)} 
-                                            className="note-item"
-                                        >
-                                            <Note 
-                                                noteId={note.id}
-                                                onClick={() => handleShowNote(note)}
-                                                personPhotos={personPhotos} 
-                                                containerType={containerType}
-                                            />
-                                        </div>
-                                    ))}
+                                {notesByContainer[containerType]?.map((note) => (
+                                    <div
+                                        key={note.id}
+                                        draggable
+                                        onDragStart={(e) => handleDragStart(e, note.id, containerType)} 
+                                        className="note-item"
+                                    >
+                                        <Note 
+                                            noteId={note.id}
+                                            onClick={() => handleShowNote(note)}
+                                            personPhotos={personPhotos} 
+                                            containerType={containerType}
+                                        />
+                                    </div>
+                                ))}
                             </div>
                             <button className="bouton" onClick={() => handleShowForm(containerType)}>Ajouter une note</button>
                         </div>
