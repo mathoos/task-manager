@@ -55,8 +55,18 @@ const projectSlice = createSlice({
                 }
             }
         },
+        toggleNoteCompletion: (state, action) => {
+            const { projectId, noteId } = action.payload;
+            const project = state.find(project => project.id === projectId);
+            if (project) {
+                const note = project.notes.find(note => note.id === noteId);
+                if (note) {
+                    note.isCompleted = !note.isCompleted;
+                }
+            }
+        }
     },
 });
 
-export const { addProject, addNote, deleteNote, duplicateNote, editNote , moveNote } = projectSlice.actions;
+export const { addProject, addNote, deleteNote, duplicateNote, editNote , moveNote, toggleNoteCompletion } = projectSlice.actions;
 export default projectSlice.reducer;

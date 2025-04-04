@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleNoteCompletion } from '../utilities/SliceProjects';
 import { tagData } from '../utilities/Tags';
-import "./NoteDetail.scss";
 
+import "./NoteDetail.scss";
 
 
 const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, onEdit, onDuplicate, noteActive }) => {
 
-  
+    const dispatch = useDispatch();
+
+    const handleToggleCompletion = () => {
+        dispatch(toggleNoteCompletion({ projectId: project.id, noteId: note.id }));
+    };
+    
     useEffect(() => {
         const logTagContainerHeight = () => {
             const tagContainer = document.querySelector('.tag-container');
@@ -79,7 +85,17 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
                     <div className="noteDetail_container-right--close">
                         <button className="closeButton" onClick={onClose}></button>
                     </div>
-                    <div className="noteDetail_container-right--links">         
+                    <div className="noteDetail_container-right--links">  
+                        <div className="note-completion">
+                            <label>
+                                <input 
+                                    type="checkbox" 
+                                    checked={note.isCompleted || false} 
+                                    onChange={handleToggleCompletion} 
+                                />
+                                Tâche terminée
+                            </label>
+                        </div>       
                         <button className="bouton duplicate" onClick={() => onDuplicate(note)}>
                             Dupliquer
                             <svg width="700" height="700" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">

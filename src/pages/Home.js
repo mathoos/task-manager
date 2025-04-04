@@ -16,6 +16,10 @@ function Home() {
 
     const totalNotes = projects.reduce((sum, project) => sum + (project.notes?.length || 0), 0);
 
+    const totalCompletedNotes = projects.reduce((sum, project) => 
+        sum + (project.notes?.filter(note => note.isCompleted).length || 0), 0);
+    
+
     return (
         <div className="home">
 
@@ -38,7 +42,9 @@ function Home() {
                         <div className="bloc">
                             <p>Total de tâches : {totalNotes}</p>
                         </div>
-                        <div className="bloc"></div>
+                        <div className="bloc">
+                            <p>Total de tâches complétées : {totalCompletedNotes}</p>
+                        </div>
                     </div>
                     <div className="home_container-info--calendar"></div>
                 </div>

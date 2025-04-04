@@ -26,7 +26,7 @@ const Note = ({ noteId, containerType, personPhotos, onClick }) => {
     
     return (
         <div
-            className={`note ${containerClass}`}
+            className={`note ${containerClass} ${note.isCompleted ? 'completed' : ''}`}
             onClick={onClick}
             ref={noteRef}
         >
