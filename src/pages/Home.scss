@@ -7,30 +7,76 @@
     height : 100vh;
     overflow : hidden;
 
-    .container{
+    &_container{
         display : flex;
-        flex-direction: column;
-        justify-content: space-between;   
-        padding : 5vw;
+        gap : 2.5vw;
+        padding : 2.5vw;
         width : 100%;
         height : 100%;
 
-        &_links{
+        &-projects{
             display : flex;
-            flex-wrap: wrap;
+            flex-direction : column;
             gap : 2.5vw;
+            width : 60vw;
+            padding : 2.5vw;
+            border-radius : 25px;
+            background-color: $bleu;
 
-            &-link{
-                width : fit-content;
-                height : fit-content;
-                padding : 1.5vw;
-                border-radius : 15px;
-                border : 1px solid $noir;
+            &--title{
+                display : flex;
+                justify-content: space-between;
+
+                .bouton{
+                    background-color: $bleuDark;
+                    color : $bleuLight;
+                }
+            }
+
+            &--content{
+                display : flex;
+                flex-direction: column;
+                gap : 2.5vw;
+                overflow-y : auto;
+
+                .project{
+                    background-color: $blanc;
+                    border-radius : 15px;
+                    padding : 1.5vw;
+                    width : calc(100% - 2.5vw);
+                }
             }
         }
 
-        &_button{
-            align-self: flex-end;
-        } 
+
+        &-info{
+            display : flex;
+            flex-direction: column;
+            gap : 2.5vw;
+            width : 40vw;
+
+            &--top{
+                display : flex;
+                gap : 2.5vw;
+                width : 100%;
+
+                .bloc{
+                    width : 18.75vw;
+                    height : 18.75vw;
+                    border-radius : 15px;
+                    background-color: $violet;
+
+                    &:nth-of-type(2){
+                        background-color: $rose;
+                    }
+                }
+            }
+
+            &--calendar{
+                width : 100%;
+                height : 100%;
+                border : 1px solid red;
+            }
+        }
     }
 }

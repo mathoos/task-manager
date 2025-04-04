@@ -14,18 +14,34 @@ function Home() {
         dispatch(addProject(newProject));
     };
 
+    const totalNotes = projects.reduce((sum, project) => sum + (project.notes?.length || 0), 0);
+
     return (
         <div className="home">
 
-            <div className="container">
-                <div className="container_links">
-                    {projects.map((project) => (
-                        <Link key={project.id} to={`/dashboard/${project.title}`} className="container_links-link">
-                            {project.title}
-                        </Link>
-                    ))}
+            <div className="home_container">
+                <div className="home_container-projects">
+                    <div className="home_container-projects--title">
+                        <h1>Tous les projets</h1>
+                        <button className="bouton" onClick={generateRandomTitle}>Créer un projet</button>
+                    </div>
+                    <div className="home_container-projects--content">
+                        {projects.map((project) => (
+                            <Link key={project.id} to={`/dashboard/${project.title}`} className="project">
+                                {project.title}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
-                <button className="container_button" onClick={generateRandomTitle}>Créer un projet</button>
+                <div className="home_container-info">
+                    <div className="home_container-info--top">
+                        <div className="bloc">
+                            <p>Total de tâches : {totalNotes}</p>
+                        </div>
+                        <div className="bloc"></div>
+                    </div>
+                    <div className="home_container-info--calendar"></div>
+                </div>
             </div>
         </div>
     );
