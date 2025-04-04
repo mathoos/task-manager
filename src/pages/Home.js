@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addProject } from '../utilities/SliceProjects';
-import Nav from '../components/Nav';
+
 import './Home.scss';
 
 function Home() {
@@ -16,7 +16,7 @@ function Home() {
 
     return (
         <div className="home">
-            <Nav />
+
             <div className="container">
                 <div className="container_links">
                     {projects.map((project) => (

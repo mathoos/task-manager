@@ -5,7 +5,6 @@ import { addNote, deleteNote, duplicateNote, editNote, moveNote } from '../utili
 import { personPhotos } from '../data/equipe';
 import { noteContainers } from '../data/noteContainers';
 
-import Nav from "../components/Nav";
 import Form from "../components/Form";
 import Note from '../components/Note'; 
 import NoteDetail from "../components/NoteDetail";
@@ -124,7 +123,6 @@ function Dashboard() {
 
     return (
         <div className="dashboard">
-            <Nav/>
             <div className="container">
                 <div className="container_title">
                     <h1>{title}</h1>
