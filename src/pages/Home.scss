@@ -39,6 +39,7 @@
                 flex-direction: column;
                 gap : 2.5vw;
                 overflow-y : auto;
+                
 
                 .project{
                     display : flex;
@@ -68,36 +69,29 @@
 
 
         &-info{
-            display : flex;
-            flex-direction: column;
+            display : grid;
+            grid-template-columns: repeat(2, 1fr);
             gap : 2.5vw;
             width : 40vw;
+            border : 2px solid black;
 
-            &--top{
-                display : flex;
-                gap : 2.5vw;
-                width : 100%;
 
-                .bloc{
-                    width : 18.75vw;
-                    height : 18.75vw;
-                    border-radius : 15px;
-                    background-color: $violet;
+            .bloc{
+                width : 18.75vw;
+                height : 18.75vw;
+                border-radius : 15px;
+                background-color: $violet;
 
-                    &:nth-of-type(2){
-                        background-color: $rose;
-                    }
+                &:nth-of-type(2){
+                    background-color: $rose;
                 }
-            }
 
-            &--calendar{
-                display : flex;
-                width : 100%;
-                height : 100%;
-                border : 1px solid red;
+                &:nth-of-type(3){
+                    background-color: $jaune;
+                }
 
-                .notes-late{
-                    background-color: pink;
+                &:nth-of-type(4){
+                    background-color: $bleu;
                 }
             }
         }

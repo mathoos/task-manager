@@ -82,21 +82,23 @@ function Home() {
                     </div>
                 </div>
                 <div className="home_container-info">
-                    <div className="home_container-info--top">
+                 
                         <div className="bloc">
                             <p>Total de tâches : {totalNotes}</p>
                         </div>
                         <div className="bloc">
                             <p>Total de tâches complétées : {totalCompletedNotes}</p>
                         </div>
-                    </div>
-                    <div className="home_container-info--calendar">
+                 
+                        
                         <Calendar
                             onChange={handleDateChange}
                             value={selectedDate || new Date()}
                             tileClassName={tileClassName}
+                            className="bloc"
                         />
-                        <div className="notes-late">
+                       
+                        <div className="bloc">
                             <h4>⚠️ Tâches en retard</h4>
                             {overdueNotes.length === 0 ? (
                                 <p>Aucune tâche en retard.</p>
@@ -110,7 +112,7 @@ function Home() {
                                 </ul>
                             )}
                         </div>
-                    </div>
+                   
                 </div>
 
                 {isDateSelected && (
