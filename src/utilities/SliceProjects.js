@@ -10,6 +10,10 @@ const projectSlice = createSlice({
             const { id, title } = action.payload;
             state.push({ id, title, notes: [] });
         },
+        deleteProject: (state, action) => {
+            const projectIdToDelete = action.payload;
+            return state.filter(project => project.id !== projectIdToDelete);
+        },
         addNote: (state, action) => {
             const { projectId, note } = action.payload;
             const project = state.find(project => project.id === projectId);
@@ -68,5 +72,5 @@ const projectSlice = createSlice({
     },
 });
 
-export const { addProject, addNote, deleteNote, duplicateNote, editNote , moveNote, toggleNoteCompletion } = projectSlice.actions;
+export const { addProject, deleteProject, addNote, deleteNote, duplicateNote, editNote , moveNote, toggleNoteCompletion } = projectSlice.actions;
 export default projectSlice.reducer;

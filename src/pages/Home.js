@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addProject } from '../utilities/SliceProjects';
+import { addProject, deleteProject } from '../utilities/SliceProjects';
 
 import './Home.scss';
 
@@ -31,9 +31,22 @@ function Home() {
                     </div>
                     <div className="home_container-projects--content">
                         {projects.map((project) => (
-                            <Link key={project.id} to={`/dashboard/${project.title}`} className="project">
-                                {project.title}
-                            </Link>
+                            <div className="project">
+                                <h2>{project.title}</h2>
+                                <div className="project_buttons">
+                                    <button>
+                                        <Link key={project.id} to={`/dashboard/${project.title}`} className="bouton">
+                                            Voir
+                                        </Link>
+                                    </button>
+                                    <button 
+                                        className="bouton" 
+                                        onClick={() => dispatch(deleteProject(project.id))}>
+                                            Supprimer
+                                    </button>
+                                </div>
+                                
+                            </div>
                         ))}
                     </div>
                 </div>

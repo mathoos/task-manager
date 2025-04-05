@@ -40,10 +40,27 @@
                 overflow-y : auto;
 
                 .project{
+                    display : flex;
+                    justify-content: space-between;
+                    align-items: center;
                     background-color: $blanc;
                     border-radius : 15px;
                     padding : 1.5vw;
                     width : calc(100% - 2.5vw);
+
+                    h2{
+                        color : $noir;
+                    }
+
+                    &_buttons{
+                        display : flex;
+                        gap : 1.5vw;
+
+                        .bouton{
+                            background-color: $bleuDark;
+                            color : $bleuLight;
+                        }
+                    }
                 }
             }
         }
