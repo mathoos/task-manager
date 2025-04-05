@@ -73,25 +73,61 @@
             grid-template-columns: repeat(2, 1fr);
             gap : 2.5vw;
             width : 40vw;
-            border : 2px solid black;
 
 
             .bloc{
+                display : flex;
+                flex-direction: column;
+                justify-content: space-between;
                 width : 18.75vw;
                 height : 18.75vw;
                 border-radius : 15px;
                 background-color: $violet;
+                padding : 1.5vw;
+
+                &_number{
+                    align-items:  flex-end;
+                    margin-left : auto;
+                    font-size : 3vw;  
+                }
+
+                &_late{
+                    display : flex;
+                    flex-direction: column;
+                    gap : 0.5vw;
+                }
+
+                &_calendar{
+                    border : none;
+                }
+
+                h2, p{
+                    color : $violetDark;
+                }
 
                 &:nth-of-type(2){
                     background-color: $rose;
+                    
+                    h2, p{
+                        color : $roseDark;
+                    }
                 }
 
                 &:nth-of-type(3){
                     background-color: $jaune;
+
+                    h2, p{
+                        color : $jauneDark;
+                    }
                 }
 
                 &:nth-of-type(4){
+                    justify-content: flex-start;
                     background-color: $bleu;
+
+                    h2, p{
+                        color : $bleuDark;
+                    }
                 }
             }
         }

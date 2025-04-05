@@ -83,35 +83,37 @@ function Home() {
                 </div>
                 <div className="home_container-info">
                  
-                        <div className="bloc">
-                            <p>Total de tâches : {totalNotes}</p>
-                        </div>
-                        <div className="bloc">
-                            <p>Total de tâches complétées : {totalCompletedNotes}</p>
-                        </div>
-                 
-                        
-                        <Calendar
-                            onChange={handleDateChange}
-                            value={selectedDate || new Date()}
-                            tileClassName={tileClassName}
-                            className="bloc"
-                        />
-                       
-                        <div className="bloc">
-                            <h4>⚠️ Tâches en retard</h4>
-                            {overdueNotes.length === 0 ? (
-                                <p>Aucune tâche en retard.</p>
-                            ) : (
-                                <ul>
-                                    {overdueNotes.map(note => (
-                                        <li key={note.id}>
-                                            <span>{note.title}</span> – <em>{format(parseISO(note.date), 'dd/MM/yyyy')}</em>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
+                    <div className="bloc">
+                        <h2>Total des tâches</h2>
+                        <p className="bloc_number">{totalNotes}</p>
+                    </div>
+                    <div className="bloc">
+                        <h2>Tâches complétées</h2>
+                        <p className="bloc_number">{totalCompletedNotes}</p>
+                    </div>
+                
+                    
+                    <Calendar
+                        onChange={handleDateChange}
+                        value={selectedDate || new Date()}
+                        tileClassName={tileClassName}
+                        className="bloc bloc_calendar"
+                    />
+                    
+                    <div className="bloc">
+                        <h2>⚠️ Tâches en retard</h2>
+                        {overdueNotes.length === 0 ? (
+                            <p>Aucune tâche en retard.</p>
+                        ) : (
+                            <div className="bloc_late">
+                                {overdueNotes.map(note => (
+                                    <p key={note.id}>
+                                        - {note.title} <em>{format(parseISO(note.date), 'dd/MM/yyyy')}</em>
+                                    </p>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                    
                 </div>
 
