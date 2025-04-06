@@ -12,7 +12,8 @@ function Home() {
     const projects = useSelector(state => state.projects);
     const dispatch = useDispatch();
     const [selectedDate, setSelectedDate] = useState(null);
-    const [isDateSelected, setIsDateSelected] = useState(false);
+    const [showLateNotes, setShowLateNotes] = useState(false);
+
 
     const generateRandomTitle = () => {
         const randomTitle = `Projet ${Math.floor(Math.random() * 1000)}`;
@@ -26,7 +27,6 @@ function Home() {
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
-        setIsDateSelected(true);
     };
 
     const selectedNotes = projects.flatMap(project =>
@@ -99,30 +99,9 @@ function Home() {
                         tileClassName={tileClassName}
                         className="bloc bloc_calendar"
                     />
-                    
-                    <div className="bloc">
-                        <h2>⚠️ Tâches en retard</h2>
-                        {overdueNotes.length === 0 ? (
-                            <p>Aucune tâche en retard.</p>
-                        ) : (
-                            <div className="bloc_late">
-                                {overdueNotes.map(note => (
-                                    <p key={note.id}>
-                                        - {note.title} <em>{format(parseISO(note.date), 'dd/MM/yyyy')}</em>
-                                    </p>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                   
-                </div>
 
-                {isDateSelected && (
-                    <div className="home_container-calendar-notes">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <h3>Notes du {format(selectedDate, 'dd/MM/yyyy')} :</h3>
-                            <button className="bouton" onClick={() => setIsDateSelected(false)}>Fermer</button>
-                        </div>
+                    <div className="bloc">
+                        <h2>Tâches du jour</h2>
                         {selectedNotes.length === 0 ? (
                             <p>Aucune note prévue ce jour-là.</p>
                         ) : (
@@ -132,6 +111,28 @@ function Home() {
                                 ))}
                             </ul>
                         )}
+                    </div>
+                </div>
+
+                {overdueNotes.length > 0 && !showLateNotes && (
+                    <div className="home_container-dangerIcon" onClick={() => setShowLateNotes(true)}>
+                        <p>⚠️</p>
+                    </div>
+                )}
+
+                {showLateNotes && (
+                    <div className="late-notes-modal">
+                        <div className="late-notes-header">
+                            <h3>🚨 Tâches en retard</h3>
+                            <button className="close-btn" onClick={() => setShowLateNotes(false)}>Fermer</button>
+                        </div>
+                        <div className="late-notes-content">
+                            {overdueNotes.map(note => (
+                                <p key={note.id}>
+                                    - {note.title} <em>{format(parseISO(note.date), 'dd/MM/yyyy')}</em>
+                                </p>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

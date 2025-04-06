@@ -132,12 +132,79 @@
             }
         }
 
-        &-calendar-notes{
-            position : absolute;
-            width : 50vw;
-            height : 20vh;
-            background-color: orange;
+        &-dangerIcon {
+            position: fixed;
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 1.5vw;
+            right: 1.5vw;
+            width : 4vw;
+            height : 4vw;
+            border-radius: 100vmax;
+            cursor: pointer;
+            background-color: #ff4d4d;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            
+            transition: transform 0.2s ease;
+            z-index: 1000;
+
+            p{
+                font-size : 2vw;
+            }
+        
+            &:hover {
+                transform: scale(1.1);
+            }
         }
+        
+        .late-notes-modal {
+            position: fixed;
+            bottom: 5vw;
+            right: 2vw;
+            width: 300px;
+            max-height: 50vh;
+            background-color: #fff8f8;
+            border: 2px solid #ff4d4d;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 0 15px rgba(0,0,0,0.25);
+            z-index: 1000;
+            overflow-y: auto;
+        
+            .late-notes-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.5rem;
+        
+                h3 {
+                    margin: 0;
+                    color: #d00000;
+                }
+        
+                .close-btn {
+                    background: transparent;
+                    border: none;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    color: #d00000;
+                }
+            }
+        
+            .late-notes-content {
+                p {
+                    margin-bottom: 0.5rem;
+                    color: #333;
+        
+                    em {
+                        color: #a33;
+                        font-size: 0.85em;
+                    }
+                }
+            }
+        }
+        
     }
 }
 
