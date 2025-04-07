@@ -18,7 +18,7 @@ const projectSlice = createSlice({
             const { projectId, note } = action.payload;
             const project = state.find(project => project.id === projectId);
             if (project) {
-                project.notes.push(note);
+                project.notes.push({ ...note, projectId });
             }
         },
         deleteNote: (state, action) => {

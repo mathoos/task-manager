@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { addProject, deleteProject } from '../utilities/SliceProjects';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { format, isBefore, isSameDay, parseISO } from 'date-fns';
+import { format, isBefore, isSameDay, parseISO, startOfDay } from 'date-fns';
+
 
 import './Home.scss';
 
@@ -14,19 +15,17 @@ function Home() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [showLateNotes, setShowLateNotes] = useState(false);
 
-
     const generateRandomTitle = () => {
         const actions = ["Refonte", "Création", "Mise à jour", "Optimisation", "Déploiement", "Prototype", "Audit", "Migration", "Plan", "Analyse"];
         const objets = ["site web", "application mobile", "infrastructure", "outil interne", "plateforme", "système", "architecture", "dashboard", "base de données", "sécurité"];
-    
+
         const action = actions[Math.floor(Math.random() * actions.length)];
         const objet = objets[Math.floor(Math.random() * objets.length)];
-    
+
         const randomTitle = `${action} ${objet}`;
         const newProject = { id: Date.now(), title: randomTitle };
         dispatch(addProject(newProject));
     };
-    
 
     const totalNotes = projects.reduce((sum, project) => sum + (project.notes?.length || 0), 0);
     const totalCompletedNotes = projects.reduce((sum, project) =>
@@ -38,9 +37,14 @@ function Home() {
 
     const selectedNotes = projects.flatMap(project =>
         (project.notes || []).filter(note =>
-            note.date && selectedDate && isSameDay(parseISO(note.date), selectedDate)
+          note.date &&
+          isSameDay(
+            startOfDay(parseISO(note.date)),
+            startOfDay(selectedDate || new Date())
+          )
         )
-    );
+      );
+      
 
     const noteDates = projects.flatMap(project =>
         (project.notes || []).map(note => note.date && parseISO(note.date)).filter(Boolean)
@@ -56,11 +60,14 @@ function Home() {
     const overdueNotes = projects.flatMap(project =>
         (project.notes || []).filter(note =>
             note.date &&
-            isBefore(parseISO(note.date), new Date()) &&
+            isBefore(startOfDay(parseISO(note.date)), startOfDay(new Date())) &&
             !note.isCompleted
         )
     );
     
+
+    // Format de la date sélectionnée
+    const formattedDate = selectedDate ? format(selectedDate, 'dd/MM/yyyy') : '';
 
     return (
         <div className="home">
@@ -99,7 +106,6 @@ function Home() {
                         <p className="bloc_number">{totalCompletedNotes}</p>
                     </div>
                 
-                    
                     <Calendar
                         onChange={handleDateChange}
                         value={selectedDate || new Date()}
@@ -108,17 +114,38 @@ function Home() {
                     />
 
                     <div className="bloc">
-                        <h2>Tâches du jour</h2>
-                        {selectedNotes.length === 0 ? (
-                            <p>Aucune note prévue ce jour-là.</p>
-                        ) : (
-                            <ul>
-                                {selectedNotes.map(note => (
-                                    <li key={note.id}>{note.title}</li>
-                                ))}
-                            </ul>
-                        )}
+                        <h2>{selectedDate ? `Tâches du ${formattedDate}` : 'Tâches du jour'}</h2>
+                        <div className="bloc_dayNotes">
+                            {selectedNotes.length === 0 ? (
+                                <p>Aucune note prévue ce jour-là.</p>
+                            ) : (
+                                Object.values(
+                                selectedNotes.reduce((acc, note) => {
+                                    const project = projects.find(p => p.id === note.projectId);
+                                    if (!project) return acc;
+
+                                    if (!acc[project.id]) {
+                                    acc[project.id] = {
+                                        project,
+                                        notes: []
+                                    };
+                                    }
+
+                                    acc[project.id].notes.push(note);
+                                    return acc;
+                                }, {})
+                                ).map(({ project, notes }) => (
+                                <div key={project.id}>
+                                    <h3>{project.title}</h3>
+                                    {notes.map(note => (
+                                        <p key={note.id}>- {note.title}</p>
+                                    ))}
+                                </div>
+                                ))
+                            )}
+                        </div>
                     </div>
+
                 </div>
 
                 {overdueNotes.length > 0 && !showLateNotes && (
