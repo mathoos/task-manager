@@ -196,6 +196,7 @@
                         border: 1px solid var(--dark-color);
                         border-radius: 100vmax;
                         background-color: var(--light-color);
+                        cursor : inherit;
                         transition: all 0.2s;
                     
                         &:checked {

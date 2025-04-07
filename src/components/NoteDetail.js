@@ -90,7 +90,6 @@ const NoteDetail = ({ noteId, containerType, personPhotos, onClose, onDelete, on
                         <label className="checkbox">
                             <input 
                                 type="checkbox" 
-                                
                                 checked={note.isCompleted || false} 
                                 onChange={handleToggleCompletion} 
                             />

@@ -16,10 +16,17 @@ function Home() {
 
 
     const generateRandomTitle = () => {
-        const randomTitle = `Projet ${Math.floor(Math.random() * 1000)}`;
+        const actions = ["Refonte", "Création", "Mise à jour", "Optimisation", "Déploiement", "Prototype", "Audit", "Migration", "Plan", "Analyse"];
+        const objets = ["site web", "application mobile", "infrastructure", "outil interne", "plateforme", "système", "architecture", "dashboard", "base de données", "sécurité"];
+    
+        const action = actions[Math.floor(Math.random() * actions.length)];
+        const objet = objets[Math.floor(Math.random() * objets.length)];
+    
+        const randomTitle = `${action} ${objet}`;
         const newProject = { id: Date.now(), title: randomTitle };
         dispatch(addProject(newProject));
     };
+    
 
     const totalNotes = projects.reduce((sum, project) => sum + (project.notes?.length || 0), 0);
     const totalCompletedNotes = projects.reduce((sum, project) =>
@@ -61,7 +68,7 @@ function Home() {
                 <div className="home_container-projects">
                     <div className="home_container-projects--title">
                         <h1>Tous les projets</h1>
-                        <button className="bouton" onClick={generateRandomTitle}>Créer un projet</button>
+                        <button className="bouton" onClick={generateRandomTitle}><p>+</p></button>
                     </div>
                     <div className="home_container-projects--content">
                         {projects.map((project) => (
