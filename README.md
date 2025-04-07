@@ -53,7 +53,7 @@ Grâce à une interface claire, vous pouvez suivre l’évolution des tâches en
 7️⃣ Pour déplacer une tâche, cliquer sur la tâche et utiliser le système de **glisser-déposer** (drag & drop) entre les colonnes.
 
 ### 📅 Afficher les tâches par date
-1️⃣ Sur la d’accueil, utiliser le **calendrier** à droite.
+1️⃣ Sur la d’accueil, utiliser le **calendrier** à droite.  
 2️⃣ Cliquer sur une date pour voir toutes les tâches prévues ce jour-là.
 
 📌 Les tâches sont regroupées par projet, avec leur titre affiché.
@@ -67,7 +67,7 @@ Grâce à une interface claire, vous pouvez suivre l’évolution des tâches en
 - 🎨 **SCSS** – Styling modulaire et maintenable  
 - 💾 **localStorage** – Sauvegarde des projets/tâches côté client
   
-  
+
 ## Installation 
 
 ### 📋 Prérequis
