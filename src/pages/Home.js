@@ -150,8 +150,7 @@ function Home() {
 
                 {overdueNotes.length > 0 && !showLateNotes && (
                     <div className="home_container-danger" onClick={() => setShowLateNotes(true)}>
-                        <p className="home_container-danger--icon">⚠️</p>
-                        <p className="home_container-danger--text">Vous avez des tâches en retard</p>
+                        <p className="home_container-danger--icon">🚨</p>
                     </div>
                 )}
 

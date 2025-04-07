@@ -43,6 +43,7 @@
                     width : 4vw;
                     height : 4vw;
                     padding : 0 0 2px 0;
+                    background-color: $blanc;
                     border : 1px dashed $bleuDark;
                     
 
@@ -219,27 +220,19 @@
             align-items: center;
             bottom: 1.5vw;
             right : 1.5vw;
-            border-radius: 100vmax 0 0 100vmax;
+            width : 4vw;
+            height : 4vw;
+            border-radius: 100vmax;
             overflow : hidden;
             cursor: pointer;
-            background-color: #ff4d4d;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            background-color : $blanc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
             transition: transform 0.2s ease;
             z-index: 1000;
 
             &--icon{
-                display : flex;
-                justify-content: center;
-                align-items: center;
-                width : 4vw;
-                height : 4vw;
-                border-radius : 100vmax;
-                font-size : 1.5vw;
-                background-color: #ff4d4d;
+                font-size : 1.8vw;
             }
-
-            &--text{}
-
         
             &:hover {
                 transform: scale(1.1);
@@ -315,6 +308,8 @@
 
 .react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from{
     color : $jauneLight;
+    font-size : 1.3vw;
+    font-weight : bold;
 }
 
 .react-calendar__navigation{
@@ -346,8 +341,13 @@
 // }
 
 
+.react-calendar__month-view__weekdays__weekday{
+    color : $jauneDark;
+}
 
-
+abbr[title] {
+    text-decoration: none;
+}
 
 // Date du jour
 .react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__tile--rangeEnd.react-calendar__tile--rangeBothEnds.react-calendar__month-view__days__day{

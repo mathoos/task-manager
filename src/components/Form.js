@@ -154,7 +154,7 @@ const Form = ({ containerType, onSubmit, formActive, onClose, editingNote }) => 
                         <button className="bouton" type="submit" disabled={!!formError}>
                             Valider
                             <svg width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_83_529)">
+                                <g clipPath="url(#clip0_83_529)">
                                     <path d="M24.4755 5.88168C25.173 6.57922 25.173 7.71204 24.4755 8.40958L10.1898 22.6953C9.49222 23.3928 8.35941 23.3928 7.66187 22.6953L0.519008 15.5524C-0.178537 14.8549 -0.178537 13.7221 0.519008 13.0245C1.21655 12.327 2.34937 12.327 3.04691 13.0245L8.92861 18.9007L21.9532 5.88168C22.6507 5.18413 23.7835 5.18413 24.4811 5.88168H24.4755Z" fill="#54194A"/>
                                 </g>
                                 <defs>

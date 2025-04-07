@@ -1,86 +1,84 @@
-# Application de gestion de projets
+# 🗂️ Task Manager – Application de gestion de projets
 
-https://task-manager-journal.onrender.com/
+Task Manager est une application de gestion de projets intuitive permettant de créer, modifier, dupliquer, déplacer et supprimer des tâches.
+Les tâches sont organisées par catégories (Design, Frontend, Backend & Testing).
 
-L'application ne possède pas encore de version mobile.
+Grâce à une interface claire, vous pouvez suivre l’évolution des tâches en les déplaçant de catégorie en fonction de leur avancement.
+  
+  
+## 🚀 Fonctionnalités
 
-## Description
+✅ Créer un projet  
+✅ Supprimer un projet  
+✅ Visualiser toutes les tâches d'un projet  
+✅ Créer une tâche   
+✅ Modifier une tâche   
+✅ Dupliquer une tâche   
+✅ Supprimer une tâche   
+✅ Définir une tâche comme étant terminée  
+✅ Déplacer une tâche d'une catégorie à une autre   
+✅ Afficher le nombre de total de tâches créées  
+✅ Afficher le nombre total de tâches terminées  
+✅ Afficher les tâches du jour  
+  
+  
+## 🎯 Utilisation 
 
-Task Manager est une application de gestion de projets qui permet à l'utilisateur de créer, modifier, dupliquer ou supprimer des tâches.
-Ces tâches peuvent être rangées par catégories : Design, Frontend, Backend ou Testing. 
-En fonction de l'avancée d'une tâche, celle-ci peut être déplacée de catégorie en catégorie.  
+### 📁 Gérer un projet
 
-## Fonctionnalités
+1️⃣ Pour créer un projet, cliquer sur le gros bouton **+**.  
 
-### - Créer une note
-### - Modifier une note
-### - Dupliquer une note
-### - Supprimer une note
-### - Déplacer une note
-### - Afficher une vue détaillée d'une note
+📌Un projet avec un titre aléatoire est généré dans la liste de **Tous les projets**.
 
-## Utilisation
+2️⃣ Cliquer sur le bouton **supprimer** pour effacer un projet.    
+3️⃣ Cliquer sur le bouton **voir** pour accéder à la page du projet.
 
-### 1. Créer un projet
-Sur la page d'accueil, cliquer sur le bouton "Créer un projet" ; cela va créer un projet avec un titre aléatoire. 
-Cliquer sur le nom du projet afin d'être dirigé vers la page /dashboard  de ce projet.
+### 📝 Créer une tâche
 
-### 2. Créer une note
-Une fois sur la page /dashboard du projet sélectionné, cliquer sur le bouton "Ajouter une note" dasn la catégorie souhaitée.
-Ajouter un titre, une description, un tag, une date et les personnes de l'équipes impliquées dans la tâche. 
-Cliquer sur "Valider". 
-La note est incrémentée dans la catégorie associée.
-Seuls le titre, la date, l'équipe et le tag sont visibles. 
+1️⃣ Rendez-vous sur la page d’un projet.  
+2️⃣ Cliquer sur le bouton **Ajouter une note** dans la catégorie souhaitée (Design, Frontend, Backend ou Testing).  
+3️⃣ Remplir tous les champs (Titre, Description Tag, Date et Equipe).  
+4️⃣ Cliquer sur le bouton **Valider**. 
 
-### 3. Visualiser une note
-Pour visualiser en détail la note créée, cliquer sur celle-ci afin qu'elle s'ouvre dans une lightbox.
-Toutes les informations sont regroupées dans cette note. 
+📌 La tâche s’affiche dans la catégorie correspondante. 
 
-### 4. Intéragir avec une note
-Une fois la note ouverte, il est possible de la dupliquer, de la modifier ou de la supprimer en cliquant sur les boutons associés.
-Il est possible de déplacer la note de catégorie en catégorie. 
+### ⚙️ Gérer une tâche
 
-## Pistes d'amélioration
+1️⃣ Cliquer sur une tâche pour l'afficher dans une lightbox.  
+2️⃣ Pour supprimer une tâche, cliquer sur le bouton **Supprimer**.  
+3️⃣ Pour dupliquer une tâche, cliquer sur le bouton **Dupliquer**.   
+4️⃣ Pour modifier une tâche, cliquer sur le bouton **Modifier** et éditer les champs nécessaires.  
+5️⃣ Pour indiquer une tâche comme étant terminée, cliquer sur la **checkbox**.  
+6️⃣ Pour fermer une tâche, cliquer sur la **❌** en haut à droite.  
+7️⃣ Pour déplacer une tâche, cliquer sur la tâche et utiliser le système de **glisser-déposer** (drag & drop) entre les colonnes.
 
-### - Possibilité d'ajouter des images ou fichiers dans les notes.
-### - Possibilité de marquer quand une tâche a été effectuée. 
-### - Créer une page avec les tâches archivées. 
+### 📅 Afficher les tâches par date
+1️⃣ Sur la d’accueil, utiliser le **calendrier** à droite.
+2️⃣ Cliquer sur une date pour voir toutes les tâches prévues ce jour-là.
 
-## Installation
+📌 Les tâches sont regroupées par projet, avec leur titre affiché.
+   
 
-Projet lancé avec Create React App.
+## 🛠️ Technologies utilisées
 
-In the project directory, you can run:
+- ⚛️ **React** – Librairie JavaScript pour construire l’interface  
+- 🗓️ **React Calendar** – Sélecteur de date intégré dans le dashboard  
+- 📦 **Redux Toolkit** – Gestion d’état centralisée simplifiée  
+- 🎨 **SCSS** – Styling modulaire et maintenable  
+- 💾 **localStorage** – Sauvegarde des projets/tâches côté client
+  
+  
+## Installation 
 
-### `npm start`
+### 📋 Prérequis
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js (version >=16.0.0)    
+- npm ou yarn 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 💻 Commandes utiles
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    npm install  
+    npm start 
+    npm test
+    npm run build   
+    npm run eject 
