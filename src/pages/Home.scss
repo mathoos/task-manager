@@ -132,26 +132,34 @@
             }
         }
 
-        &-dangerIcon {
+        &-danger {
             position: fixed;
             display : flex;
             justify-content: center;
             align-items: center;
             bottom: 1.5vw;
-            right: 1.5vw;
-            width : 4vw;
-            height : 4vw;
-            border-radius: 100vmax;
+            right : 1.5vw;
+            border-radius: 100vmax 0 0 100vmax;
+            overflow : hidden;
             cursor: pointer;
             background-color: #ff4d4d;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            
             transition: transform 0.2s ease;
             z-index: 1000;
 
-            p{
-                font-size : 2vw;
+            &--icon{
+                display : flex;
+                justify-content: center;
+                align-items: center;
+                width : 4vw;
+                height : 4vw;
+                border-radius : 100vmax;
+                font-size : 1.5vw;
+                background-color: #ff4d4d;
             }
+
+            &--text{}
+
         
             &:hover {
                 transform: scale(1.1);

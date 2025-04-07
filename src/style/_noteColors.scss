@@ -1,12 +1,13 @@
 $note-colors: (
-    "Design": (light: $violetLight, dark: $violetDark),
-    "Frontend": (light: $bleuLight, dark: $bleuDark),
-    "Backend": (light: $jauneLight, dark: $jauneDark),
-    "Testing": (light: $roseLight, dark: $roseDark)
+    "Design": (normal: $violet, light: $violetLight, dark: $violetDark),
+    "Frontend": (normal: $bleu, light: $bleuLight, dark: $bleuDark),
+    "Backend": (normal: $jaune, light: $jauneLight, dark: $jauneDark),
+    "Testing": (normal: $rose, light: $roseLight, dark: $roseDark)
 );
 
 @each $category, $colors in $note-colors {
     .#{$category} {
+        --normal-color: #{map-get($colors, normal)};
         --light-color: #{map-get($colors, light)};
         --dark-color: #{map-get($colors, dark)};
     }
