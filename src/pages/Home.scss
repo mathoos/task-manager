@@ -114,7 +114,7 @@
         &-info{
             display : grid;
             grid-template-columns: calc(50% - 1.25vw) calc(50% - 1.25vw);
-            grid-template-rows: 2fr 1fr;
+            grid-template-rows: 1fr;
             gap : 2.5vw;
             width : 40vw;
 
@@ -125,13 +125,15 @@
                 justify-content: space-between;
                 width : 100%;
                 border-radius : 15px;
-                background-color: $violet;
+                background-color: $violetLight;
+                border : 2px solid $violetDark;
                 padding : 1.5vw;
+                overflow : hidden;
 
                 &_number{
                     align-items:  flex-end;
                     margin-left : auto;
-                    font-size : 3vw;  
+                    font-size : 4vw;  
                 }
 
                 &_late{
@@ -149,7 +151,8 @@
                 }
 
                 &:nth-of-type(2){
-                    background-color: $rose;
+                    background-color: $roseLight;
+                    border : 2px solid $roseDark;
                     
                     h2, p{
                         color : $roseDark;
@@ -157,7 +160,10 @@
                 }
 
                 &:nth-of-type(3){
-                    background-color: $jaune;
+                    gap : 0;
+                    background-color: $blanc;
+                    border : 2px solid $jauneDark;
+                    padding : 0;
 
                     h2, p{
                         color : $jauneDark;
@@ -166,7 +172,8 @@
 
                 &:nth-of-type(4){
                     justify-content: flex-start;
-                    background-color: $bleu;
+                    background-color: $bleuLight;
+                    border : 2px solid $bleuDark;
 
                     h2, p{
                         color : $bleuDark;
@@ -259,8 +266,101 @@
     }
 }
 
+
+
+.react-calendar__navigation__prev2-button, .react-calendar__navigation__next2-button {
+    display: none;
+}
+
+.react-calendar__navigation__arrow.react-calendar__navigation__next-button, .react-calendar__navigation__arrow.react-calendar__navigation__prev-button{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    color : $jauneLight;
+}
+
+.react-calendar__navigation__label{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from{
+    color : $jauneLight;
+}
+
+.react-calendar__navigation{
+    background-color: $jauneDark;
+    padding : 1.5vw;
+    height : auto;
+    margin-bottom : 0;
+}
+
+.react-calendar__viewContainer{
+    padding : 1.5vw;
+}
+
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus{
+    background-color: $jauneDark;
+}
+
+.react-calendar__tile{
+    padding : 0;
+    width : 2vw;
+    height : 2vw;
+}
+
+
+// Jour hors mois
+// .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth{
+//     background-color: $jauneLight;
+//     color : $blanc;
+// }
+
+
+
+
+
+// Date du jour
+.react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__tile--rangeEnd.react-calendar__tile--rangeBothEnds.react-calendar__month-view__days__day{
+    background-color: $jauneDark;
+    color: $jauneLight;
+    border-radius: 100vmax;
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth{
+    &:hover, &:focus{
+        background-color: inherit;
+        color : inherit
+    }
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day{
+    &:hover, &:focus{
+        background-color: inherit;
+        color : inherit;
+    }
+}
+
+// Date avec des tâches
 .react-calendar__tile.highlight {
-    background-color: $violet;
-    color: white;
-    border-radius: 50%;
+    background-color: $jauneLight;
+    color: $jauneDark;
+    border-radius: 100vmax;
+
+    &:hover, &:focus{
+        background-color: $jauneLight;
+        color: $jauneDark;
+    }
+}
+
+.react-calendar__tile.react-calendar__tile--now.react-calendar__month-view__days__day{
+    background-color: $jauneDark;
+    color: $jauneLight;
+    border-radius: 100vmax;
+}
+
+.react-calendar__tile.react-calendar__tile--active{
+    background-color: inherit;
+    color : inherit;
 }
